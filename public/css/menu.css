@@ -1,0 +1,51 @@
+
+/* Author:- Sujith.K.S */
+
+ul {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+	text-align:center;
+	position: relative;
+}
+ul li {
+    display: block;
+    position: relative;
+    float: left;
+}
+li ul {
+    display: none;
+	/*text-align:left;*/
+}
+ul li a {
+    display: block;
+	width:149px;
+    text-decoration: none;
+    color: #ffffff;
+    border-top: 1px solid #ffffff;
+    padding: 10px 25px 10px 25px;
+    background: #708090;     /**  background: #1e7c9a;  */
+    margin-left: 1px;
+    white-space: nowrap;
+  
+	
+}
+ul li a:hover {
+ background: #585858; /** background: #3b3b3b;  */
+ color: #ffffff;
+}
+li:hover ul {
+    display: block;
+    position: absolute;
+    z-index: 1;
+}
+li:hover li {
+    float: none;
+    font-size: 14px;
+}
+li:hover a { background: #585858; } /** background: #3b3b3b;  */
+li:hover li a:hover {
+    background: #708090;    /**  background: #1e7c9a;  */
+}
