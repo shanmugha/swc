@@ -37,6 +37,7 @@
     $url = explode('/', $_SERVER["REQUEST_URI"]);
     ob_start();
     session_start();
+    $_SESSION['flash_messages']
 ?>
 <section class="admin-tab">
     <ul class="tab-bar">
@@ -69,5 +70,10 @@
         </li>
         <li><a href="#">Examination</a></li>
         <li><a href="#">Events</a></li>
-        <li><a href="#">Settings</a></li>
+        <li>
+            <a class="active-tab" href="#" data-toggle="tab">Settings</a>
+            <ul class="sub-nav" <?php if(in_array($url[2], array('change-password.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url[2] == 'change-password.php'){echo 'current';}?>" href="change-password.php">Change Password</a></li>
+            </ul>
+        </li>
     </ul>
