@@ -52,7 +52,7 @@ if(isset($_POST['login'])) {
                 One of the junior schools, King's St Alban's, shares this tranquillity by being next to the senior site;
                 the other, King's Hawford, is in a more rural setting just north of the city.</p>
         </div>
-        <div class="tab-pane" id="tab2">
+        <div class="tab-pane active" id="tab2">
             <h3>&nbsp;</h3>
             <h3>Our Service</h3>
             <p>&nbsp;</p>
