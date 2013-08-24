@@ -1,5 +1,4 @@
 <?php require_once('admin-layouts/admin-header.php'); ?>
-<?php include('../public/library/FlashMessage/Flash.php'); ?>
 
 <?php
 

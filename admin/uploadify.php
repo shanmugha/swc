@@ -20,12 +20,13 @@ if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
 	$tempFile   = $_FILES['Filedata']['tmp_name'];
 	$targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
 	$targetFile = rtrim($targetPath,'/') . '/' . $_FILES['Filedata']['name'];
-	//echo $targetFile;die;
     $fileName = $_FILES['Filedata']['name'];
-    //list($width, $height) = getimagesize($targetFile);
 
-/*    $studentId  = $_POST['studId'];
-    error_log($studentId);*/
+    $album    = $_POST['albumId'];
+
+    $category = $_POST['category'];
+
+    error_log($album);
 	// Validate the file type
 	$fileTypes  = array('jpg','jpeg','gif','png'); // File extensions
 	$fileParts  = pathinfo($_FILES['Filedata']['name']);
@@ -39,9 +40,9 @@ if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
        /* if(mysql_fetch_array($fileAlreadyExists)) {
             $sql = "UPDATE uploads set path='/uploads/$fileName' where studentId = '$studentId'";
         } else {*/
-            $sql = "INSERT INTO uploads VALUES ('', '/uploads/$fileName',null)";
+            $sql = "INSERT INTO uploads VALUES ('', '/uploads/$fileName', '$category', '$album')";
         /*}*/
-        //echo $sql;die;
+
         $result = mysql_query($sql) or die ('Error updating database: '.mysql_error());
         $uploadId = mysql_insert_id();
 /*        $_SESSION['uploadId']= $uploadId;
@@ -51,15 +52,10 @@ if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
         if($result) {
             $data = array('uploadId' => $uploadId);
             echo json_encode($data);die;
-            /*$percent = 0.5;
-            list($width, $height) = getimagesize($targetFile);
-            $newwidth = $width * $percent;
-            $newheight = $height * $percent;*/
 
 
         }
 
-		//echo '1';
 	} else {
 		echo 'Invalid file type.';
 	}

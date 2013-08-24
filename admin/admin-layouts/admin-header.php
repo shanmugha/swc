@@ -15,7 +15,7 @@
    --> <script type="text/javascript">
         $(document).ready(function() {;
             $(".active-tab").click(function(){
-                $(".active-tab").next(".sub-nav").toggle(); });
+                $(".active-tab").next(".sub-nav").slideToggle("slow"); });
             $(".active-list").click(function(){
                 $(".active-list").next(".sub-t").toggle(); });
         });
@@ -29,15 +29,19 @@
     </div>
 </header>
 <?php
-   /*
-    * connect to database
-    */
+/*
+ * connect to database
+ */
     require_once(__DIR__ . '/../../config/connection.php');
     $connect = new Connection();
     $url = explode('/', $_SERVER["REQUEST_URI"]);
     ob_start();
     session_start();
-    $_SESSION['flash_messages']
+    $_SESSION['flash_messages'];
+/*
+ * library flash message
+ */
+    include('../public/library/FlashMessage/Flash.php');
 ?>
 <section class="admin-tab">
     <ul class="tab-bar">
@@ -50,9 +54,10 @@
             </ul>
         </li>
         <li>
-            <a class="active-tab" href="#gallery" data-toggle="tab">Gallery</a>
-            <ul class="sub-nav" <?php if(in_array($url[2], array('gallery-admin.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url[2] == 'gallery-admin.php'){echo 'current';}?>" href="gallery-admin.php">Gallery</a></li>
+            <a class="active-tab" href="#gallery" data-toggle="tab">Image Gallery</a>
+            <ul class="sub-nav" <?php if(in_array($url[2], array('manage-album.php', 'gallery-upload-images.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url[2] == 'manage-album.php'){echo 'current';}?>" href="manage-album.php">Manage Album</a></li>
+                <li><a class="sub-list <?php if($url[2] == 'gallery-upload-images.php'){echo 'current';}?>" href="gallery-upload-images.php">Upload Image</a></li>
             </ul>
         </li>
         <li>
