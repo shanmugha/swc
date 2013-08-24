@@ -124,7 +124,11 @@ if (!empty($_POST)) {
                         <th>Division</th>
                         <th>Year of Join</th>
                         <th>Class Teacher</th>
-                        <th>Marks</th>
+                        <th>Mark FA1</th>
+                        <th>Mark FA2</th>
+                        <th>Mark FA3</th>
+                        <th>Grand Total</th>
+                        <th>Grade</th>
                         <th> Edit / Delete</th>
                     </tr>
                     </thead>
@@ -176,6 +180,10 @@ if (!empty($_POST)) {
                         <td>D</td>
                         <td>2004</td>
                         <td><a title="title" href="#">Mrs.Geetha</a></td>
+                        <td>122</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>200</td>
                         <td>200</td>
                         <td>
                             <a title="Edit" href="#" class="edit" rowId="<?php echo $row[0];?>"><i class="icon-edit"></i></a>

@@ -4,7 +4,7 @@
 
 <script>
     $(function(){
-        $('.edit').on('click', function(){
+        /*$('.edit').on('click', function(){
 
             $.ajax({
                 type: "POST",
@@ -14,7 +14,7 @@
                     $('.tab2-form').trigger('click');
                     $('.formcontent').html(data);
                 });
-        });
+        });*/
 
         $('.delBtn').on('click', function(){
             if (confirm("Are you sure you want to delete this row?")) {
@@ -54,7 +54,58 @@
                     <div class="content-box-content">
                         <div class="notification attention png_bg">
                         </div>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Sl No</th>
+                                <th>Album Name</th>
+                                <th>Image Name</th>
+                                <th>Picture</th>
+                                <th>Change/Delete</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="pagination">
+                                        <ul>
+                                            <li><a href="#">Prev</a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                            <li><a href="#">5</a></li>
+                                            <li><a href="#">Next</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="clear"></div>
+                                </td>
+                            </tr>
+                            </tfoot>
 
+                            <tbody>
+                            <?php
+                            $sql_album_upload = "SELECT a.album_name,u.path,u.album,u.name FROM album a JOIN uploads u on a.id = u.album";
+                            $result = mysql_query($sql_album_upload) or die ('Error updating database: ' . mysql_error());
+                            ?>
+                            <?php
+                            if($result) {
+                                $iterator = 1;
+                                while ($row = mysql_fetch_array($result)):?>
+                                    <tr>
+                                        <td><?php echo $iterator++;?></td>
+                                        <td class="span4"><?php echo $row['album_name'];?></td>
+                                        <td class="span4"><?php echo $row['name'];?></td>
+                                        <td class="span2"><img src="<?php echo $row['path'];?>" style="height: 100px;width: 100px;"></td>
+                                        <td>
+                                            <a title="Upload" href="#" class="edit" rowId="<?php echo $row['id'];?>"><i class="icon-upload"></i></a>
+                                            <a title="Delete" href="#" class="delBtn" rowId="<?php echo $row['id'];?>"><i class="icon-trash"></i></a>
+
+                                        </td>
+                                    </tr>
+                                <?php endwhile;} ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -136,7 +187,9 @@
                         'albumId':albumId
                     });
                 },
-
+                onUploadSuccess: function (e, data, status) {
+                    $("#save").attr("disabled", "disabled");
+                },
                 'onSelect' : function(file) {
                     $('#save').removeAttr("disabled");
                 },

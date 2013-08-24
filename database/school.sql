@@ -22,13 +22,14 @@ DROP TABLE IF EXISTS `album`;
 
 CREATE TABLE `album` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `album_name` varchar(50) DEFAULT NULL,
+  `album_name` varchar(50) NOT NULL,
+  `description` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `album` */
 
-insert  into `album`(`id`,`album_name`) values (16,'qwf'),(17,'qwf'),(18,'fq'),(19,'fq'),(20,'fq');
+insert  into `album`(`id`,`album_name`,`description`) values (7,'College Function','Onam celebration');
 
 /*Table structure for table `management` */
 
@@ -58,9 +59,11 @@ CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `news` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 /*Data for the table `news` */
+
+insert  into `news`(`id`,`news`) values (30,'Reshman'),(31,'Dolll'),(32,'news');
 
 /*Table structure for table `notification` */
 
@@ -132,11 +135,11 @@ CREATE TABLE `teacher` (
   `subject_taught` varchar(30) DEFAULT NULL,
   `salary` decimal(30,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `teacher` */
 
-insert  into `teacher`(`id`,`teacher_code`,`firstname`,`lastname`,`gender`,`dob`,`eduQualification`,`subject`,`teacher_type`,`year_of_joining`,`subject_taught`,`salary`) values (1,12000,'Reshman','No','Male','13123','MA','sqaef','Regular','12/05/87','efe4534',1033323);
+insert  into `teacher`(`id`,`teacher_code`,`firstname`,`lastname`,`gender`,`dob`,`eduQualification`,`subject`,`teacher_type`,`year_of_joining`,`subject_taught`,`salary`) values (2,2342354,'qw4tqw','awrg','Male','sdfgs','','saeg','Regular','','srg',2245);
 
 /*Table structure for table `uploads` */
 
@@ -144,16 +147,16 @@ DROP TABLE IF EXISTS `uploads`;
 
 CREATE TABLE `uploads` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
   `path` varchar(70) DEFAULT NULL,
-  `studentId` int(11) DEFAULT NULL,
+  `category` varchar(30) DEFAULT NULL,
+  `album` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `studentId` (`studentId`),
-  CONSTRAINT `uploads_ibfk_1` FOREIGN KEY (`studentId`) REFERENCES `album` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  KEY `album` (`album`),
+  CONSTRAINT `uploads_ibfk_1` FOREIGN KEY (`album`) REFERENCES `album` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `uploads` */
-
-insert  into `uploads`(`id`,`path`,`studentId`) values (1,'/uploads/Screenshot from 2013-08-17 22:49:07.png',NULL),(2,'/uploads/Screenshot from 2013-08-17 21:43:44.png',NULL),(3,'/uploads/Screenshot from 2013-08-17 21:43:44.png',NULL),(4,'/uploads/Screenshot from 2013-08-17 22:49:07.png',NULL),(5,'/uploads/Screenshot from 2013-08-17 21:43:44.png',NULL),(6,'/uploads/Screenshot from 2013-08-17 22:49:07.png',NULL),(7,'/uploads/Screenshot from 2013-08-17 21:43:44.png',NULL),(8,'/uploads/Screenshot from 2013-04-02 21:00:35.png',NULL),(9,'/uploads/Screenshot from 2013-08-17 22:49:07.png',NULL),(10,'/uploads/Screenshot from 2013-08-17 21:43:44.png',NULL),(11,'/uploads/Screenshot from 2013-08-17 22:49:07.png',NULL),(12,'/uploads/Screenshot from 2013-08-17 21:43:44.png',NULL),(13,'/uploads/Screenshot from 2013-08-17 22:49:07.png',NULL),(14,'/uploads/Screenshot from 2013-08-17 21:43:44.png',NULL),(15,'/uploads/Screenshot from 2013-08-17 22:49:07.png',NULL),(16,'/uploads/Screenshot from 2013-08-17 21:43:44.png',NULL),(17,'/uploads/Screenshot from 2013-08-17 22:49:07.png',NULL),(18,'/uploads/Screenshot from 2013-08-17 21:43:44.png',NULL);
 
 /*Table structure for table `user` */
 

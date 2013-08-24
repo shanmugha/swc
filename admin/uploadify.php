@@ -26,7 +26,6 @@ if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
 
     $category = $_POST['category'];
 
-    error_log($album);
 	// Validate the file type
 	$fileTypes  = array('jpg','jpeg','gif','png'); // File extensions
 	$fileParts  = pathinfo($_FILES['Filedata']['name']);
@@ -40,7 +39,8 @@ if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
        /* if(mysql_fetch_array($fileAlreadyExists)) {
             $sql = "UPDATE uploads set path='/uploads/$fileName' where studentId = '$studentId'";
         } else {*/
-            $sql = "INSERT INTO uploads VALUES ('', '/uploads/$fileName', '$category', '$album')";
+            $sql = "INSERT INTO uploads VALUES ('', '$fileName', '/uploads/$fileName', '$category', '$album')";
+        error_log($sql);
         /*}*/
 
         $result = mysql_query($sql) or die ('Error updating database: '.mysql_error());
@@ -50,9 +50,6 @@ if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
 
 
         if($result) {
-            $data = array('uploadId' => $uploadId);
-            echo json_encode($data);die;
-
 
         }
 
