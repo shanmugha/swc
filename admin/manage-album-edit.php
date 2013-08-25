@@ -10,7 +10,7 @@ $sql_select_album = "SELECT * FROM album where id = '$id'";
 $result = mysql_query($sql_select_album) or die ('Error updating database: ' . mysql_error());
 ?>
 <?php if ($result) {
-$getResult = mysql_fetch_row($result);
+$getResult = mysql_fetch_array($result);
 ?>
 <div class="content-box-content">
     <a  href="#" class="btn btn-danger delBtn" rowId="<?php echo $getResult[0];?>">Delete</a>
@@ -18,18 +18,18 @@ $getResult = mysql_fetch_row($result);
         <div class="control-group">
             <label class="control-label" for="inputEmail">Album Name</label>
             <div class="controls">
-                <input type="text" id="inputEmail" required="required" name="albumname" placeholder="Album Name">
+                <input type="text" id="inputEmail" required="required" value="<?php echo $getResult['album_name'];?>" name="albumname" placeholder="Album Name">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="inputEmail">Description</label>
             <div class="controls">
-                <textarea rows="6" name="description" class="span6" placeholder="Description"></textarea>
+                <textarea rows="6" name="description" class="span6" placeholder="Description"><?php echo $getResult['description'];?></textarea>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
-                <input type="hidden" name="create-edit" value="0"/>
+                <input type="hidden" name="create-edit" value="<?php echo $getResult['id'];?>"/>
                 <button type="submit" class="btn btn-success">Update</button>
                 <a class="btn" href="/admin/manage-album-edit.php" type="button">Clear</a>
             </div>
