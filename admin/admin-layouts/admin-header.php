@@ -74,7 +74,13 @@
             </ul>
         </li>
         <li><a href="#">Examination</a></li>
-        <li><a href="#">Events</a></li>
+        <li>
+            <a class="active-tab" href="#" data-toggle="tab">Events</a>
+            <ul class="sub-nav" <?php if(in_array($url[2], array('events.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url[2] == 'events.php'){echo 'current';}?>" href="events.php">Add Events</a></li>
+            </ul>
+        </li>
+
         <li>
             <a class="active-tab" href="#" data-toggle="tab">Settings</a>
             <ul class="sub-nav" <?php if(in_array($url[2], array('change-password.php'))){?> style="display: block" <?php }?>>
