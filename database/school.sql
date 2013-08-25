@@ -25,11 +25,26 @@ CREATE TABLE `album` (
   `album_name` varchar(50) NOT NULL,
   `description` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `album` */
 
-insert  into `album`(`id`,`album_name`,`description`) values (7,'College Function','Onam celebration');
+insert  into `album`(`id`,`album_name`,`description`) values (7,'College Function','Onam celebration'),(8,'Doctor','di'),(9,'Real','');
+
+/*Table structure for table `events` */
+
+DROP TABLE IF EXISTS `events`;
+
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `events` text NOT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `events` */
+
+insert  into `events`(`id`,`events`,`date`) values (1,'adgadg','0000-00-00'),(2,'asf DSF ','0000-00-00'),(3,'sada','1970-01-01'),(4,'adf as','1970-01-01'),(5,'asdcas','2013-08-27');
 
 /*Table structure for table `management` */
 
@@ -154,9 +169,11 @@ CREATE TABLE `uploads` (
   PRIMARY KEY (`id`),
   KEY `album` (`album`),
   CONSTRAINT `uploads_ibfk_1` FOREIGN KEY (`album`) REFERENCES `album` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `uploads` */
+
+insert  into `uploads`(`id`,`name`,`path`,`category`,`album`) values (11,'IMG_0463-1.jpg','/uploads/IMG_0463-1.jpg','gallery',8);
 
 /*Table structure for table `user` */
 
@@ -174,7 +191,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`email`,`firstname`,`lastname`,`password`,`token`) values (1,'s.reshman@gmail.com','super','admin','2df5a223b02237f221cc75a0ffb05b2b','');
+insert  into `user`(`id`,`email`,`firstname`,`lastname`,`password`,`token`) values (1,'admin','super','admin','21232f297a57a5a743894a0e4a801fc3','');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
