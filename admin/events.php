@@ -10,9 +10,10 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
     $date         = date('Y-m-d', strtotime($_POST['dpd1']));
     if($createOrEdit == 0) {
         $sql = "INSERT INTO events VALUES ('','$events','$date')";
-        //error_log($sql) ;die;
+        Flash::add('Success', 'Event Created.');
     } else {
-        $sql = "update  news set events = '$events' where id = '$createOrEdit'";
+        $sql = "update  events set events = '$events', date = '$date' where id = '$createOrEdit'";
+        Flash::add('Success', 'Event Updated.');
     }
 
     $result = mysql_query($sql) or die ('Error updating database: ' . mysql_error());
@@ -21,6 +22,8 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
     } else {
         header("Location:$_SERVER[PHP_SELF]");
     }
+} else {
+    Flash::add('Error', 'No event created.');
 }
 
 ?>
@@ -40,6 +43,17 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
+                        <div class="notification attention png_bg">
+                            <?php $flash = new Flash();?>
+                            <?php if(!empty(Flash::$messages)): ?>
+                                <?php foreach( Flash::$messages as $id => $msg ) :?>
+                                    <div class="alert alert-<?php echo strtolower($id);?> fade in">
+                                        <a class="close" data-dismiss="alert">×</a>
+                                        <strong><?php echo $id.':'; ?></strong> <?php echo $msg; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -79,7 +93,7 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
                                     <tr>
                                         <td><?php echo $iterator++;?></td>
                                         <td class="span6"><?php echo $row['events'];?></td>
-                                        <td class="span4"><?php echo $row['date'];?></td>
+                                        <td class="span4"><?php echo date("d-m-Y", strtotime($row['date']));?></td>
                                         <td>
                                             <a title="Edit" href="#" class="edit" rowId="<?php echo $row['id'];?>"><i class="icon-edit"></i></a>
                                             <a title="Delete" href="#" class="delBtn" rowId="<?php echo $row['id'];?>"><i class="icon-trash"></i></a>
@@ -112,7 +126,7 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Date</label>
                                 <div class="controls">
-                                    <input type="text" class="datepicker span2 required" data-date-format="dd-mm-yyyy" readonly="readonly" name="dpd1" id="dpd1" required pattern="\d{2}\/\d{2}\/\d{4}">
+                                    <input type="text" class="datepicker span2 required"  data-date-format="dd-mm-yyyy" readonly="readonly" name="dpd1" id="dpd1" required pattern="\d{2}\/\d{2}\/\d{4}">
                                 </div>
                             </div>
                             <div class="control-group">
@@ -148,7 +162,7 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
 
             $.ajax({
                 type: "POST",
-                url: "news-edit.php",
+                url: "events-edit.php",
                 data: { id: $(this).attr('rowId') }
             }).done(function( data ) {
                     $('.tab2-form').trigger('click');
@@ -161,12 +175,16 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
                 $.ajax(
                     {
                         type: "POST",
-                        url: "news-delete.php",
+                        url: "events-delete.php",
                         data: {id:$(this).attr('rowId')},
                         cache: false,
-                        success: function()
+                        success: function(del)
                         {
-                            location.reload();
+                            if(del == 1){
+
+                                location.reload();
+                            }
+
                         }
                     });
             }
