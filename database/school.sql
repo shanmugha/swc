@@ -25,11 +25,9 @@ CREATE TABLE `album` (
   `album_name` varchar(50) NOT NULL,
   `description` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `album` */
-
-insert  into `album`(`id`,`album_name`,`description`) values (7,'College Function','Onam celebration'),(8,'Doctor','di'),(9,'Real','');
 
 /*Table structure for table `events` */
 
@@ -40,11 +38,9 @@ CREATE TABLE `events` (
   `events` text NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `events` */
-
-insert  into `events`(`id`,`events`,`date`) values (1,'adgadg','0000-00-00'),(2,'asf DSF ','0000-00-00'),(3,'sada','1970-01-01'),(4,'adf as','1970-01-01'),(5,'asdcas','2013-08-27');
 
 /*Table structure for table `management` */
 
@@ -74,11 +70,9 @@ CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `news` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `news` */
-
-insert  into `news`(`id`,`news`) values (30,'Reshman'),(31,'Dolll'),(32,'news');
 
 /*Table structure for table `notification` */
 
@@ -89,11 +83,9 @@ CREATE TABLE `notification` (
   `notifications` tinytext,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `notification` */
-
-insert  into `notification`(`id`,`notifications`,`date`) values (1,'There is no notification','0000-00-00'),(2,'asgr awrghaws','0000-00-00'),(3,'Reshman\r\n','2013-07-23'),(4,'Notifiy','2013-07-24'),(5,'jhgvjhgcvkgv khgv igkhv','2013-07-30');
 
 /*Table structure for table `student` */
 
@@ -126,11 +118,9 @@ CREATE TABLE `student` (
   `reservation` varchar(6) DEFAULT NULL,
   `achivements` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `student` */
-
-insert  into `student`(`id`,`first_name`,`last_name`,`gender`,`dob`,`bloodgroup`,`guardianFname`,`guardianLname`,`occupation`,`permanent_address`,`current_address`,`telephone`,`mobile`,`admissionNo`,`year_of_join`,`standard`,`division`,`maths`,`english`,`socialscience`,`science`,`prev_school`,`disability`,`reservation`,`achivements`) values (1,'Where','No','Male','saDg','B+','SDG','SDG','DSG','SDG','DSG','SDG','DSG',0,'DSG','','',2323,0,0,0,'','Sdd','Yes','');
 
 /*Table structure for table `teacher` */
 
@@ -150,11 +140,9 @@ CREATE TABLE `teacher` (
   `subject_taught` varchar(30) DEFAULT NULL,
   `salary` decimal(30,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `teacher` */
-
-insert  into `teacher`(`id`,`teacher_code`,`firstname`,`lastname`,`gender`,`dob`,`eduQualification`,`subject`,`teacher_type`,`year_of_joining`,`subject_taught`,`salary`) values (2,2342354,'qw4tqw','awrg','Male','sdfgs','','saeg','Regular','','srg',2245);
 
 /*Table structure for table `uploads` */
 
@@ -169,11 +157,9 @@ CREATE TABLE `uploads` (
   PRIMARY KEY (`id`),
   KEY `album` (`album`),
   CONSTRAINT `uploads_ibfk_1` FOREIGN KEY (`album`) REFERENCES `album` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `uploads` */
-
-insert  into `uploads`(`id`,`name`,`path`,`category`,`album`) values (11,'IMG_0463-1.jpg','/uploads/IMG_0463-1.jpg','gallery',8);
 
 /*Table structure for table `user` */
 
@@ -187,11 +173,9 @@ CREATE TABLE `user` (
   `password` varchar(100) NOT NULL,
   `token` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
-
-insert  into `user`(`id`,`email`,`firstname`,`lastname`,`password`,`token`) values (1,'admin','super','admin','21232f297a57a5a743894a0e4a801fc3','');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
