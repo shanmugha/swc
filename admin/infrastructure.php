@@ -1,19 +1,21 @@
-<?php require_once('admin-layouts/admin-header.php'); ?>
-<link href="<?php echo $resourcePath;?>library/datepicker/css/datepicker.css" media="screen" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="<?php echo $resourcePath;?>library/datepicker/js/bootstrap-datepicker.js"></script>
+<?php
+//require_once('admin-layouts/admin-header.php');
+include("admin-layouts/admin-header.php");
+?>
 
 <?php
 
-if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
-    $events       = $_POST['events'];
-    $createOrEdit = $_POST['create-edit'];
-    $date         = date('Y-m-d', strtotime($_POST['dpd1']));
+if ((!empty($_POST['area-acre'])) && (!empty($_POST))) {
+    $areaAcres      = $_POST['area-acre'];
+    $areaSqMeters   = $_POST['area-mtrs'];
+    $buildupArea    = $_POST['area-buildup'];
+    $areaPlayground = $_POST['area-playground'];
+    $createOrEdit   = $_POST['create-edit'];
     if($createOrEdit == 0) {
-        $sql = "INSERT INTO events VALUES ('','$events','$date')";
-        Flash::add('Success', 'Event Created.');
+        $sql = "INSERT INTO  infrastructure values('','$areaAcres', '$areaSqMeters', '$buildupArea', '$areaPlayground')";
     } else {
-        $sql = "update  events set events = '$events', date = '$date' where id = '$createOrEdit'";
-        Flash::add('Success', 'Event Updated.');
+        $sql = "update  infrastructure set area_acres = '$areaAcres', area_sq_mtrs = '$areaSqMeters',
+             area_build_up = '$buildupArea', area_playground = '$areaPlayground' where id = '$createOrEdit'";
     }
 
     $result = mysql_query($sql) or die ('Error updating database: ' . mysql_error());
@@ -37,27 +39,18 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
 
                 <div class="content-box">
                     <div class="content-box-header">
-                        <h3 class="c-head">Event List</h3>
+                        <h3 class="c-head">InfraStructure</h3>
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
-                        <div class="notification attention png_bg">
-                            <?php $flash = new Flash();?>
-                            <?php if(!empty(Flash::$messages)): ?>
-                                <?php foreach( Flash::$messages as $id => $msg ) :?>
-                                    <div class="alert alert-<?php echo strtolower($id);?> fade in">
-                                        <a class="close" data-dismiss="alert">×</a>
-                                        <strong><?php echo $id.':'; ?></strong> <?php echo $msg; ?>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                        </div>
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Sl No</th>
-                                <th>Events</th>
-                                <th>Date</th>
+                                <th>Area in acres</th>
+                                <th>Area in Sq mtrs</th>
+                                <th>Build up area(sq.mtrs)</th>
+                                <th>Area of playground(sq.mtrs)</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -81,8 +74,8 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
 
                             <tbody>
                             <?php
-                            $sql_news = "SELECT * FROM events";
-                            $result = mysql_query($sql_news) or die ('Error updating database: ' . mysql_error());
+                            $sql_infra = "SELECT * FROM infrastructure";
+                            $result = mysql_query($sql_infra) or die ('Error updating database: ' . mysql_error());
                             ?>
                             <?php
                             if($result) {
@@ -90,8 +83,10 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
                                 while ($row = mysql_fetch_array($result)):?>
                                     <tr>
                                         <td><?php echo $iterator++;?></td>
-                                        <td class="span6"><?php echo $row['events'];?></td>
-                                        <td class="span4"><?php echo date("d-m-Y", strtotime($row['date']));?></td>
+                                        <td><?php echo $row['area_acres'];?></td>
+                                        <td><?php echo $row['area_sq_mtrs'];?></td>
+                                        <td><?php echo $row['area_build_up'];?></td>
+                                        <td><?php echo $row['area_playground'];?></td>
                                         <td>
                                             <a title="Edit" href="#" class="edit" rowId="<?php echo $row['id'];?>"><i class="icon-edit"></i></a>
                                             <a title="Delete" href="#" class="delBtn" rowId="<?php echo $row['id'];?>"><i class="icon-trash"></i></a>
@@ -110,28 +105,40 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
             <div class="tab-pane" id="tab2">
                 <div class="content-box formcontent">
                     <div class="content-box-header">
-                        <h3 class="c-head">Create Events</h3>
+                        <h3 class="c-head">Create Infrastructure</h3>
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
                         <form class="form-horizontal" method="post">
                             <div class="control-group">
-                                <label class="control-label" for="inputEmail">Add Events</label>
+                                <label class="control-label" for="inputEmail">Area in acres</label>
                                 <div class="controls">
-                                    <textarea rows="8" name="events" class="span8" required="required"></textarea>
+                                    <input type="text" id="inputEmail" required="required" name="area-acre" placeholder="Area in acres">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="inputEmail">Date</label>
+                                <label class="control-label" for="inputEmail">Area in Sq mtrs</label>
                                 <div class="controls">
-                                    <input type="text" class="datepicker span2 required"  data-date-format="dd-mm-yyyy" readonly="readonly" name="dpd1" id="dpd1" required pattern="\d{2}\/\d{2}\/\d{4}">
+                                    <input type="text" id="inputEmail" required="required" name="area-mtrs" placeholder="Area in Sq mtrs">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Build up area(sq.mtrs)</label>
+                                <div class="controls">
+                                    <input type="text" id="inputEmail" required="required" name="area-buildup" placeholder="Build up area(sq.mtrs)">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Area of playground(sq.mtrs)</label>
+                                <div class="controls">
+                                    <input type="text" id="inputEmail" required="required" name="area-playground" placeholder="Area of playground(sq.mtrs)">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="controls">
                                     <input type="hidden" name="create-edit" value="0"/>
                                     <button type="submit" class="btn btn-success">Create</button>
-                                    <a class="btn" href="/admin/events.php" type="button">Cancel</a>
+                                    <a class="btn" href="/admin/infrastructure.php" type="button">Cancel</a>
                                 </div>
                             </div>
                         </form>
@@ -148,19 +155,11 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
 
 <script>
     $(function(){
-        var nowTemp = new Date();
-        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-        var date = new Date();
-        date.setDate(date.getDate() - 1);
-        $('.datepicker').datepicker({startDate: date}).on('changeDate', function(ev){
-            $('#dpd1').datepicker('hide');
-        });
-
         $('.edit').on('click', function(){
 
             $.ajax({
                 type: "POST",
-                url: "events-edit.php",
+                url: "infrastructure-edit.php",
                 data: { id: $(this).attr('rowId') }
             }).done(function( data ) {
                     $('.tab2-form').trigger('click');
@@ -173,16 +172,12 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
                 $.ajax(
                     {
                         type: "POST",
-                        url: "events-delete.php",
+                        url: "infrastructure-delete.php",
                         data: {id:$(this).attr('rowId')},
                         cache: false,
-                        success: function(del)
+                        success: function()
                         {
-                            if(del == 1){
-
-                                location.reload();
-                            }
-
+                            location.reload();
                         }
                     });
             }
