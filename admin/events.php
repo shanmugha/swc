@@ -1,17 +1,19 @@
-<?php 
-//require_once('admin-layouts/admin-header.php');
-include("admin-layouts/admin-header.php");
- ?>
+<?php require_once('admin-layouts/admin-header.php'); ?>
+<link href="<?php echo $resourcePath;?>library/datepicker/css/datepicker.css" media="screen" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo $resourcePath;?>library/datepicker/js/bootstrap-datepicker.js"></script>
 
 <?php
 
-if ((!empty($_POST['news'])) && (!empty($_POST))) {
-    $news = $_POST['news'];
+if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
+    $events       = $_POST['events'];
     $createOrEdit = $_POST['create-edit'];
+    $date         = date('Y-m-d', strtotime($_POST['dpd1']));
     if($createOrEdit == 0) {
-        $sql = "INSERT INTO news VALUES ('','$news')";
+        $sql = "INSERT INTO events VALUES ('','$events','$date')";
+        Flash::add('Success', 'Event Created.');
     } else {
-        $sql = "update  news set news = '$news' where id = '$createOrEdit'";
+        $sql = "update  events set events = '$events', date = '$date' where id = '$createOrEdit'";
+        Flash::add('Success', 'Event Updated.');
     }
 
     $result = mysql_query($sql) or die ('Error updating database: ' . mysql_error());
@@ -20,6 +22,8 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
     } else {
         header("Location:$_SERVER[PHP_SELF]");
     }
+} else {
+    Flash::add('Error', 'No event created.');
 }
 
 ?>
@@ -35,15 +39,27 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
 
                 <div class="content-box">
                     <div class="content-box-header">
-                        <h3 class="c-head">News List</h3>
+                        <h3 class="c-head">Event List</h3>
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
+                        <div class="notification attention png_bg">
+                            <?php $flash = new Flash();?>
+                            <?php if(!empty(Flash::$messages)): ?>
+                                <?php foreach( Flash::$messages as $id => $msg ) :?>
+                                    <div class="alert alert-<?php echo strtolower($id);?> fade in">
+                                        <a class="close" data-dismiss="alert">×</a>
+                                        <strong><?php echo $id.':'; ?></strong> <?php echo $msg; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Sl No</th>
-                                <th>News</th>
+                                <th>Events</th>
+                                <th>Date</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -67,19 +83,20 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
 
                             <tbody>
                             <?php
-                            $sql_news = "SELECT * FROM news";
+                            $sql_news = "SELECT * FROM events";
                             $result = mysql_query($sql_news) or die ('Error updating database: ' . mysql_error());
                             ?>
                             <?php
                             if($result) {
                                 $iterator = 1;
-                                while ($row = mysql_fetch_row($result)):?>
+                                while ($row = mysql_fetch_array($result)):?>
                                     <tr>
                                         <td><?php echo $iterator++;?></td>
-                                        <td class="span10"><?php echo $row[1];?></td>
+                                        <td class="span6"><?php echo $row['events'];?></td>
+                                        <td class="span4"><?php echo date("d-m-Y", strtotime($row['date']));?></td>
                                         <td>
-                                            <a title="Edit" href="#" class="edit" rowId="<?php echo $row[0];?>"><i class="icon-edit"></i></a>
-                                            <a title="Delete" href="#" class="delBtn" rowId="<?php echo $row[0];?>"><i class="icon-trash"></i></a>
+                                            <a title="Edit" href="#" class="edit" rowId="<?php echo $row['id'];?>"><i class="icon-edit"></i></a>
+                                            <a title="Delete" href="#" class="delBtn" rowId="<?php echo $row['id'];?>"><i class="icon-trash"></i></a>
 
                                         </td>
                                     </tr>
@@ -95,22 +112,28 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
             <div class="tab-pane" id="tab2">
                 <div class="content-box formcontent">
                     <div class="content-box-header">
-                        <h3 class="c-head">Create News</h3>
+                        <h3 class="c-head">Create Events</h3>
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
                         <form class="form-horizontal" method="post">
                             <div class="control-group">
-                                <label class="control-label" for="inputEmail">News</label>
+                                <label class="control-label" for="inputEmail">Add Events</label>
                                 <div class="controls">
-                                    <textarea rows="8" name="news" class="span8" required="required"></textarea>
+                                    <textarea rows="8" name="events" class="span8" required="required"></textarea>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Date</label>
+                                <div class="controls">
+                                    <input type="text" class="datepicker span2 required"  data-date-format="dd-mm-yyyy" readonly="readonly" name="dpd1" id="dpd1" required pattern="\d{2}\/\d{2}\/\d{4}">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="controls">
                                     <input type="hidden" name="create-edit" value="0"/>
                                     <button type="submit" class="btn btn-success">Create</button>
-                                    <a class="btn" href="/admin/news.php" type="button">Cancel</a>
+                                    <a class="btn" href="/admin/events.php" type="button">Cancel</a>
                                 </div>
                             </div>
                         </form>
@@ -127,11 +150,19 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
 
 <script>
     $(function(){
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+        var date = new Date();
+        date.setDate(date.getDate() - 1);
+        $('.datepicker').datepicker({startDate: date}).on('changeDate', function(ev){
+            $('#dpd1').datepicker('hide');
+        });
+
         $('.edit').on('click', function(){
 
             $.ajax({
                 type: "POST",
-                url: "news-edit.php",
+                url: "events-edit.php",
                 data: { id: $(this).attr('rowId') }
             }).done(function( data ) {
                     $('.tab2-form').trigger('click');
@@ -144,12 +175,16 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
                 $.ajax(
                     {
                         type: "POST",
-                        url: "news-delete.php",
+                        url: "events-delete.php",
                         data: {id:$(this).attr('rowId')},
                         cache: false,
-                        success: function()
+                        success: function(del)
                         {
-                            location.reload();
+                            if(del == 1){
+
+                                location.reload();
+                            }
+
                         }
                     });
             }

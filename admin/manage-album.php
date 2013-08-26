@@ -14,15 +14,17 @@ if (!empty($_POST['albumname'])) {
     if (!empty($albumName)):
         if($createOrEdit == 0){
             $sql = "insert into album values ('', '$albumName', '$description')";
+            Flash::add('Success', 'Album Created.');
         } else {
 
             $sql = "UPDATE album SET  album_name = '$albumName'
                         where id='$createOrEdit'";
+            Flash::add('Success', ucwords($albumName).' Album Updated.');
         }
 
         $result = mysql_query($sql) or die ('Error updating database: ' . mysql_error());
         if ($result) {
-            Flash::add('Success', 'Album Created.');
+
             header("Location:$_SERVER[PHP_SELF]");
         }
     endif;

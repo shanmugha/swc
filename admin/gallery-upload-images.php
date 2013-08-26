@@ -26,8 +26,11 @@ include("admin-layouts/admin-header.php");
                 $.ajax(
                     {
                         type: "POST",
-                        url: "student-delete.php",
-                        data: {id:$(this).attr('rowId')},
+                        url: "gallery-upload-images-delete.php",
+                        data: {
+                            id   :$(this).attr('rowId'),
+                            name :$(this).attr('fileName')
+                        },
                         cache: false,
                         success: function()
                         {
@@ -52,12 +55,17 @@ include("admin-layouts/admin-header.php");
 
                 <div class="content-box">
                     <div class="content-box-header">
-                        <h3 class="c-head">Albums</h3>
 
+                        <h3 class="c-head">Albums</h3>
+						
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
                         <div class="notification attention png_bg">
+                            <div class="alert alert-success hide">
+                                <a class="close" data-dismiss="alert">×</a>
+                                <strong>Success:</strong> Image Uploaded..
+                            </div>
                         </div>
                         <table class="table table-striped">
                             <thead>
@@ -90,7 +98,7 @@ include("admin-layouts/admin-header.php");
 
                             <tbody>
                             <?php
-                            $sql_album_upload = "SELECT a.album_name,u.path,u.album,u.name FROM album a JOIN uploads u on a.id = u.album";
+                            $sql_album_upload = "SELECT a.album_name,u.path,u.album,u.name,u.id  FROM album a JOIN uploads u on a.id = u.album";
                             $result = mysql_query($sql_album_upload) or die ('Error updating database: ' . mysql_error());
                             ?>
                             <?php
@@ -104,7 +112,7 @@ include("admin-layouts/admin-header.php");
                                         <td class="span2"><img src="<?php echo $row['path'];?>" style="height: 100px;width: 100px;"></td>
                                         <td>
                                             <a title="Upload" href="#" class="edit" rowId="<?php echo $row['id'];?>"><i class="icon-upload"></i></a>
-                                            <a title="Delete" href="#" class="delBtn" rowId="<?php echo $row['id'];?>"><i class="icon-trash"></i></a>
+                                            <a title="Delete" href="javascript:void(0) " fileName="<?php echo $row['name'];?>" class="delBtn" rowId="<?php echo $row['id'];?>"><i class="icon-trash"></i></a>
 
                                         </td>
                                     </tr>
@@ -194,6 +202,7 @@ include("admin-layouts/admin-header.php");
                 },
                 onUploadSuccess: function (e, data, status) {
                     $("#save").attr("disabled", "disabled");
+                    location.reload();
                 },
                 'onSelect' : function(file) {
                     $('#save').removeAttr("disabled");
