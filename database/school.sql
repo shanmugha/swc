@@ -173,9 +173,11 @@ CREATE TABLE `user` (
   `password` varchar(100) NOT NULL,
   `token` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
+
+insert  into `user`(`id`,`email`,`firstname`,`lastname`,`password`,`token`) values (1,'admin','admin','admin','21232f297a57a5a743894a0e4a801fc3',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
