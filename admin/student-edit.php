@@ -5,7 +5,8 @@
     <div class="clear"></div>
 </div>
 <?php
-require_once(__DIR__ . '/../config/connection.php');
+//require_once(__DIR__ . '/../config/connection.php');
+include(dirname(__FILE__)."/../config/connection.php");
 $connect = new Connection();
 $id = $_POST['id'];
 $sql_select_form_school = "SELECT * FROM student where id = '$id'";

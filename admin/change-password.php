@@ -1,4 +1,9 @@
-<?php require_once('admin-layouts/admin-header.php'); ?>
+<?php 
+
+ // require_once('admin-layouts/admin-header.php');
+  include("admin-layouts/admin-header.php");
+
+ ?>
 
 <?php
 

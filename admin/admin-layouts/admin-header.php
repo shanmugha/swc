@@ -1,6 +1,12 @@
+<?php
+  session_start();  // include in the first line 
+  ob_start();
+  
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<?php $resourcePath ='/../public/' ?>
+<?php $resourcePath ='../public/' ?>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>admin</title>
@@ -25,18 +31,23 @@
 <header class="header">
     <div class="container clearfix">
         <a class="logo" href="#"><img src="<?php echo $resourcePath;?>img/layout/logo.png" />St.Ann's School</a>
-        <a class="login" href="#sign-up" data-toggle="modal" role="button" ><i class="icon-share icon-white"></i>Sign Out</a>
+        <a class="login" href="#sign-up" data-toggle="modal" role="button" ><i class="icon-share icon-white"></i>Logout</a>
     </div>
 </header>
 <?php
 /*
  * connect to database
+ *
+ *  http://stackoverflow.com/questions/8041330/include-file-from-different-directory
  */
-    require_once(__DIR__ . '/../../config/connection.php');
+ 
+
+   // require_once(__DIR__ . '/../../config/connection.php');
+    include(dirname(__FILE__)."/../../config/connection.php");
     $connect = new Connection();
     $url = explode('/', $_SERVER["REQUEST_URI"]);
-    ob_start();
-    session_start();
+   // ob_start();
+   // session_start();
     $_SESSION['flash_messages'];
 /*
  * library flash message
@@ -54,23 +65,24 @@
             </ul>
         </li>
         <li>
-            <a class="active-tab" href="#gallery" data-toggle="tab">Image Gallery</a>
+            <a class="active-tab" href="#gallery" data-toggle="tab">Gallery</a>
             <ul class="sub-nav" <?php if(in_array($url[2], array('manage-album.php', 'gallery-upload-images.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url[2] == 'manage-album.php'){echo 'current';}?>" href="manage-album.php">Manage Album</a></li>
-                <li><a class="sub-list <?php if($url[2] == 'gallery-upload-images.php'){echo 'current';}?>" href="gallery-upload-images.php">Upload Image</a></li>
+                <li><a class="sub-list <?php if($url[2] == 'manage-album.php'){echo 'current';}?>" href="manage-album.php">Albums</a></li>
+                <li><a class="sub-list <?php if($url[2] == 'gallery-upload-images.php'){echo 'current';}?>" href="gallery-upload-images.php">Upload Images</a></li>
             </ul>
         </li>
         <li>
             <a class="active-tab" href="#news" data-toggle="tab">News</a>
             <ul class="sub-nav" <?php if(in_array($url[2], array('news.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url[2] == 'news.php'){echo 'current';}?>" href="news.php">News</a></li>
+                <li><a class="sub-list <?php if($url[2] == 'news.php'){echo 'current';}?>" href="news.php">Latest News</a></li>
             </ul>
         </li>
         <li><a class="active-list" href="#">About School</a>
             <ul class="sub-t">
                 <li><a class="sub-list" href="#">Infrastructure</a></li>
-                <li><a class="sub-list" href="#">Address and Details</a></li>
-                <li><a class="sub-list" href="#">Otherst</a></li>
+                <li><a class="sub-list" href="#">Contact us</a></li>
+				<li><a class="sub-list" href="#">Fee Structure</a></li>
+                <li><a class="sub-list" href="#">Others</a></li>
             </ul>
         </li>
         <li><a href="#">Examination</a></li>

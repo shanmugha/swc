@@ -1,4 +1,7 @@
-<?php require_once('admin-layouts/admin-header.php'); ?>
+<?php 
+//require_once('admin-layouts/admin-header.php'); 
+include(dirname(__FILE__)."admin-layouts/admin-header.php");
+?>
 
 <?php
 /*$targetPath = $_SERVER['DOCUMENT_ROOT'];

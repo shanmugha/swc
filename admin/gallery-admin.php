@@ -1,4 +1,8 @@
-<?php require_once('admin-layouts/admin-header.php'); ?>
+<?php 
+
+//require_once('admin-layouts/admin-header.php'); 
+include(dirname(__FILE__)."admin-layouts/admin-header.php");
+?>
 <script src="<?php echo $resourcePath;?>js/jquery.uploadify.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo $resourcePath;?>css/uploadify.css">
 

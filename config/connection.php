@@ -2,7 +2,7 @@
 class Connection {
 
     private $username = "root";
-    private $password = "root";
+    private $password = "";
     private $hostname = "localhost";
 
     //connection to the database

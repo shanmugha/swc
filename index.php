@@ -1,3 +1,11 @@
+<?php
+
+ob_start();
+$baseurl = 'http://localhost/stanns/swc/';
+//session start
+session_start();
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="en"> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="en"> <![endif]-->
@@ -64,13 +72,7 @@ $(document).ready(function(){
  <!-- END-->
 
 </head>
-<?php
-ob_start();
-$baseurl = 'http://swc/';
-//session start
-session_start();
 
-?>
 <body id="page" >
 <header class="header">
   <div class="container">
@@ -144,8 +146,13 @@ session_start();
     <?php
     /*
      * connect to database
-     */
-    require_once(__DIR__ . '/config/connection.php');
+     *
+	 *  http://stackoverflow.com/questions/8041330/include-file-from-different-directory
+	 */
+	 
+	
+   // require_once dirname(__FILE__). '/config/connection.php';
+    include(dirname(__FILE__)."/config/connection.php");
     $connect = new Connection();
     ?>
   <section class="content-pg clearfix">

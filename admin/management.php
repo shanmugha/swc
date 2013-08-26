@@ -1,4 +1,9 @@
-<?php require_once('admin-layouts/admin-header.php'); ?>
+<?php 
+
+//require_once('admin-layouts/admin-header.php'); 
+include("admin-layouts/admin-header.php");
+
+?>
 
     <div class="tab-content">
         <h2>Welcome Admin</h2>
@@ -13,7 +18,7 @@
 
                     <div class="content-box">
                         <div class="content-box-header">
-                            <h3 class="c-head">management</h3>
+                            <h3 class="c-head">Management</h3>
 
                             <div class="clear"></div>
                         </div>

@@ -1,4 +1,9 @@
-<?php require_once('admin-layouts/admin-header.php'); ?>
+<?php 
+
+//require_once('admin-layouts/admin-header.php'); 
+include("admin-layouts/admin-header.php");
+
+?>
 <script src="<?php echo $resourcePath;?>js/jquery.uploadify.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo $resourcePath;?>css/uploadify.css">
 
@@ -47,7 +52,7 @@
 
                 <div class="content-box">
                     <div class="content-box-header">
-                        <h3 class="c-head">Students</h3>
+                        <h3 class="c-head">Albums</h3>
 
                         <div class="clear"></div>
                     </div>

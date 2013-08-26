@@ -1,4 +1,9 @@
-<?php require_once('admin-layouts/admin-header.php'); ?>
+<?php 
+
+//require_once('admin-layouts/admin-header.php');
+include("admin-layouts/admin-header.php");
+ 
+?>
 
 <?php
 if (!empty($_POST['albumname'])) {
@@ -62,14 +67,14 @@ if (!empty($_POST['albumname'])) {
     <div class="tabbable">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab1" data-toggle="tab">Views</a></li>
-            <li><a href="#tab2" class="tab2-form" data-toggle="tab">Create Album</a></li>
+            <li><a href="#tab2" class="tab2-form" data-toggle="tab">Create</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab1">
 
                 <div class="content-box">
                     <div class="content-box-header">
-                        <h3 class="c-head">Manage Album</h3>
+                        <h3 class="c-head">Albums Created</h3>
 
                         <div class="clear"></div>
                     </div>
@@ -140,7 +145,7 @@ if (!empty($_POST['albumname'])) {
             <div class="tab-pane" id="tab2">
                 <div class="content-box formcontent">
                     <div class="content-box-header">
-                        <h3 class="c-head">Create Album</h3>
+                        <h3 class="c-head">Create New Album</h3>
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
