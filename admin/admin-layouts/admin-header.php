@@ -45,7 +45,12 @@
    // require_once(__DIR__ . '/../../config/connection.php');
     include(dirname(__FILE__)."/../../config/connection.php");
     $connect = new Connection();
-    $url = explode('/', $_SERVER["REQUEST_URI"]);
+    $actualUrl = explode('/', $_SERVER["REQUEST_URI"]);
+	
+	$cnt = count($actualUrl)-1;
+
+	//echo $url_explode[];die;
+	$url =  $actualUrl[$cnt];
    // ob_start();
    // session_start();
     $_SESSION['flash_messages'];
@@ -58,29 +63,29 @@
     <ul class="tab-bar">
         <li>
             <a class="active-tab" href="#student" data-toggle="tab">People</a>
-            <ul class="sub-nav" <?php if(in_array($url[2], array('teachers.php','students.php', 'management.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url[2] == 'teachers.php'){echo 'current';}?>" href="teachers.php">Teachers</a></li>
-                <li><a class="sub-list <?php if($url[2] == 'students.php'){echo 'current';}?>" href="students.php">Students</a></li>
-                <li><a class="sub-list <?php if($url[2] == 'management.php'){echo 'current';}?>" href="management.php">Management</a></li>
+            <ul class="sub-nav" <?php if(in_array($url, array('teachers.php','students.php', 'management.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url == 'teachers.php'){echo 'current';}?>" href="teachers.php">Teachers</a></li>
+                <li><a class="sub-list <?php if($url == 'students.php'){echo 'current';}?>" href="students.php">Students</a></li>
+                <li><a class="sub-list <?php if($url == 'management.php'){echo 'current';}?>" href="management.php">Management</a></li>
             </ul>
         </li>
         <li>
             <a class="active-tab" href="#gallery" data-toggle="tab">Gallery</a>
-            <ul class="sub-nav" <?php if(in_array($url[2], array('manage-album.php', 'gallery-upload-images.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url[2] == 'manage-album.php'){echo 'current';}?>" href="manage-album.php">Albums</a></li>
-                <li><a class="sub-list <?php if($url[2] == 'gallery-upload-images.php'){echo 'current';}?>" href="gallery-upload-images.php">Upload Images</a></li>
+            <ul class="sub-nav" <?php if(in_array($url, array('manage-album.php', 'gallery-upload-images.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url == 'manage-album.php'){echo 'current';}?>" href="manage-album.php">Albums</a></li>
+                <li><a class="sub-list <?php if($url == 'gallery-upload-images.php'){echo 'current';}?>" href="gallery-upload-images.php">Upload Images</a></li>
             </ul>
         </li>
         <li>
             <a class="active-tab" href="#news" data-toggle="tab">News</a>
-            <ul class="sub-nav" <?php if(in_array($url[2], array('news.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url[2] == 'news.php'){echo 'current';}?>" href="news.php">Latest News</a></li>
+            <ul class="sub-nav" <?php if(in_array($url, array('news.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url == 'news.php'){echo 'current';}?>" href="news.php">Latest News</a></li>
             </ul>
         </li>
         <li><a class="active-tab" href="#" data-toggle="tab">About School</a>
-            <ul class="sub-nav" <?php if(in_array($url[2], array('infrastructure.php', 'contact.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url[2] == 'infrastructure.php'){echo 'current';}?>" href="infrastructure.php">Infrastructure</a></li>
-                <li><a class="sub-list <?php if($url[2] == 'contact.php'){echo 'current';}?>" href="contact.php">Contact us</a></li>
+            <ul class="sub-nav" <?php if(in_array($url, array('infrastructure.php', 'contact.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url == 'infrastructure.php'){echo 'current';}?>" href="infrastructure.php">Infrastructure</a></li>
+                <li><a class="sub-list <?php if($url == 'contact.php'){echo 'current';}?>" href="contact.php">Contact us</a></li>
 				<li><a class="sub-list" href="#">Fee Structure</a></li>
                 <li><a class="sub-list" href="#">Others</a></li>
             </ul>
@@ -88,15 +93,15 @@
         <li><a href="#">Examination</a></li>
         <li>
             <a class="active-tab" href="#" data-toggle="tab">Events</a>
-            <ul class="sub-nav" <?php if(in_array($url[2], array('events.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url[2] == 'events.php'){echo 'current';}?>" href="events.php">Add Events</a></li>
+            <ul class="sub-nav" <?php if(in_array($url, array('events.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url == 'events.php'){echo 'current';}?>" href="events.php">Add Events</a></li>
             </ul>
         </li>
 
         <li>
             <a class="active-tab" href="#" data-toggle="tab">Settings</a>
-            <ul class="sub-nav" <?php if(in_array($url[2], array('change-password.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url[2] == 'change-password.php'){echo 'current';}?>" href="change-password.php">Change Password</a></li>
+            <ul class="sub-nav" <?php if(in_array($url, array('change-password.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url == 'change-password.php'){echo 'current';}?>" href="change-password.php">Change Password</a></li>
             </ul>
         </li>
     </ul>
