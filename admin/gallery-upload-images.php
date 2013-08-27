@@ -111,7 +111,7 @@ include("admin-layouts/admin-header.php");
                                         <td class="span4"><?php echo $row['name'];?></td>
                                         <td class="span2"><img src="<?php echo $row['path'];?>" style="height: 100px;width: 100px;"></td>
                                         <td>
-                                            <a title="Upload" href="#" class="edit" rowId="<?php echo $row['id'];?>"><i class="icon-upload"></i></a>
+                                            <a title="Upload" href="#" class="upload-ico" rowId="<?php echo $row['id'];?>"><i class="icon-upload"></i></a>
                                             <a title="Delete" href="javascript:void(0) " fileName="<?php echo $row['name'];?>" class="delBtn" rowId="<?php echo $row['id'];?>"><i class="icon-trash"></i></a>
 
                                         </td>
@@ -180,6 +180,10 @@ include("admin-layouts/admin-header.php");
     <?php $timestamp = time();?>
     $(function() {
         $('input[type=file]').each(function (){
+            upload();
+        });
+
+        function upload(){
             $("#save").attr("disabled", "disabled");
             $('#file_upload').uploadify({
                 'formData'      : {
@@ -212,10 +216,14 @@ include("admin-layouts/admin-header.php");
                 }
 
             });
-        });
+        }
 
         $('#save').on('click', function() {
             $('#file_upload').uploadify('upload', '*');
+        });
+
+        $('.upload-ico').on('click', function(){
+           alert("df");
         })
 
     });

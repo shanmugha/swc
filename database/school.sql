@@ -25,9 +25,25 @@ CREATE TABLE `album` (
   `album_name` varchar(50) NOT NULL,
   `description` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `album` */
+
+insert  into `album`(`id`,`album_name`,`description`) values (1,'College Function','saajith');
+
+/*Table structure for table `contact` */
+
+DROP TABLE IF EXISTS `contact`;
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) NOT NULL,
+  `phone` decimal(10,0) NOT NULL,
+  `fax` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `contact` */
 
 /*Table structure for table `events` */
 
@@ -41,6 +57,21 @@ CREATE TABLE `events` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `events` */
+
+/*Table structure for table `infrastructure` */
+
+DROP TABLE IF EXISTS `infrastructure`;
+
+CREATE TABLE `infrastructure` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `area_acres` varchar(50) DEFAULT NULL,
+  `area_sq_mtrs` varchar(50) DEFAULT NULL,
+  `area_build_up` varchar(50) DEFAULT NULL,
+  `area_playground` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `infrastructure` */
 
 /*Table structure for table `management` */
 
@@ -157,9 +188,11 @@ CREATE TABLE `uploads` (
   PRIMARY KEY (`id`),
   KEY `album` (`album`),
   CONSTRAINT `uploads_ibfk_1` FOREIGN KEY (`album`) REFERENCES `album` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `uploads` */
+
+insert  into `uploads`(`id`,`name`,`path`,`category`,`album`) values (1,'Screenshot from 2013-08-17 21:43:44.png','/uploads/Screenshot from 2013-08-17 21:43:44.png','gallery',1);
 
 /*Table structure for table `user` */
 
@@ -173,9 +206,11 @@ CREATE TABLE `user` (
   `password` varchar(100) NOT NULL,
   `token` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
+
+insert  into `user`(`id`,`email`,`firstname`,`lastname`,`password`,`token`) values (1,'admin','admin','admin','21232f297a57a5a743894a0e4a801fc3',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
