@@ -11,11 +11,15 @@ if ((!empty($_POST['area-acre'])) && (!empty($_POST))) {
     $buildupArea    = $_POST['area-buildup'];
     $areaPlayground = $_POST['area-playground'];
     $createOrEdit   = $_POST['create-edit'];
-    if($createOrEdit == 0) {
-        $sql = "INSERT INTO  infrastructure values('','$areaAcres', '$areaSqMeters', '$buildupArea', '$areaPlayground')";
-    } else {
+    $sql_contact = "SELECT count(*) FROM infrastructure";
+    $result = mysql_query($sql_contact) or die ('Error updating database: ' . mysql_error());
+    $row = mysql_fetch_row($result);
+    if($row[0] == 1) {
         $sql = "update  infrastructure set area_acres = '$areaAcres', area_sq_mtrs = '$areaSqMeters',
-             area_build_up = '$buildupArea', area_playground = '$areaPlayground' where id = '$createOrEdit'";
+             area_build_up = '$buildupArea', area_playground = '$areaPlayground' where id = 1";
+
+    } else {
+        $sql = "INSERT INTO  infrastructure values('','$areaAcres', '$areaSqMeters', '$buildupArea', '$areaPlayground')";
     }
 
     $result = mysql_query($sql) or die ('Error updating database: ' . mysql_error());
@@ -56,17 +60,7 @@ if ((!empty($_POST['area-acre'])) && (!empty($_POST))) {
                             <tfoot>
                             <tr>
                                 <td colspan="6">
-                                    <div class="pagination">
-                                        <ul>
-                                            <li><a href="#">Prev</a></li>
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li><a href="#">Next</a></li>
-                                        </ul>
-                                    </div>
+
                                     <div class="clear"></div>
                                 </td>
                             </tr>
@@ -109,29 +103,37 @@ if ((!empty($_POST['area-acre'])) && (!empty($_POST))) {
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
+                        <?php
+                        $sql_others = "SELECT * FROM infrastructure";
+                        $result = mysql_query($sql_others) or die ('Error updating database: ' . mysql_error());
+                        ?>
                         <form class="form-horizontal" method="post">
+                            <?php
+                            if($result) {
+                                $row = mysql_fetch_row($result);
+                            }?>
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Area in acres</label>
                                 <div class="controls">
-                                    <input type="text" id="inputEmail" required="required" name="area-acre" placeholder="Area in acres">
+                                    <input type="text" id="inputEmail" value="<?php echo $row['1']; ?>" required="required" name="area-acre" placeholder="Area in acres">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Area in Sq mtrs</label>
                                 <div class="controls">
-                                    <input type="text" id="inputEmail" required="required" name="area-mtrs" placeholder="Area in Sq mtrs">
+                                    <input type="text" id="inputEmail" value="<?php echo $row['2']; ?>" required="required" name="area-mtrs" placeholder="Area in Sq mtrs">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Build up area(sq.mtrs)</label>
                                 <div class="controls">
-                                    <input type="text" id="inputEmail" required="required" name="area-buildup" placeholder="Build up area(sq.mtrs)">
+                                    <input type="text" id="inputEmail" value="<?php echo $row['3']; ?>" required="required" name="area-buildup" placeholder="Build up area(sq.mtrs)">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Area of playground(sq.mtrs)</label>
                                 <div class="controls">
-                                    <input type="text" id="inputEmail" required="required" name="area-playground" placeholder="Area of playground(sq.mtrs)">
+                                    <input type="text" id="inputEmail" value="<?php echo $row['4']; ?>" required="required" name="area-playground" placeholder="Area of playground(sq.mtrs)">
                                 </div>
                             </div>
                             <div class="control-group">
