@@ -368,4 +368,65 @@ a:hover{text-decoration:none;}
 	 height:inherit;
 	
 }
+/*******Gallery********/
+.folder{
+	width:150px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	background:#0CF;
+	position:relative;
+	margin:10px 5px;
+	padding:10px;
+	box-shadow: 2px 3px 3px #959595;
+	-webkit-box-shadow: 2px 3px 3px #959595;
+	float:left;
+}
+.folder-link{
+	width:151px;
+	height:112px;
+	overflow:hidden;
+	display:block;
+	transition:height 0.4s linear 0.4s;
+	-webkit-transition:height 0.4s linear 0.4s;
+}
+.folder-link:hover{
+	height:160px;
+}
+.folder-link .thump{
+	border:3px solid#fff;
+	width:145px;
+	height:85px;
+	overflow:hidden;
+}
+.folder-link .thump img{
+	width:145px;
+	height:auto;
+}
+.folder-mp {
+    background:#00CCFF;
+    border-radius: 3px 18px 0 0;
+	-webkit-border-radius: 3px 18px 0 0;
+    height: 13px;
+    position: absolute;
+    top: -11px;
+    width: 45px;
+	left:0;
+}
+
+.folder .folder-link h3 {
+    color: #FFFFFF;
+    font-family: Helvetica;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+}
+.folder .folder-link p{
+	color:#CFF;
+	margin:0;
+}
 
