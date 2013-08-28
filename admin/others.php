@@ -5,18 +5,20 @@ include("admin-layouts/admin-header.php");
 
 <?php
 
-if ((!empty($_POST['school-email'])) && (!empty($_POST))) {
-    $email   = $_POST['school-email'];
-    $phno    = $_POST['phno'];
-    $fax     = $_POST['fax'];
-    $sql_contact = "SELECT count(*) FROM contact";
+if ((!empty($_POST['president'])) && (!empty($_POST))) {
+    $president   = $_POST['president'];
+    $address     = $_POST['address'];
+    $email       = $_POST['email'];
+    $phno        = $_POST['phone'];
+    $fax         = $_POST['fax'];
+    $sql_contact = "SELECT count(*) FROM others";
     $result = mysql_query($sql_contact) or die ('Error updating database: ' . mysql_error());
     $row = mysql_fetch_row($result);
     if($row[0] == 1) {
-        $sql = "update  contact set email = '$email', phone = '$phno',
+        $sql = "update  others set president_name = '$president', address = '$address' ,email = '$email', phno = '$phno',
              fax = '$fax' where id = 1";
     } else {
-        $sql = "insert into contact values ('', '$email', '$phno', '$fax')";
+        $sql = "insert into others values ('', '$president', '$address', '$email', '$phno', '$fax')";
     }
 
     $result = mysql_query($sql) or die ('Error updating database: ' . mysql_error());
@@ -40,7 +42,7 @@ if ((!empty($_POST['school-email'])) && (!empty($_POST))) {
 
                 <div class="content-box">
                     <div class="content-box-header">
-                        <h3 class="c-head">View Contact</h3>
+                        <h3 class="c-head">View Others</h3>
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
@@ -48,9 +50,11 @@ if ((!empty($_POST['school-email'])) && (!empty($_POST))) {
                             <thead>
                             <tr>
                                 <th>Sl No</th>
-                                <th>School Email</th>
-                                <th>Phone Number</th>
-                                <th>Fax</th>
+                                <th>Name of president</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Phone No</th>
+                                <th>Fax No</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -64,8 +68,8 @@ if ((!empty($_POST['school-email'])) && (!empty($_POST))) {
 
                             <tbody>
                             <?php
-                            $sql_infra = "SELECT * FROM contact";
-                            $result = mysql_query($sql_infra) or die ('Error updating database: ' . mysql_error());
+                            $sql_others = "SELECT * FROM others";
+                            $result = mysql_query($sql_others) or die ('Error updating database: ' . mysql_error());
                             ?>
                             <?php
                             if($result) {
@@ -73,8 +77,10 @@ if ((!empty($_POST['school-email'])) && (!empty($_POST))) {
                                 while ($row = mysql_fetch_array($result)):?>
                                     <tr>
                                         <td><?php echo $iterator++;?></td>
+                                        <td><?php echo $row['president_name'];?></td>
+                                        <td><?php echo $row['address'];?></td>
                                         <td><?php echo $row['email'];?></td>
-                                        <td><?php echo $row['phone'];?></td>
+                                        <td><?php echo $row['phno'];?></td>
                                         <td><?php echo $row['fax'];?></td>
                                         <td>
                                             <a title="Delete" href="#" class="delBtn" rowId="<?php echo $row['id'];?>"><i class="icon-trash"></i></a>
@@ -92,13 +98,13 @@ if ((!empty($_POST['school-email'])) && (!empty($_POST))) {
             <div class="tab-pane" id="tab2">
                 <div class="content-box formcontent">
                     <div class="content-box-header">
-                        <h3 class="c-head">Create Contact Us</h3>
+                        <h3 class="c-head">Create Others</h3>
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
                         <?php
-                        $sql_infra = "SELECT * FROM contact";
-                        $result = mysql_query($sql_infra) or die ('Error updating database: ' . mysql_error());
+                        $sql_others = "SELECT * FROM others";
+                        $result = mysql_query($sql_others) or die ('Error updating database: ' . mysql_error());
                         ?>
                         <form class="form-horizontal" method="post">
                             <?php
@@ -106,28 +112,40 @@ if ((!empty($_POST['school-email'])) && (!empty($_POST))) {
                                 $row = mysql_fetch_row($result);
                             }?>
                             <div class="control-group">
-                                <label class="control-label" for="inputEmail">School Email</label>
+                                <label class="control-label" for="inputEmail">Name of president</label>
                                 <div class="controls">
-                                    <input type="email" id="inputEmail" value="<?php echo $row['1']; ?>" required="required" name="school-email" placeholder="School Email">
+                                    <input type="text" id="inputEmail" value="<?php echo $row['1']; ?>" required="required" name="president" placeholder="Name of president">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="inputEmail">Phone Number</label>
+                                <label class="control-label" for="inputEmail">Address</label>
                                 <div class="controls">
-                                    <input type="text" id="inputEmail" value="<?php echo $row['2']; ?>" required="required" name="phno" placeholder="Phone Number">
+                                    <textarea rows="8" name="address" placeholder="Address" class="span8" required="required"><?php echo $row['2'];?></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="inputEmail">Fax</label>
+                                <label class="control-label" for="inputEmail">Email</label>
                                 <div class="controls">
-                                    <input type="text" id="inputEmail" value="<?php echo $row['3']; ?>" required="required" name="fax" placeholder="Fax">
+                                    <input type="email" id="inputEmail" value="<?php echo $row['3']; ?>"  name="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Phone No</label>
+                                <div class="controls">
+                                    <input type="text" id="inputEmail" value="<?php echo $row['4']; ?>"  name="phone" placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Fax No</label>
+                                <div class="controls">
+                                    <input type="text" id="inputEmail" value="<?php echo $row['5']; ?>"  name="fax" placeholder="Fax Number">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="controls">
                                     <input type="hidden" name="create-edit" value="0"/>
                                     <button type="submit" class="btn btn-success"><?php echo (empty($row))? 'Create':'Update';?></button>
-                                    <a class="btn" href="/admin/infrastructure.php" type="button">Cancel</a>
+                                    <a class="btn" href="/admin/others.php" type="button">Cancel</a>
                                 </div>
                             </div>
                         </form>
@@ -149,7 +167,7 @@ if ((!empty($_POST['school-email'])) && (!empty($_POST))) {
                 $.ajax(
                     {
                         type: "POST",
-                        url: "contact-delete.php",
+                        url: "others-delete.php",
                         data: {id:$(this).attr('rowId')},
                         cache: false,
                         success: function()

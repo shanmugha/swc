@@ -1,6 +1,6 @@
 <?php
-   // require_once(__DIR__ . '/../config/connection.php');
-	include(dirname(__FILE__)."/../config/config.php");
+    require_once(__DIR__ . '/../config/connection.php');
+	//include(dirname(__FILE__)."/../config/config.php");
     $connect = new Connection();
 ?>
 
