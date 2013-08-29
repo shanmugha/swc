@@ -110,6 +110,7 @@ $(document).ready(function(){
 
 	                  <ul>
                         <li><a href="#" title="Faculty">Faculty</a></li>
+						<li><a href="#" title="Students">Students</a></li>
                         <li><a href="#" title="Management">Management</a></li>
                      </ul>
 	</li>
