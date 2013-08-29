@@ -83,11 +83,11 @@
             </ul>
         </li>
         <li><a class="active-tab" href="#" data-toggle="tab">About School</a>
-            <ul class="sub-nav" <?php if(in_array($url, array('infrastructure.php', 'contact.php'))){?> style="display: block" <?php }?>>
+            <ul class="sub-nav" <?php if(in_array($url, array('infrastructure.php', 'contact.php', 'others.php'))){?> style="display: block" <?php }?>>
                 <li><a class="sub-list <?php if($url == 'infrastructure.php'){echo 'current';}?>" href="infrastructure.php">Infrastructure</a></li>
                 <li><a class="sub-list <?php if($url == 'contact.php'){echo 'current';}?>" href="contact.php">Contact us</a></li>
 				<li><a class="sub-list" href="#">Fee Structure</a></li>
-                <li><a class="sub-list" href="#">Others</a></li>
+                <li><a class="sub-list <?php if($url == 'others.php'){echo 'current';}?>" href="others.php">Others</a></li>
             </ul>
         </li>
         <li><a href="#">Examination</a></li>

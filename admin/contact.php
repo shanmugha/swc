@@ -120,7 +120,7 @@ if ((!empty($_POST['school-email'])) && (!empty($_POST))) {
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Fax</label>
                                 <div class="controls">
-                                    <input type="text" id="inputEmail" value="<?php echo $row['2']; ?>" required="required" name="fax" placeholder="Fax">
+                                    <input type="text" id="inputEmail" value="<?php echo $row['3']; ?>" required="required" name="fax" placeholder="Fax">
                                 </div>
                             </div>
                             <div class="control-group">
