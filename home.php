@@ -9,12 +9,13 @@ if(isset($_POST['login'])) {
         $key = md5($password);
         $sql = "select * from user where id = 1";
         $result = mysql_query($sql) or die ('Error updating database: '.mysql_error());
-        $_SESSION['user'] = array('email' => $email, 'userId' => mysql_insert_id());
+
         if ($result) {
             $getRow   = mysql_fetch_row($result);
             $emailFromDb    = $getRow[1];
             $passwordFromDb = $getRow[4];
-            if ($email == $emailFromDb && $key == $passwordFromDb) {error_log( $baseurl.'admin.php');
+            if ($email == $emailFromDb && $key == $passwordFromDb) {
+                $_SESSION['user'] = array('email' => $email, 'userId' => 1);
                 header('Location:'.$baseurl.'admin/teachers.php');
             }
         }

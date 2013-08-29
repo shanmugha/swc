@@ -25,11 +25,11 @@ CREATE TABLE `album` (
   `album_name` varchar(50) NOT NULL,
   `description` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `album` */
 
-insert  into `album`(`id`,`album_name`,`description`) values (1,'College Function','saajith');
+insert  into `album`(`id`,`album_name`,`description`) values (1,'College Function','saajith'),(2,'Sujith','Iam not Shaji but Sanjith...');
 
 /*Table structure for table `contact` */
 
@@ -41,9 +41,11 @@ CREATE TABLE `contact` (
   `phone` decimal(10,0) NOT NULL,
   `fax` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `contact` */
+
+insert  into `contact`(`id`,`email`,`phone`,`fax`) values (1,'s.reshman@gmail.com',12345,1234);
 
 /*Table structure for table `events` */
 
@@ -69,9 +71,11 @@ CREATE TABLE `infrastructure` (
   `area_build_up` varchar(50) DEFAULT NULL,
   `area_playground` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `infrastructure` */
+
+insert  into `infrastructure`(`id`,`area_acres`,`area_sq_mtrs`,`area_build_up`,`area_playground`) values (1,'2323232323','2452345','245','52525');
 
 /*Table structure for table `management` */
 
@@ -117,6 +121,24 @@ CREATE TABLE `notification` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `notification` */
+
+/*Table structure for table `others` */
+
+DROP TABLE IF EXISTS `others`;
+
+CREATE TABLE `others` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `president_name` varchar(50) NOT NULL,
+  `address` text,
+  `email` varchar(50) DEFAULT NULL,
+  `phno` decimal(12,0) DEFAULT NULL,
+  `fax` decimal(12,0) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `others` */
+
+insert  into `others`(`id`,`president_name`,`address`,`email`,`phno`,`fax`) values (2,'Reset','Thank\r\n\r\n\r\n\r\nYou!','s.reshman@gmail.com',123456,12345744);
 
 /*Table structure for table `student` */
 
@@ -188,11 +210,11 @@ CREATE TABLE `uploads` (
   PRIMARY KEY (`id`),
   KEY `album` (`album`),
   CONSTRAINT `uploads_ibfk_1` FOREIGN KEY (`album`) REFERENCES `album` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `uploads` */
 
-insert  into `uploads`(`id`,`name`,`path`,`category`,`album`) values (1,'Screenshot from 2013-08-17 21:43:44.png','/uploads/Screenshot from 2013-08-17 21:43:44.png','gallery',1);
+insert  into `uploads`(`id`,`name`,`path`,`category`,`album`) values (1,'Screenshot from 2013-08-17 21:43:44.png','/uploads/Screenshot from 2013-08-17 21:43:44.png','gallery',1),(2,'IMG_0463-1.jpg','/uploads/IMG_0463-1.jpg','gallery',1),(3,'Screenshot from 2013-08-11 00:43:48.png','/uploads/Screenshot from 2013-08-11 00:43:48.png','gallery',2),(4,'20130315_195254.jpg','/uploads/20130315_195254.jpg','gallery',2);
 
 /*Table structure for table `user` */
 

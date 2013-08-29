@@ -14,12 +14,13 @@
             endwhile;
         } catch (Exception $e) {
             echo $e->getMessage();
-            die;
+            die();
         }
 
         ?>
         <section class="content-pg clearfix">
             <?php
+            if(!empty($albumUploadDetails)):
             foreach ($albumUploadDetails as $albumUploadDetail) {
                 ?>
                 <div class="folder">
@@ -33,7 +34,7 @@
                         <p><?php echo $albumUploadDetail['description']; ?></p>
                     </a>
                 </div>
-            <?php } ?>
+            <?php } endif;?>
             
         </section>
 
