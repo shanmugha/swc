@@ -1,6 +1,10 @@
 <?php
   session_start();  // include in the first line 
-  ob_start();
+  //ob_start();
+  $baseUrl = 'http://swc/';
+  if (empty($_SESSION['user'])) {
+      header('Location:'.$baseurl.'/index.php');
+  }
   
 ?>
 
@@ -19,11 +23,12 @@
     <script src="<?php echo $resourcePath;?>js/bootstrap.min.js"></script>
     <!--<script type="text/javascript" src="https://rnhckrdotcom.googlecode.com/svn/bloggerwidget/rnhckr-tripleflap.js"></script>
    --> <script type="text/javascript">
-        $(document).ready(function() {;
-            $(".active-tab").click(function(){
-                $(".active-tab").next(".sub-nav").slideToggle("slow"); });
-            $(".active-list").click(function(){
-                $(".active-list").next(".sub-t").toggle(); });
+        $(document).ready(function() {
+            $(".active-tab").on('click', function(){
+                $(this).next(".sub-nav").slideToggle("slow");
+                $('.sub-nav').hide();
+                $(this).next().show()
+            });
         });
     </script>
 </head>
@@ -40,7 +45,7 @@
  *
  *  http://stackoverflow.com/questions/8041330/include-file-from-different-directory
  */
- 
+
 
    // require_once(__DIR__ . '/../../config/connection.php');
     include(dirname(__FILE__)."/../../config/connection.php");
