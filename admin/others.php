@@ -42,7 +42,7 @@ if ((!empty($_POST['president'])) && (!empty($_POST))) {
 
                 <div class="content-box">
                     <div class="content-box-header">
-                        <h3 class="c-head">View Others</h3>
+                        <h3 class="c-head">School Management</h3>
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
@@ -98,7 +98,7 @@ if ((!empty($_POST['president'])) && (!empty($_POST))) {
             <div class="tab-pane" id="tab2">
                 <div class="content-box formcontent">
                     <div class="content-box-header">
-                        <h3 class="c-head">Create Others</h3>
+                        <h3 class="c-head">Create School Management</h3>
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">

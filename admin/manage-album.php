@@ -17,7 +17,7 @@ if (!empty($_POST['albumname'])) {
             Flash::add('Success', 'Album Created.');
         } else {
 
-            $sql = "UPDATE album SET  album_name = '$albumName'
+            $sql = "UPDATE album SET  album_name = '$albumName', description = '$description'
                         where id='$createOrEdit'";
             Flash::add('Success', ucwords($albumName).' Album Updated.');
         }

@@ -26,17 +26,15 @@
 
 <div class="container" >
    <ul  id="menu">
-    <li><a  href="#"> Home </a></li>
+    <li><a  href="#hometab" id="#hometab" data-toggle="tab"> Home </a></li>
     <li><a   href="#"> About </a>
 	                 <ul>
                         <li><a href="#" title="Our Vision">Our Vision</a></li>
-						<li><a href="#" title="Location">Location</a></li>
 						<li><a href="#" title="Infrastructure">Infrastructure</a></li>
-						<li><a href="#" title="News and Events">News and Events</a></li>
                      </ul>
 	</li>
     <li><a  href="#"> Gallery </a></li>
-    <li><a  href="#"> Contact </a></li>
+    <li><a  href="#contact-tab" id="#contact-tab" data-toggle="tab"> Contact </a></li>
     <li ><a  href="#"> People </a>
 
 	                  <ul>
@@ -77,7 +75,17 @@
 
 <div class="wrapper">
     <section class="content-pg clearfix">
-        <?php include_once('students.php'); ?>
+
+        <div class="tab-content">
+
+            <div class="tab-pane active" id="hometab" >
+
+                <?php include_once('home.php'); ?>
+            </div>
+            <div class="tab-pane" id="contact-tab">
+                <?php include_once('contact-us.php'); ?>
+            </div>
+        </div>
     </section>
 
 </div>
