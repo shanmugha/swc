@@ -77,7 +77,7 @@
 
 <div class="wrapper">
     <section class="content-pg clearfix">
-        <?php include_once('home.php'); ?>
+        <?php include_once('students.php'); ?>
     </section>
 
 </div>

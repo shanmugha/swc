@@ -1,56 +1,60 @@
-
-<div class="tabbable">
-  <!-- Only required for left/right tabs -->
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-      <h3>Contact Us</h3>
-      <p>&nbsp;</p>
-      <div>
-        <table border="0">
-          <tr>
-            <td width="92"><b>Address : </b></td>
-            <td width="191"> ST.ANN'S SCHOOL</td>
-          </tr>
-          <tr>
-            <td rowspan="4"></td>
-            <td><h5>( Affiliated to CBSE, No.930688 )</h5></td>
-          </tr>
-          <tr>
-            <td>AYOOR- 691 533</td>
-          </tr>
-          <tr>
-            <td>KOLLAM (Dist.)</td>
-          </tr>
-          <tr>
-            <td>KERALA</td>
-          </tr>
-        </table>
-		
-		 &nbsp;
-		 
-		<!--Email,Fax and Phone-->
-		
-		  <table border="0">
-          <tr>
-            <td width="93" height="37"><b>E-mail : </b></td>
-            <td width="190"> stannsayur@yahoo.co.in</td>
-          </tr>
-           <tr>
-            <td width="93" height="37"><b>Ph. No : </b></td>
-            <td width="190"> 0475 2294485</td>
-          </tr>
-		   <tr>
-            <td width="93" height="34"><b>Fax No : </b></td>
-            <td width="190"> 9856473625225</td>
-          </tr>
-          
-        </table>
-      </div>
-    </div>
-    <div class="tab-pane" id="tab4"></div>
-    <div class="tab-pane center" id="tab5">
-      <h3>&nbsp;</h3>
-      <h4>&nbsp;</h4>
-    </div>
-  </div>
-</div>
+<section class="hm-content">
+	<h3>Contact Us</h3>
+	<table class="address">
+		<tbody>
+		  <tr>
+			<th>Address </th>
+			<td> ST.ANN'S SCHOOL, AYOOR- 691 533,<br /> KOLLAM (Dist.), KERALA</td>
+		  </tr>
+		  <tr>
+			<th>Phone Number </th>
+			<td>0475-2294485</td>
+		  </tr>
+		  <tr>
+		  <th>Email </th>
+			<td>stannsayur@yahoo.com</td>
+		  </tr>
+		  <tr>
+			<th>Fax </th>
+			<td>0475-2294485</td>
+		  </tr>
+		<tbody>
+	</table>
+	<div class="g-map">
+		<img src="public//img/layout/map.png" />
+	</div>
+	<div class="clear"></div>
+</section>
+<section class="call-form">
+	<form class="bs-docs-example form-horizontal">
+		<div class="control-group">
+			<label for="inputEmail" class="control-label">Name</label>
+			<div class="controls">
+				<input type="text" placeholder="Name">
+			</div>
+		</div>
+		<div class="control-group">
+			<label for="inputEmail" class="control-label">Phone Number</label>
+			<div class="controls">
+				<input type="text" placeholder="Phone Number">
+			</div>
+		</div>
+		<div class="control-group">
+		  <label for="inputEmail" class="control-label">Email</label>
+		  <div class="controls">
+			<input type="text" placeholder="Email" id="inputEmail">
+		  </div>
+		</div>
+		<div class="control-group">
+				<label for="inputEmail" class="control-label">Address</label>
+		   <div class="controls">
+				<textarea type="text" placeholder="Address"></textarea>
+		   </div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<button class="btn" type="submit">Submit</button>
+			</div>
+		</div>
+    </form>
+</section>
