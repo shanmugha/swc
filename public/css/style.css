@@ -432,34 +432,42 @@ a:hover{text-decoration:none;}
 }
 .people {
     border: 1px solid #CCCCCC;
-    box-shadow: 1px -1px 7px #CCCCCC;
-    -webkit-box-shadow: 1px -1px 7px #CCCCCC;
     margin: 5px;
     padding: 10px;
-    width: 250px;
+    width: 210px;
 	float:left;
+	cursor:pointer;
+	transition:box-shadow 0.4s;
+	-webkit-box-transition:box-shadow 0.4s;
 }
-
+.people:hover{
+    box-shadow: 1px -1px 14px #CCCCCC;
+    -webkit-box-shadow: 1px -1px 14px #CCCCCC;
+}
 .pepl-thamp {
     border: 1px solid #CCCCCC;
     margin: 3px auto;
-    width: 240px;
+    width: 175px;
 	overflow:hidden;
-	height:240px;
+	height:200px;
 }
 .pepl-thamp img{
 	width:100%;
 	height:auto;
 }
 .people h3{
-	color:#19C5FF;
+	color:#4D4E5B;
+	font-size:18px;
+	margin:0;
 }
 .infobox  td{
-	padding:10px;
-	color:#008185;
+	padding:2px;
+	color:#55A4F3;
 }
 .infobox  th{
-	color:#06B4DB;
+	color:#898989;
+	font-size:13px;
+	padding-right:8px;
 }
 
 
