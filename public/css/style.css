@@ -170,6 +170,13 @@ a:hover{text-decoration:none;}
 	margin:0 10px 10px 0;
 	border:1px solid #3CF;
 }
+.pcr-lrg{
+	width:400px;
+	height:auto;
+	float:right;
+	margin:0 0 10px 10px;
+	border:2px solid #063544;
+}
 .note{
 	color:#16A7BA;
 	font-size:16px;
