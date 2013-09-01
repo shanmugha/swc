@@ -80,7 +80,7 @@
 
             <div class="tab-pane active" id="hometab" >
 
-                <?php include_once('students.php'); ?>
+                <?php include_once('management.php'); ?>
             </div>
             <div class="tab-pane" id="contact-tab">
                 <?php include_once('contact-us.php'); ?>

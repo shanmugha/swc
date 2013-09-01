@@ -467,4 +467,28 @@ a:hover{text-decoration:none;}
 .call-form{
 	margin:50px 0;
 }
-
+.mang-thump{
+  width:200px;
+  float:left;
+  text-align :center;
+}
+.mang-thump h4 {
+	margin:0;
+	color:#036484;
+}
+.mang-thump h4 span{
+	font-size:15px;
+	font-weight:normal;
+	color:#919191;
+}
+.mang-thump img{
+	border:2px solid #063544;
+	width:150px;
+	height:auto;
+}
+.mang-dvr{
+	margin:10px 5px;
+	border-bottom:dashed 1px #ccc;
+	padding:10px;
+}
+	
