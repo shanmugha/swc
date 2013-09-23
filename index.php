@@ -58,6 +58,19 @@
 
 <div class="wrapper">
 	<aside class="left-box">
+    
+    
+    <div class="news-box">
+        <h4>Home</h4>
+        <p></p>
+        <h4>About</h4>
+        <p></p>
+        <h4>Contact Us</h4>
+        <p></p>
+        <h4>Gallery</h4>
+       
+        </div>
+    
 		<div class="news-box">
         <h4>Lalest News</h4>
         <article class="news-body">
