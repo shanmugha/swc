@@ -1,4 +1,4 @@
-            <h3>About Us</h3>
+            
 <div class="hm-content">
 	<h4>History</h4>
       <img src="<?php echo $resourcePath; ?>img/layout/image1.jpg" class="pcr-lrg" />

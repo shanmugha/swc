@@ -501,3 +501,94 @@ a:hover{text-decoration:none;}
 	border-bottom:dashed 1px #ccc;
 	padding:10px;
 }
+
+
+/********** Image Slider Style ********/
+ *{outline: none;}
+img {border: 0;}
+.container_slider {
+	width: 960px;
+	height: 380px;
+	padding: 0;
+	margin: 0 auto;
+}
+.folio_block {
+	position: absolute;
+}
+
+/*--Main Container--*/
+.main_view {
+	float: none;
+	position: relative;
+}
+/*--Window/Masking Styles--*/
+.window {
+	height:380px;	width: 960px;
+	overflow: hidden; /*--Hides anything outside of the set width/height--*/
+	position: relative;
+}
+.image_reel {
+	position: absolute;
+	top: 0; left: 0;
+}
+.image_reel img {float: left;}
+
+/*--Paging Styles--*/
+.paging {
+	position: absolute;
+	bottom: 40px; right: -7px;
+	width: 178px; height:47px;
+	z-index: 100; /*--Assures the paging stays on the top layer--*/
+	text-align: center;
+	line-height: 40px;
+	background: url(..\public\img\layout\paging_bg2.png) no-repeat;
+	display: none; /*--Hidden by default, will be later shown with jQuery--*/
+}
+.paging a {
+	padding: 5px;
+	text-decoration: none;
+	color: #fff;
+}
+.paging a.active {
+	font-weight: bold;
+	background: #920000;
+	border: 1px solid #610000;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.paging a:hover {font-weight: bold;}
+               
+				
+/*********** end of image slider style *********/	
+
+/* ******************* latest news style *********/
+
+.ticker {
+    width: 270px;
+	height: 200px;
+	overflow: hidden;
+	text-align: left;
+}
+
+.ticker h3 {
+	padding: 0 0 10px 10px;
+
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-style: italic;
+}
+
+ul li {
+    list-style: none;
+    height:60px;
+    padding:7px;
+	margin-bottom:2px;
+    border-bottom: 1px solid #D6CFB8;
+}			
+
+/* ******************* end of latest news style *********/
