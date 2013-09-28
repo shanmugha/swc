@@ -6,7 +6,18 @@
 <script type="text/javascript" src="public/js/jquery_slider.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js "></script>
 <script type="text/javascript">
-
+    /*jQuery time*/
+    $(document).ready(function(){
+        $("#accordian h3").click(function(){
+            //slide up all the link lists
+            $("#accordian ul ul").slideUp();
+            //slide down the link list below the h3 clicked - only if its closed
+            if(!$(this).next().is(":visible"))
+            {
+                $(this).next().slideDown();
+            }
+        })
+    })
 
       <!--  LATEST NEWS-->
 	 
@@ -84,10 +95,9 @@
 
             });
         </script>
-		
 <!--END OF IMAGE SLIDER JSCODE -->
 
-
+<script type="text/javascript" src="<?php echo $resourcePath ?>/js/bootstrap.min.js"></script>
 <div class="container">
   <header class="header"> <a class="logo-head" href="#"> <img src="<?php echo $resourcePath ?>/img/layout/logo.png" class="logo"/>
     <h2 class="fl">ST.ANN'S SCHOOL</h2>
@@ -103,7 +113,6 @@
     10th STD EXAMINATION RESULT WILL BE PUBLISH ON 1-DEC-2013
     </marquee>
   </div>
-  
   
   <!-- DIV FOR IMAGE SLIDER  -->
    
@@ -130,19 +139,39 @@
     <!-- <img src="img/layout/t3slider.jpg" alt="" width="940" height="380" /> -->
   </div>
   <!-- END OF DIV FOR IMAGE SLIDER  -->
-  
-  
+
+
   <div class="wrapper">
     <aside class="left-box">
-      <div class="news-box">
-        <h4>Home</h4>
-        <p></p>
-        <h4>About</h4>
-        <p></p>
-        <h4>Contact Us</h4>
-        <p></p>
-        <h4>Gallery</h4>
-      </div>
+
+          <div id="accordian">
+              <ul>
+                  <li>
+                      <h3><span class="icon-dashboard"></span>Home</h3>
+
+                  </li>
+                  <!-- we will keep this LI open by default -->
+                  <li class="active">
+                      <h3><span class="icon-tasks"></span>About</h3>
+                  </li>
+                  <li>
+                      <h3><span class="icon-calendar"></span>Gallery</h3>
+                  </li>
+                  <li>
+                      <h3><span class="icon-heart"></span>People</h3>
+                      <ul>
+                          <li><a href="#">Students</a></li>
+                          <li><a href="#">Teachers</a></li>
+                          <li><a href="#">Management</a></li>
+                      </ul>
+                  </li>
+                  <li>
+                      <h3><span class="icon-heart"></span>Contact Us</h3>
+                  </li>
+              </ul>
+          </div>
+
+
       <div class="news-box">
         <h4>Lalest News</h4>
         <article class="news-body">

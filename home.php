@@ -1,30 +1,4 @@
 
-<?php
-
-if(isset($_POST['login'])) {
-    $loginStatus = false;
-    $email       = $_POST['email'];
-    $password    = $_POST['password'];
-    if (!empty($email) && !empty($password)) {
-        $key = md5($password);
-        $sql = "select * from user where id = 1";
-        $result = mysql_query($sql) or die ('Error updating database: '.mysql_error());
-
-        if ($result) {
-            $getRow   = mysql_fetch_row($result);
-            $emailFromDb    = $getRow[1];
-            $passwordFromDb = $getRow[4];
-            if ($email == $emailFromDb && $key == $passwordFromDb) {
-                $_SESSION['user'] = array('email' => $email, 'userId' => 1);
-                header('Location:'.$baseurl.'admin/teachers.php');
-            }
-        }
-
-    }
-
-}
-?>
-
 	<div class="hm-content">
 
             <h3>Welcome to our School</h3>

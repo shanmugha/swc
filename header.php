@@ -33,9 +33,11 @@ if (!empty($_SESSION['user'])) {
     <link rel="stylesheet" href="<?php echo $resourcePath ?>/css/bootstrap.css" />
     <link rel="stylesheet" href="<?php echo $resourcePath ?>/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo $resourcePath ?>/css/style1.css" />
-    <link rel="stylesheet" href="<?php echo $resourcePath ?>/css/menu.css">
+
+   <!-- <link rel="stylesheet" href="<?php /*echo $resourcePath */?>/css/menu.css">-->
     <link rel="stylesheet" href="<?php echo $resourcePath ?>/css/uploadify.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $resourcePath ?>/css/style.css" />
+    <link rel="stylesheet" href="<?php echo $resourcePath ?>/css/ddaccrodin.css" />
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -46,32 +48,6 @@ if (!empty($_SESSION['user'])) {
     <script type="text/javascript" src="<?php echo $resourcePath ?>/js/modernizr.custom.86080.js"></script>
     <script type="text/javascript" src="<?php echo $resourcePath ?>/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://rnhckrdotcom.googlecode.com/svn/bloggerwidget/rnhckr-tripleflap.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#myModal').modal(options)
-
-            $('.carousel').carousel({
-                interval: 500
-            })
-        });
-
-    </script>
-
-
-    <!--HERE IS THE JQUERY FOR DROPDOWN MENU CODE -->
-    <script type="text/javascript" src="<?php echo $resourcePath ?>/js/jquery-1.3.2.js"></script>
-    <script type="text/javascript" src="<?php echo $resourcePath ?>/js/drop_down_menu_ui.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("img").hover(function() {
-                    $(this).stop().animate({opacity: "0.8"}, 'slow');
-                },
-                function() {
-                    $(this).stop().animate({opacity: "1"}, 'slow');
-                });
-        });
-    </script>
     <!-- END-->
     <?php
     /*
