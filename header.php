@@ -47,7 +47,7 @@ if (!empty($_SESSION['user'])) {
 
     <script type="text/javascript" src="<?php echo $resourcePath ?>/js/modernizr.custom.86080.js"></script>
     <script type="text/javascript" src="<?php echo $resourcePath ?>/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://rnhckrdotcom.googlecode.com/svn/bloggerwidget/rnhckr-tripleflap.js"></script>
+    <script type="text/javascript" src="<?php echo $resourcePath ?>/js/rnhckr-tripleflap.js"></script>
 	
 	
     <!-- END-->
