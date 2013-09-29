@@ -35,7 +35,9 @@
     /*background: #003040;*/
 	
    /* background: -moz-linear-gradient(bottom, rgb(233,98,27) 22%, rgb(255,128,54) 61%, rgb(255,154,81) 81%); */
-   background: none repeat scroll 0 0 #00BFFF; /* Old browsers */
+  /* background: none repeat scroll 0 0 #00BFFF;*/ /* Old browsers */
+    background: none repeat scroll 0 0 #005693;
+    border: 1px solid #005693;
 
  
 }

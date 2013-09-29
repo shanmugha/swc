@@ -75,7 +75,7 @@ a:hover{text-decoration:none;}
 }
 .news-box{
 	max-height:400px;
-	border:1px solid #00BFFF;
+	border:1px solid #005693;
 	border-radius:4px;
 	-wekit-border-radius:4px;
 	margin:10px auto;
@@ -83,7 +83,8 @@ a:hover{text-decoration:none;}
 }
 .news-box h4{
 	color:#fff;
-	background:#00BFFF;
+	background:#005E9E;
+    border: 1px solid #005693;
 	margin:0;
 	text-align:center;
 	padding:10px;
@@ -131,16 +132,19 @@ a:hover{text-decoration:none;}
 	border-right:none;
 	padding:5px;
 	margin-bottom:15px;
-	background:#00BFFF;
+	/*background:#00BFFF;*/
+    background: none repeat scroll 0 0 #005E9E;
+    border-bottom: 3px solid #005693;
+    box-shadow: 0 1px rgba(255, 255, 255, 0.4) inset, 0 2px rgba(0, 0, 0, 0.05);
 }
 .footer{
     width:100%;
     height:auto;
-    background:#000;
+    background:#313131;
     padding:10px 0;
     z-index:100;
-    opacity:0.65;
-    -webkit-opacity:0.65;
+    /*opacity:0.65;
+    -webkit-opacity:0.65;*/
 }
 .footer-links{
 	float:left;
