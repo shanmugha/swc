@@ -33,12 +33,12 @@
     </script>
 </head>
 <body>
-<header class="header">
+<!--<header class="header">
     <div class="container clearfix">
-        <a class="logo" href="#"><img src="<?php echo $resourcePath;?>img/layout/logo.png" />St.Ann's School</a>
+        <a class="logo" href="#"><img src="<?php /*echo $resourcePath;*/?>img/layout/logo.png" />St.Ann's School</a>
         <a class="login" href="#sign-up" data-toggle="modal" role="button" ><i class="icon-share icon-white"></i>Logout</a>
     </div>
-</header>
+</header>-->
 <?php
 /*
  * connect to database
