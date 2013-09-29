@@ -1,11 +1,11 @@
 <?php include_once('header.php'); ?>
 <body id="page">
-
-
-
 <script type="text/javascript" src="public/js/jquery_slider.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js "></script>
+<script type="text/javascript" src="public/js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
+
+   <!--MENU-->
+   
     /*jQuery time*/
     $(document).ready(function(){
         $("#accordian h3").click(function(){
@@ -19,6 +19,8 @@
         })
     })
 
+    <!--END MENU-->
+  
       <!--  LATEST NEWS-->
 	 
       function ticker() {
@@ -94,6 +96,41 @@
                 });
 
             });
+			
+			
+			
+			
+			
+			$(document).ready(function() {
+    // Initialize navgoco with default options
+    $("#demo1").navgoco({
+        caret: '<span class="caret"></span>',
+        accordion: false,
+        openClass: 'open',
+        save: true,
+        cookie: {
+            name: 'navgoco',
+            expires: false,
+            path: '/'
+        },
+        slide: {
+            duration: 400,
+            easing: 'swing'
+        }
+    });
+
+    $("#collapseAll").click(function(e) {
+        e.preventDefault();
+        $("#demo1").navgoco('toggle', false);
+    });
+
+    $("#expandAll").click(function(e) {
+        e.preventDefault();
+        $("#demo1").navgoco('toggle', true);
+    });
+});
+
+
         </script>
 <!--END OF IMAGE SLIDER JSCODE -->
 
@@ -113,9 +150,7 @@
     10th STD EXAMINATION RESULT WILL BE PUBLISH ON 1-DEC-2013
     </marquee>
   </div>
-  
   <!-- DIV FOR IMAGE SLIDER  -->
-   
   <div align="center">
     <div class="container_slider">
       <div class="folio_block">
@@ -139,51 +174,51 @@
     <!-- <img src="img/layout/t3slider.jpg" alt="" width="940" height="380" /> -->
   </div>
   <!-- END OF DIV FOR IMAGE SLIDER  -->
-
-
   <div class="wrapper">
     <aside class="left-box">
-
-          <div id="accordian">
-              <ul>
-                  <li>
-                      <h3><span class="icon-dashboard"></span>Home</h3>
-
-                  </li>
-                  <!-- we will keep this LI open by default -->
-                  <li class="active">
-                      <h3><span class="icon-tasks"></span>About</h3>
-                  </li>
-                  <li>
-                      <h3><span class="icon-calendar"></span>Gallery</h3>
-                  </li>
-                  <li>
-                      <h3><span class="icon-heart"></span>People</h3>
-                      <ul>
-                          <li><a href="#">Students</a></li>
-                          <li><a href="#">Teachers</a></li>
-                          <li><a href="#">Management</a></li>
-                      </ul>
-                  </li>
-                  <li>
-                      <h3><span class="icon-heart"></span>Contact Us</h3>
-                  </li>
-              </ul>
-          </div>
-
-
+      <!--here start menu-->
+      <div id="accordian">
+        <ul>
+          <li>
+            <h3><span class="icon-dashboard"></span>Home</h3>
+          </li>
+          <!-- we will keep this LI open by default -->
+          <li class="active">
+            <h3><span class="icon-tasks"></span>About</h3>
+          </li>
+          <li>
+            <h3><span class="icon-calendar"></span>Gallery</h3>
+          </li>
+          <li>
+            <h3><span class="icon-heart"></span>People</h3>
+            <ul>
+              <li><a href="#">Students</a></li>
+              <li><a href="#">Teachers</a></li>
+              <li><a href="#">Management</a></li>
+            </ul>
+          </li>
+          <li>
+            <h3><span class="icon-heart"></span>Contact Us</h3>
+          </li>
+        </ul>
+      </div>
+	   
+      <!-- end of menu-->
+	  
+	 
+	  
       <div class="news-box">
         <h4>Lalest News</h4>
         <article class="news-body">
-          <div class="ticker">
-           <ul id="ticker">
-               <li>Dummy data is benign information that does not contain any useful data, but serves ...</li>
-               <li>For testing, dummy data can also be used as stubs or pad to avoid software testing iss...</li>
-               <li>In operational use, dummy data may be transmitted for OPSEC purposes.</li>
-               <li>Dummy data must be rigorously evaluated and documented to ensure that it does no...</li>
-               <li>The topic of this article may not meet Wikipedia's general notability guideline.</li>
-            </ul>
-          </div>
+        <div class="ticker">
+          <ul id="ticker">
+            <li>Dummy data is benign information that does not contain any useful data, but serves ...</li>
+            <li>For testing, dummy data can also be used as stubs or pad to avoid software testing iss...</li>
+            <li>In operational use, dummy data may be transmitted for OPSEC purposes.</li>
+            <li>Dummy data must be rigorously evaluated and documented to ensure that it does no...</li>
+            <li>The topic of this article may not meet Wikipedia's general notability guideline.</li>
+          </ul>
+        </div>
       </div>
       <div class="news-box">
         <h4>Events</h4>
