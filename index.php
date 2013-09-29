@@ -177,10 +177,10 @@
     </div>
     <!-- END OF DIV FOR IMAGE SLIDER  -->
     <div class="wrapper">
-
+        <?php include_once('leftpane.php'); ?>
         <section class="content-pg clearfix">
             <div class="tab-content">
-                <?php include_once('leftpane.php'); ?>
+
                 <div class="tab-pane active" id="hometab">
                     <?php include_once('ourvission.php'); ?>
                 </div>
