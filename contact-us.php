@@ -175,7 +175,7 @@
                         </table>
                         <div class="g-map">
                             <!--<img src="public//img/layout/map.png" />-->
-                            <div id="map-canvas" style="height: 250px;width: 490px;"></div>
+                            <div id="map-canvas" style="height: 250px;width: 600px;"></div>
 
                         </div>
                         <div class="clear"></div>
@@ -230,7 +230,7 @@
     function initialize() {
         var myLatlng = new google.maps.LatLng(8.893488, 76.857044);
         var mapOptions = {
-            zoom: 17,
+            zoom: 15,
             center: myLatlng,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }

@@ -1,9 +1,15 @@
+<style>
+    #accordian a {
+        color:inherit;
+        text-decoration: none;
+    }
+</style>
 <aside class="left-box">
     <!--here start menu-->
     <div id="accordian">
         <ul>
             <li>
-                <h3><span class="icon-dashboard"></span>Home</h3>
+                <a href="http://swc/"><h3><span class="icon-dashboard"></span>Home</h3></a>
             </li>
             <!-- we will keep this LI open by default -->
             <li class="active">
@@ -21,7 +27,7 @@
                 </ul>
             </li>
             <li>
-                <h3><span class="icon-heart"></span>Contact Us</h3>
+                <a href="contact-us.php"><h3><span class="icon-heart"></span>Contact Us</h3></a>
             </li>
         </ul>
     </div>
