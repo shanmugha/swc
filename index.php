@@ -107,8 +107,11 @@
     <header class="header"><a class="logo-head" href="#"> <img src="<?php echo $resourcePath ?>/img/layout/logo.png"
                                                                class="logo"/>
 
-            <h2 class="fl">ST.ANN'S SCHOOL</h2>
+            <h2 class="fl">ST.ANN'S SCHOOL</h2> <br/>
+
         </a>
+		  
+		 
 
         <div class="content-login">
             <p style="float:right;color:#7A7A7A;"><a href="#sign-up" data-toggle="modal" role="button"><img
@@ -117,9 +120,9 @@
         <div class="clear"></div>
     </header>
     <div class="flash-news">
-        <marquee behavior="scroll" direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
+       <!-- <marquee behavior="scroll" direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
             10th STD EXAMINATION RESULT WILL BE PUBLISH ON 1-DEC-2013
-        </marquee>
+        </marquee>-->
     </div>
     <!-- DIV FOR IMAGE SLIDER  -->
     <div align="center">

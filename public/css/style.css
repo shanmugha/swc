@@ -30,7 +30,9 @@ a:hover{text-decoration:none;}
     font-size: 36px;
     line-height: 28px;
     text-shadow: 2px -1px 2px #447676;
-	color: #00BFFF;
+	color:#005E9E; 
+	opacity:0.65;
+   
 }
 
 .logo{ height:50px; float:left; margin-right:10px;}
@@ -127,14 +129,21 @@ a:hover{text-decoration:none;}
 .flash-news{
 	color: #fff;
     font-size: 14px;
-	border:1px solid #eee;
+	/*border:1px solid #eee;*/
+	height:2px;
 	border-left:none;
 	border-right:none;
-	padding:5px;
+	/*padding:5px;*/
 	margin-bottom:15px;
+	margin-right:5px;
+	margin-left:5px;
+	margin-top:15px;
 	/*background:#00BFFF;*/
-    background: none repeat scroll 0 0 #005E9E;
-    border-bottom: 3px solid #005693;
+	opacity:0.65;
+   /* background: none repeat scroll 0 0 #005E9E; */
+	background:#313131;
+
+   /* border-bottom: 3px solid #005693; */
     box-shadow: 0 1px rgba(255, 255, 255, 0.4) inset, 0 2px rgba(0, 0, 0, 0.05);
 }
 .footer{
@@ -462,17 +471,18 @@ a:hover{text-decoration:none;}
 	color: #565E60;
 }
 .address{
-	width:435px;
+	width:auto;
 	margin:15px;
 	float:left;
 }
 .address th{
 	font-weight:bold;
 	text-align:left;
-	width:150px;
+	width:180px;
 }
 .address td{
 	padding:5px;
+	width:400px;
 	}
 .g-map{
 	width:480px;

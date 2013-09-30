@@ -115,9 +115,9 @@
         <div class="clear"></div>
     </header>
     <div class="flash-news">
-        <marquee behavior="scroll" direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
+       <!-- <marquee behavior="scroll" direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
             10th STD EXAMINATION RESULT WILL BE PUBLISH ON 1-DEC-2013
-        </marquee>
+        </marquee>-->
     </div>
     <!-- DIV FOR IMAGE SLIDER  -->
     <div align="center">
@@ -152,12 +152,13 @@
 
                 <div class="tab-pane active" id="hometab">
                     <section class="hm-content">
-                        <h3>Contact Us</h3>
+                        <h4>Contact Us</h4>
                         <table class="address">
                             <tbody>
                             <tr>
                                 <th>Address</th>
-                                <td> ST.ANN'S SCHOOL, AYOOR- 691 533,<br/> KOLLAM (Dist.), KERALA</td>
+                                <td> ST.ANN'S SCHOOL - Affiliated to C.B.S.E <br/> AYOOR- 691 533<br/> KOLLAM (Dist.), KERALA</td>
+								
                             </tr>
                             <tr>
                                 <th>Phone Number</th>
