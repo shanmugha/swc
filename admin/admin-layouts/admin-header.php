@@ -1,7 +1,7 @@
 <?php
   session_start();  // include in the first line 
   //ob_start();
-  $baseUrl = 'http://swc/';
+  $baseUrl = 'localhost/swc';
   if (empty($_SESSION['user'])) {
       header('Location:'.$baseurl.'/index.php');
   }
@@ -39,6 +39,19 @@
         <a class="login" href="#sign-up" data-toggle="modal" role="button" ><i class="icon-share icon-white"></i>Logout</a>
     </div>
 </header>-->
+<header class="header admin-header"><a href="#" class="logo-head"> <img class="logo" src="<?php echo $resourcePath;?>img/layout/logo.png" />
+
+            <h2 class="fl">ST.ANN'S SCHOOL</h2> <br>
+
+        </a>
+		  
+		 
+
+        <div class="content-login">
+            <p style="float:right;color:#7A7A7A;"><a role="button" data-toggle="modal" href="#sign-up"><img width="15" height="15" src="public//img/layout/login.png">Logout</a></p>
+        </div>
+        <div class="clear"></div>
+    </header>
 <?php
 /*
  * connect to database

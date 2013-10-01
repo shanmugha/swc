@@ -1,7 +1,7 @@
 <?php
 
 ob_start();
-$baseurl = 'http://swc/';
+$baseurl = 'http://localhost/swc/';
 //session start
 session_start();
 if (!empty($_SESSION['user'])) {
