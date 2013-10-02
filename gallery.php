@@ -180,18 +180,26 @@
                     if (!empty($albumUploadDetails)):
                         foreach ($albumUploadDetails as $albumUploadDetail) {
                             ?>
-                            <div class="folder">
-                                <div class="folder-mp"></div>
-                                <a class="folder-link" href="#">
-                                    <div class="thump">
-                                        <img src="<?php echo $albumUploadDetail['path']; ?>"/>
-                                    </div>
-                                    <h3><?php echo $albumUploadDetail['album_name']; ?></h3>
-
-                                    <p><?php echo $albumUploadDetail['description']; ?></p>
-                                </a>
+                            <div class="img">
+                               <!-- <div class="folder-mp"></div>-->
+                               
+								
+								 <?php if(isset( $albumUploadDetail['path'])){ ?>
+								
+                                  <a  href="#"><img src="<?php echo $albumUploadDetail['path']; ?>" width="110" height="90"/> </a>
+									
+									<?php } else { ?>
+																		
+									   <a   href="#"><img src="public/img/layout/gallery_icon.png" width="110" height="90"/> </a>
+                                    
+									<?php } ?>
+									
+                                    <div  class="desc" ><?php echo $albumUploadDetail['album_name']; ?></div>
+                               
                             </div>
-                        <?php } endif; ?>
+                        <?php 
+						
+						} endif; ?>
 
                 </div>
             </div>

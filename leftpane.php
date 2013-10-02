@@ -10,7 +10,7 @@
     <div id="accordian">
         <ul>
             <li>
-                <a href="<?php echo $baseurl."index.php";?>"><h3><span class="icon-dashboard"></span>Home</h3></a>
+                <a href="<?php echo $baseurl."index.php";?>"><h3><span class="icon-home"></span>Home</h3></a>
             </li>
             <!-- we will keep this LI open by default -->
             <li class="active">
@@ -28,7 +28,7 @@
                 </ul>
             </li>
             <li>
-                <a href="contact-us.php"><h3><span class="icon-heart"></span>Contact Us</h3></a>
+                <a href="contact-us.php"><h3><span class="icon-tasks"></span>Contact Us</h3></a>
             </li>
         </ul>
     </div>

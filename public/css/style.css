@@ -361,17 +361,47 @@ a:hover{text-decoration:none;}
     margin: 15px 15px 0;
 }
 /*******Gallery********/
+
+div.img
+  {
+  margin:2px;
+  border:1px solid #999999;
+  height:auto;
+  width:auto;
+  float:left;
+  text-align:center;
+  }
+div.img img
+  {
+  display:inline;
+  margin:3px;
+  border:1px solid #ffffff;
+  }
+div.img a:hover img
+  {
+  border:1px solid #0000ff;
+  }
+div.desc
+  {
+  text-align:center;
+  font-weight:normal;
+  width:120px;
+  margin:2px;
+  }
+
+
+
 .folder{
 	width:150px;
 	border-radius:3px;
 	-webkit-border-radius:3px;
-    border-bottom: 3px solid #005693;
-	background:none repeat scroll 0 0 #005E9E;
+   
+	background:none repeat scroll 0 0 #0099FF;
 	position:relative;
 	margin:10px 5px;
 	padding:10px;
 	box-shadow: 2px 3px 3px #959595;
-	-webkit-box-shadow: 2px 3px 3px #959595;
+	/*-webkit-box-shadow: 2px 3px 3px #959595;*/
 	float:left;
 }
 .folder-link{
