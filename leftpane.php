@@ -35,17 +35,22 @@
     <!-- end of menu-->
 
 
+    <?php
+        $sql_news = "SELECT * FROM news";
+        $result = mysql_query($sql_news) or die ('Error reading database: ' . mysql_error());
+    ?>
 
     <div class="news-box">
         <h4>Lalest News</h4>
         <article class="news-body">
             <div class="ticker">
                 <ul id="ticker">
-                    <li>Dummy data is benign information that does not contain any useful data, but serves ...</li>
-                    <li>For testing, dummy data can also be used as stubs or pad to avoid software testing iss...</li>
-                    <li>In operational use, dummy data may be transmitted for OPSEC purposes.</li>
-                    <li>Dummy data must be rigorously evaluated and documented to ensure that it does no...</li>
-                    <li>The topic of this article may not meet Wikipedia's general notability guideline.</li>
+                    <?php
+                        if($result) {
+                        while ($row = mysql_fetch_array($result)):
+                    ?>
+                            <li><?php echo $row['news'];?>  <a href="#">Read more..</a></li>
+                    <?php endwhile;} ?>
                 </ul>
             </div>
     </div>
