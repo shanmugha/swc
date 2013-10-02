@@ -365,7 +365,8 @@ a:hover{text-decoration:none;}
 	width:150px;
 	border-radius:3px;
 	-webkit-border-radius:3px;
-	background:#0CF;
+    border-bottom: 3px solid #005693;
+	background:none repeat scroll 0 0 #005E9E;
 	position:relative;
 	margin:10px 5px;
 	padding:10px;
@@ -375,7 +376,7 @@ a:hover{text-decoration:none;}
 }
 .folder-link{
 	width:151px;
-	height:112px;
+	height:116px;
 	overflow:hidden;
 	display:block;
 	transition:height 0.4s linear 0.4s;
@@ -395,7 +396,7 @@ a:hover{text-decoration:none;}
 	height:auto;
 }
 .folder-mp {
-    background:#00CCFF;
+    background:none repeat scroll 0 0 #005E9E;
     border-radius: 3px 18px 0 0;
 	-webkit-border-radius: 3px 18px 0 0;
     height: 13px;

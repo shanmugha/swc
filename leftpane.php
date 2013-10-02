@@ -16,7 +16,7 @@
                 <h3><span class="icon-tasks"></span>About</h3>
             </li>
             <li>
-                <h3><span class="icon-calendar"></span>Gallery</h3>
+                <a href="gallery.php"><h3><span class="icon-calendar"></span>Gallery</h3></a>
             </li>
             <li>
                 <h3><span class="icon-heart"></span>People</h3>
