@@ -109,8 +109,8 @@
         </a>
 
         <div class="content-login">
-            <p style="float:right;color:#7A7A7A;"><a href="#sign-up" data-toggle="modal" role="button"><img
-                        src="<?php echo $resourcePath ?>/img/layout/login.png" width="15" height="15"/>Login</a></p>
+            <p style="float:right;"><a href="#sign-up" data-toggle="modal" role="button" class="myButton"><img
+                        src="<?php echo $resourcePath ?>/img/layout/login.png" width="15" height="15" /> Admin Login</a></p>
         </div>
         <div class="clear"></div>
     </header>
