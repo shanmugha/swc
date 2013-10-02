@@ -114,7 +114,7 @@
         <div class="content-login">
              <p style="float:right;"><a href="#sign-up" data-toggle="modal" role="button" class="myButton"><img
                         src="<?php echo $resourcePath ?>/img/layout/login.png" width="15" height="15" /> Admin Login</a></p>
-            
+            </p>
         </div>
         <div class="clear"></div>
     </header>

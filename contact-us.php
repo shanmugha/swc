@@ -151,26 +151,28 @@
             <div class="tab-content">
 
                 <div class="tab-pane active" id="hometab">
-                    <section class="hm-content">
+				  <section>
+                    <div class="hm-content">
                         <h4>Contact Us</h4>
+					</div>	
                         <table class="address">
                             <tbody>
                             <tr>
-                                <th>Address</th>
-                                <td> ST.ANN'S SCHOOL - Affiliated to C.B.S.E <br/> AYOOR- 691 533<br/> KOLLAM (Dist.), KERALA</td>
+                                <td>Address</td>
+                                <th> ST.ANN'S SCHOOL - Affiliated to C.B.S.E <br/> AYOOR- 691 533<br/> KOLLAM (Dist.), KERALA</th>
 								
                             </tr>
                             <tr>
-                                <th>Phone Number</th>
-                                <td>0475-2294485</td>
+                                <td>Phone Number</td>
+                                <th>0475-2294485</th>
                             </tr>
                             <tr>
-                                <th>Email</th>
-                                <td>stannsayur@yahoo.com</td>
+                                <td>Email</td>
+                                <th>stannsayur@yahoo.com</th>
                             </tr>
                             <tr>
-                                <th>Fax</th>
-                                <td>0475-2294485</td>
+                                <td>Fax</td>
+                                <th>0475-2294485</th>
                             </tr>
                             <tbody>
                         </table>

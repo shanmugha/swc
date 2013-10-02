@@ -1,3 +1,4 @@
+
 <style>
     #accordian a {
         color:inherit;
@@ -9,7 +10,7 @@
     <div id="accordian">
         <ul>
             <li>
-                <a href="http://swc/"><h3><span class="icon-dashboard"></span>Home</h3></a>
+                <a href="<?php echo $baseurl."index.php";?>"><h3><span class="icon-dashboard"></span>Home</h3></a>
             </li>
             <!-- we will keep this LI open by default -->
             <li class="active">
