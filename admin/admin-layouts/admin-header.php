@@ -1,11 +1,22 @@
 <?php
-  session_start();  // include in the first line 
-  //ob_start();
-  $baseUrl = 'localhost/swc';
-  if (empty($_SESSION['user'])) {
-      header('Location:'.$baseurl.'/index.php');
-  }
-  
+session_start(); // include in the first line
+
+/*
+ * connect to database
+ *
+ *  http://stackoverflow.com/questions/8041330/include-file-from-different-directory
+ */
+
+include(dirname(__FILE__) . "/../../config/connection.php");
+$connect   = new Connection();
+$actualUrl = explode('/', $_SERVER["REQUEST_URI"]);
+$cnt       = count($actualUrl) - 1;
+$url       = $actualUrl[$cnt];
+$_SESSION['flash_messages'];
+/*
+ * library flash message
+ */
+include('../public/library/FlashMessage/Flash.php');
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,35 +59,11 @@
 		 
 
         <div class="content-login">
-            <p style="float:right;color:#7A7A7A;"><a role="button" data-toggle="modal" href="#sign-up"><img width="15" height="15" src="public//img/layout/login.png">Logout</a></p>
+            <p style="float:right;color:#7A7A7A;"><a  href="<?php echo $baseUrl.'?action=logout';?>"><img width="15" height="15" src="public//img/layout/login.png">Logout</a></p>
         </div>
         <div class="clear"></div>
     </header>
-<?php
-/*
- * connect to database
- *
- *  http://stackoverflow.com/questions/8041330/include-file-from-different-directory
- */
 
-
-   // require_once(__DIR__ . '/../../config/connection.php');
-    include(dirname(__FILE__)."/../../config/connection.php");
-    $connect = new Connection();
-    $actualUrl = explode('/', $_SERVER["REQUEST_URI"]);
-	
-	$cnt = count($actualUrl)-1;
-
-	//echo $url_explode[];die;
-	$url =  $actualUrl[$cnt];
-   // ob_start();
-   // session_start();
-    $_SESSION['flash_messages'];
-/*
- * library flash message
- */
-    include('../public/library/FlashMessage/Flash.php');
-?>
 <section class="admin-tab">
     <ul class="tab-bar">
         <li>
@@ -97,7 +84,10 @@
         <li>
             <a class="active-tab" href="#news" data-toggle="tab">News</a>
             <ul class="sub-nav" <?php if(in_array($url, array('news.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url == 'news.php'){echo 'current';}?>" href="news.php">Latest News</a></li>
+                <li>
+                    <a class="sub-list <?php if($url == 'news.php'){echo 'current';}?>" href="news.php">Latest News</a>
+                    <a class="sub-list <?php if($url == 'flashnews.php'){echo 'current';}?>" href="flashnews.php">Flash News</a>
+                </li>
             </ul>
         </li>
         <li><a class="active-tab" href="#" data-toggle="tab">About School</a>
