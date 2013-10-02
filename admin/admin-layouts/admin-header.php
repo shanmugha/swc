@@ -1,11 +1,27 @@
 <?php
-  session_start();  // include in the first line 
-  //ob_start();
-  $baseUrl = 'http://swc/';
-  if (empty($_SESSION['user'])) {
-      header('Location:'.$baseurl.'/index.php');
-  }
-  
+session_start(); // include in the first line
+
+/*
+ * connect to database
+ *
+ *  http://stackoverflow.com/questions/8041330/include-file-from-different-directory
+ */
+
+include(dirname(__FILE__) . "/../../config/connection.php");
+$connect   = new Connection();
+$actualUrl = explode('/', $_SERVER["REQUEST_URI"]);
+$cnt       = count($actualUrl) - 1;
+$url       = $actualUrl[$cnt];
+$_SESSION['flash_messages'];
+/*
+ * library flash message
+ */
+include('../public/library/FlashMessage/Flash.php');
+
+$baseUrl = $connect->baseurl;
+if (empty($_SESSION['user'])) {
+    header('Location:'.$baseUrl);
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -39,31 +55,20 @@
         <a class="login" href="#sign-up" data-toggle="modal" role="button" ><i class="icon-share icon-white"></i>Logout</a>
     </div>
 </header>-->
-<?php
-/*
- * connect to database
- *
- *  http://stackoverflow.com/questions/8041330/include-file-from-different-directory
- */
+<header class="header admin-header"><a href="#" class="logo-head"> <img class="logo" src="<?php echo $resourcePath;?>img/layout/logo.png" />
 
+            <h2 class="fl">ST.ANN'S SCHOOL</h2> <br>
 
-   // require_once(__DIR__ . '/../../config/connection.php');
-    include(dirname(__FILE__)."/../../config/connection.php");
-    $connect = new Connection();
-    $actualUrl = explode('/', $_SERVER["REQUEST_URI"]);
-	
-	$cnt = count($actualUrl)-1;
+        </a>
+		  
+		 
 
-	//echo $url_explode[];die;
-	$url =  $actualUrl[$cnt];
-   // ob_start();
-   // session_start();
-    $_SESSION['flash_messages'];
-/*
- * library flash message
- */
-    include('../public/library/FlashMessage/Flash.php');
-?>
+        <div class="content-login">
+            <p style="float:right;color:#7A7A7A;"><a  href="<?php echo $baseUrl.'?action=logout';?>"><img width="15" height="15" src="public//img/layout/login.png">Logout</a></p>
+        </div>
+        <div class="clear"></div>
+    </header>
+
 <section class="admin-tab">
     <ul class="tab-bar">
         <li>
@@ -84,7 +89,10 @@
         <li>
             <a class="active-tab" href="#news" data-toggle="tab">News</a>
             <ul class="sub-nav" <?php if(in_array($url, array('news.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url == 'news.php'){echo 'current';}?>" href="news.php">Latest News</a></li>
+                <li>
+                    <a class="sub-list <?php if($url == 'news.php'){echo 'current';}?>" href="news.php">Latest News</a>
+                    <a class="sub-list <?php if($url == 'flashnews.php'){echo 'current';}?>" href="flashnews.php">Flash News</a>
+                </li>
             </ul>
         </li>
         <li><a class="active-tab" href="#" data-toggle="tab">About School</a>
