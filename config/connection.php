@@ -4,7 +4,7 @@ class Connection {
     private $username = "root";
     private $password = "root";
     private $hostname = "localhost";
-    private $baseurl  = "http://swc";
+    public  $baseurl  = "http://swc";
 
     //connection to the database
 

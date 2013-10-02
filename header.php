@@ -1,11 +1,19 @@
 <?php
 
 ob_start();
-$baseurl = 'http://localhost/swc/';
-//session start
 session_start();
+/*
+ * connect to database
+ *
+ *  http://stackoverflow.com/questions/8041330/include-file-from-different-directory
+ */
+
+include(dirname(__FILE__) . "/config/connection.php");
+$connect = new Connection();
+$baseUrl = $connect->baseurl;
+
 if (!empty($_SESSION['user'])) {
-    header('Location:'.$baseurl.'admin/teachers.php');
+    header('Location:'.$baseUrl.'/admin/teachers.php');
 }
 
 ?>
@@ -51,16 +59,5 @@ if (!empty($_SESSION['user'])) {
 	
 	
     <!-- END-->
-    <?php
-    /*
-     * connect to database
-     *
-	 *  http://stackoverflow.com/questions/8041330/include-file-from-different-directory
-	 */
 
-
-    // require_once dirname(__FILE__). '/config/connection.php';
-    include(dirname(__FILE__) . "/config/connection.php");
-    $connect = new Connection();
-    ?>
 </head>

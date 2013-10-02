@@ -17,6 +17,11 @@ $_SESSION['flash_messages'];
  * library flash message
  */
 include('../public/library/FlashMessage/Flash.php');
+
+$baseUrl = $connect->baseurl;
+if (empty($_SESSION['user'])) {
+    header('Location:'.$baseUrl);
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
