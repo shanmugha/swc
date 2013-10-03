@@ -2,6 +2,11 @@
 <body id="page">
 <script type="text/javascript" src="public/js/jquery_slider.js"></script>
 <script type="text/javascript" src="public/js/jquery-1.9.1.js"></script>
+
+<link rel="stylesheet" href="public/css/colorbox.css" />
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+<script src="public/js/jquery.colorbox.js"></script>
+
 <script type="text/javascript">
 
 
@@ -164,10 +169,15 @@
                         $sql_album = "select * from album";
                         $album = mysql_query($sql_album) or die ('Error updating database: ' . mysql_error());
                         while ($albumRow = mysql_fetch_object($album)):
-                            $sql_upload = "select path from uploads where album = '$albumRow->id' order by rand() limit 1 ";
+                            $sql_upload = "select album, path from uploads where album = '$albumRow->id' order by rand() limit 1 ";
                             $upload = mysql_query($sql_upload) or die ('Error updating database: ' . mysql_error());
                             $uploadRow = mysql_fetch_object($upload);
-                            $albumUploadDetails[] = array('album_name' => $albumRow->album_name, 'description' => $albumRow->description, 'path' => $uploadRow->path);
+                            $albumUploadDetails[] = array(
+                                'album_name' => $albumRow->album_name,
+                                'description' => $albumRow->description,
+                                'path' => $uploadRow->path,
+                                'albumId'   => $uploadRow->album
+                            );
                         endwhile;
                     } catch (Exception $e) {
                         echo $e->getMessage();
@@ -180,22 +190,35 @@
                     if (!empty($albumUploadDetails)):
                         foreach ($albumUploadDetails as $albumUploadDetail) {
                             ?>
-                            <div class="img">
-                               <!-- <div class="folder-mp"></div>-->
-                               
-								
-								 <?php if(isset( $albumUploadDetail['path'])){ ?>
-								
-                                  <a  href="#"><img src="<?php echo $albumUploadDetail['path']; ?>" width="110" height="90"/> </a>
-									
-									<?php } else { ?>
-																		
-									   <a   href="#"><img src="public/img/layout/gallery_icon.png" width="110" height="90"/> </a>
-                                    
-									<?php } ?>
-									
-                                    <div  class="desc" ><?php echo $albumUploadDetail['album_name']; ?></div>
-                               
+
+                            <div class="folder">
+                                <?php
+                                $sql_uploads = "select path from uploads where category='gallery' AND album='$albumUploadDetail[albumId]'";
+                                $uploads = mysql_query($sql_uploads) or die ('Error updating database: ' . mysql_error());
+                                while ($uploadRow = mysql_fetch_object($uploads)):
+                                ?>
+                                    <a class="group<?php echo $albumUploadDetail['albumId']; ?>" href="<?php echo $uploadRow->path; ?>" >
+                                        <script>
+                                            $(document).ready(function(){
+                                                $(".group<?php echo $albumUploadDetail['albumId']; ?>").colorbox({rel:'group<?php echo $albumUploadDetail['albumId']; ?>',
+                                                    width:"80%", height:"80%"
+                                                });
+                                            })
+                                        </script>
+                                <?php
+                                    endwhile
+                                ?>
+                                <div class="folder-mp"></div>
+                                <a class="folder-link">
+
+                                    <div class="thump">
+                                        <img src="<?php echo $albumUploadDetail['path']; ?>"/>
+                                    </div>
+                                    <h3><?php echo $albumUploadDetail['album_name']; ?></h3>
+
+                                    <p><?php echo $albumUploadDetail['description']; ?></p>
+                                </a>
+
                             </div>
                         <?php 
 						
