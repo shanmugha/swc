@@ -4,24 +4,10 @@
 <script type="text/javascript" src="public/js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
 
-    <!-- MENU -->
 
-    /*jQuery time*/
-    $(document).ready(function () {
-        $("#accordian h3").click(function () {
-            //slide up all the link lists
-            $("#accordian ul ul").slideUp();
-            //slide down the link list below the h3 clicked - only if its closed
-            if (!$(this).next().is(":visible")) {
-                $(this).next().slideDown();
-            }
-        })
-    })
-
-    <!--END MENU-->
 
   
-      <!--  LATEST NEWS-->
+      //LATEST NEWS
 	 
       function ticker() {
           $('#ticker li:first').slideUp(function() {
@@ -34,7 +20,7 @@
 	  
 	      
       <!--IMAGE SLIDER JS CODE-->
-	  
+	  border-radius:4px;
             $(document).ready(function() {
 
                 //Set Default State of each portfolio piece

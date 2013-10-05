@@ -45,13 +45,16 @@ if (!empty($_SESSION['user'])) {
    <!-- <link rel="stylesheet" href="<?php /*echo $resourcePath */?>/css/menu.css">-->
     <link rel="stylesheet" href="<?php echo $resourcePath ?>/css/uploadify.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $resourcePath ?>/css/style.css" />
-    <link rel="stylesheet" href="<?php echo $resourcePath ?>/css/ddaccrodin.css" />
+<!--    <link rel="stylesheet" href="<?php /*echo $resourcePath */?>/css/ddaccrodin.css" />-->
+    <link rel="stylesheet" type="text/css" href="<?php echo $resourcePath ?>/css/styles-menu.css" />
+
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script>-->
     <script type="text/javascript" src="<?php echo $resourcePath ?>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo $resourcePath ?>/js/menu_jquery.js"></script>
 
     <script type="text/javascript" src="<?php echo $resourcePath ?>/js/modernizr.custom.86080.js"></script>
     <script type="text/javascript" src="<?php echo $resourcePath ?>/js/bootstrap.min.js"></script>

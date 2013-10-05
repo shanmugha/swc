@@ -77,7 +77,7 @@ a:hover{text-decoration:none;}
 }
 .news-box{
 	max-height:400px;
-	border:1px solid #005693;
+	border:1px solid #5E071B;
 	border-radius:4px;
 	-wekit-border-radius:4px;
 	margin:10px auto;
@@ -85,8 +85,8 @@ a:hover{text-decoration:none;}
 }
 .news-box h4{
 	color:#fff;
-	background:#005E9E;
-    border: 1px solid #005693;
+	background:#ED1144;
+    border: 1px solid #5E071B;
 	margin:0;
 	text-align:center;
 	padding:10px;

@@ -1,18 +1,41 @@
 
-<style>
+<!--<style>
     #accordian a {
         color:inherit;
         text-decoration: none;
     }
-</style>
+</style>-->
+
 <aside class="left-box">
+    <div class="news-box">
+    <div id='cssmenu'>
+        <ul>
+            <li class='active'><a href='<?php echo $baseurl;?>'><span>Home</span></a></li>
+            <li class=''><a href='#'><span>About</span></a></li>
+            <li class=''><a href='gallery.php'><span>Gallery</span></a></li>
+            <li class='has-sub'><a href='#'><span>People</span></a>
+                <ul>
+                    <li><a href='#'><span>Students</span></a></li>
+                    <li><a href='#'><span>Teachers</span></a></li>
+                    <li class='last'><a href='#'><span>Management</span></a></li>
+                </ul>
+            </li>
+            <!--<li class='has-sub'><a href='#'><span>Company</span></a>
+                <ul>
+                    <li><a href='#'><span>About</span></a></li>
+                    <li class='last'><a href='#'><span>Location</span></a></li>
+                </ul>
+            </li>-->
+            <li class='last'><a href='#'><span>Contact Us</span></a></li>
+        </ul>
+    </div>
+    </div>
     <!--here start menu-->
-    <div id="accordian">
+    <!--<div id="accordian">
         <ul>
             <li>
-                <a href="<?php echo $baseurl."index.php";?>"><h3><span class="icon-home"></span>Home</h3></a>
+                <a href="<?php /*echo $baseurl."index.php";*/?>"><h3><span class="icon-home"></span>Home</h3></a>
             </li>
-            <!-- we will keep this LI open by default -->
             <li class="active">
                 <h3><span class="icon-tasks"></span>About</h3>
             </li>
@@ -31,7 +54,7 @@
                 <a href="contact-us.php"><h3><span class="icon-tasks"></span>Contact Us</h3></a>
             </li>
         </ul>
-    </div>
+    </div>-->
 
     <!-- end of menu-->
 

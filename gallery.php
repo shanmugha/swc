@@ -169,15 +169,17 @@
                         $sql_album = "select * from album";
                         $album = mysql_query($sql_album) or die ('Error updating database: ' . mysql_error());
                         while ($albumRow = mysql_fetch_object($album)):
-                            $sql_upload = "select album, path from uploads where album = '$albumRow->id' order by rand() limit 1 ";
+                            $sql_upload = "select album, path from uploads where album = '$albumRow->id'  order by rand() limit 1 ";
                             $upload = mysql_query($sql_upload) or die ('Error updating database: ' . mysql_error());
                             $uploadRow = mysql_fetch_object($upload);
-                            $albumUploadDetails[] = array(
-                                'album_name' => $albumRow->album_name,
-                                'description' => $albumRow->description,
-                                'path' => $uploadRow->path,
-                                'albumId'   => $uploadRow->album
-                            );
+                            if (!empty($uploadRow->album)) {
+                                $albumUploadDetails[] = array(
+                                    'album_name' => $albumRow->album_name,
+                                    'description' => $albumRow->description,
+                                    'path' => $uploadRow->path,
+                                    'albumId'   => $uploadRow->album
+                                );
+                            }
                         endwhile;
                     } catch (Exception $e) {
                         echo $e->getMessage();
@@ -198,15 +200,11 @@
                                 while ($uploadRow = mysql_fetch_object($uploads)):
                                 ?>
                                     <a class="group<?php echo $albumUploadDetail['albumId']; ?>" href="<?php echo $uploadRow->path; ?>" >
-                                        <script>
-                                            $(document).ready(function(){
-                                                $(".group<?php echo $albumUploadDetail['albumId']; ?>").colorbox({rel:'group<?php echo $albumUploadDetail['albumId']; ?>',
-                                                    width:"80%", height:"80%"
-                                                });
-                                            })
-                                        </script>
+
                                 <?php
-                                    endwhile
+                                    $jscriptImgs[] = array('albumId' => $albumUploadDetail['albumId']);
+                                    endwhile;
+
                                 ?>
                                 <div class="folder-mp"></div>
                                 <a class="folder-link">
@@ -231,3 +229,13 @@
     </div>
     <?php include_once('footer.php'); ?>
 </div>
+
+<script>
+    $(document).ready(function(){
+        <?php foreach($jscriptImgs as $img):?>
+        $(".group<?php echo $img['albumId']; ?>").colorbox({rel:'group<?php echo $img['albumId']; ?>',
+            width:"80%", height:"80%"
+        });
+        <?php endforeach; ?>
+    })
+</script>
