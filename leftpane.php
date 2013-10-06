@@ -5,14 +5,19 @@
         text-decoration: none;
     }
 </style>-->
+<?php
+$actualUrl = explode('/', $_SERVER["REQUEST_URI"]);
+$cnt       = count($actualUrl) - 1;
+$url       = $actualUrl[$cnt];
+?>
 
 <aside class="left-box">
     <div class="news-box">
     <div id='cssmenu'>
         <ul>
-            <li class='active'><a href='<?php echo $baseurl;?>'><span>Home</span></a></li>
+            <li class='<?php if($url == ''){echo 'active';}else{echo '';}?>'><a href='<?php echo $baseUrl;?>'><span>Home</span></a></li>
             <li class=''><a href='#'><span>About</span></a></li>
-            <li class=''><a href='gallery.php'><span>Gallery</span></a></li>
+            <li class='<?php if($url == 'gallery.php'){echo 'active';}else{echo '';}?>'><a href='gallery.php'><span>Gallery</span></a></li>
             <li class='has-sub'><a href='#'><span>People</span></a>
                 <ul>
                     <li><a href='#'><span>Students</span></a></li>
@@ -26,7 +31,7 @@
                     <li class='last'><a href='#'><span>Location</span></a></li>
                 </ul>
             </li>-->
-            <li class='last'><a href='#'><span>Contact Us</span></a></li>
+            <li class='<?php if($url == 'contact-us.php'){echo 'active';}else{echo '';}?>'><a href='contact-us.php'><span>Contact Us</span></a></li>
         </ul>
     </div>
     </div>
