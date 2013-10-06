@@ -20,7 +20,7 @@
 	  
 	      
       <!--IMAGE SLIDER JS CODE-->
-	  border-radius:4px;
+	
             $(document).ready(function() {
 
                 //Set Default State of each portfolio piece

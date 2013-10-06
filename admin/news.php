@@ -1,9 +1,12 @@
 <?php 
 //require_once('admin-layouts/admin-header.php');
+ob_start();
 include("admin-layouts/admin-header.php");
  ?>
 
 <?php
+
+
 
 if ((!empty($_POST['news'])) && (!empty($_POST))) {
     $news = $_POST['news'];

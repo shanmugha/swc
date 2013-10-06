@@ -43,7 +43,7 @@ if ((!empty($_POST['area-acre'])) && (!empty($_POST))) {
 
                 <div class="content-box">
                     <div class="content-box-header">
-                        <h3 class="c-head">InfraStructure</h3>
+                        <h3 class="c-head">Infrastructure</h3>
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">

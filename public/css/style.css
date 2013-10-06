@@ -81,15 +81,17 @@ a:hover{text-decoration:none;}
 	border-radius:4px;
 	-wekit-border-radius:4px;
 	margin:10px auto;
-	color:#00BFFF;
+	color:#005E9E;
+	
 }
 .news-box h4{
 	color:#fff;
-	background:#ED1144;
+	background:#005E9E;
     border: 1px solid #5E071B;
 	margin:0;
 	text-align:center;
 	padding:10px;
+	opacity:0.75;
 }
 .news-body{
 	width:290px;
@@ -394,9 +396,9 @@ div.desc
 .folder{
 	width:150px;
 	border-radius:3px;
-	-webkit-border-radius:3px;
-   
-	background:none repeat scroll 0 0 #0099FF;
+	background-color:#333333;
+	-webkit-border-radius:3px; 
+	background:none repeat scroll 0 0 #DEB887;
 	position:relative;
 	margin:10px 5px;
 	padding:10px;
@@ -416,7 +418,7 @@ div.desc
 	height:160px;
 }
 .folder-link .thump{
-	border:3px solid#fff;
+	border:3px solid#989898;
 	width:145px;
 	height:85px;
 	overflow:hidden;
@@ -426,7 +428,7 @@ div.desc
 	height:auto;
 }
 .folder-mp {
-    background:none repeat scroll 0 0 #005E9E;
+    background:none repeat scroll 0 0 #DEB899;
     border-radius: 3px 18px 0 0;
 	-webkit-border-radius: 3px 18px 0 0;
     height: 13px;
@@ -437,7 +439,7 @@ div.desc
 }
 
 .folder .folder-link h3 {
-    color: #FFFFFF;
+    color: #989898;
     font-family: Helvetica;
     font-size: 16px;
     line-height: 30px;
@@ -449,7 +451,7 @@ div.desc
     width: 150px;
 }
 .folder .folder-link p{
-	color:#CFF;
+	color:#989898;
 	margin:0;
 }
 .people {
@@ -614,7 +616,7 @@ img {border: 0;}
 
 .ticker {
     width: 270px;
-	height: 200px;
+	height: 230px;
 	overflow: hidden;
 	text-align: left;
 }
@@ -626,15 +628,16 @@ img {border: 0;}
 
 .ticker ul {
     list-style: none;
-    padding: 0;
+    padding: 2px 0px 2px 0px;
     margin: 0;
     font-style: italic;
+	color:#505050 ;
 }
 
 .ticker ul li {
     list-style: none;
     height:60px;
-    padding:7px;
+    padding:8px;
 	margin-bottom:2px;
     border-bottom: 1px solid #D6CFB8;
 }			
