@@ -2,9 +2,10 @@
 class Connection {
 
     private $username = "root";
-    private $password = "root";
+    private $password = "";
     private $hostname = "localhost";
-    public  $baseurl  = "http://swc";
+	//public  $baseurl  = "http://swc";
+    public  $baseurl  = "http://localhost/stanns/swc/";
 
     //connection to the database
 
