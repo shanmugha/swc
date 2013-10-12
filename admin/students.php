@@ -5,6 +5,7 @@ include("admin-layouts/admin-header.php");
 
 
 <?php
+$romans = array('I','II','III','IV','V','VI','VII','VIII','XI','X');
 if (!empty($_POST)) {
     $firstName     = $_POST['firstname'];
     $lastName      = $_POST['lastname'];
@@ -235,7 +236,12 @@ if (!empty($_POST)) {
                     <label>Year of joining</label>
                     <input type="text" placeholder="DD/MM/YYY" name="yearofJoin">
                     <label>Class</label>
-                    <input class="span1" type="text" placeholder="Std" name="std">
+                    <!--<input class="span1" type="text" placeholder="Std" name="std">-->
+                    <select class="span2" name="std">
+                        <?php foreach($romans as $roman) {?>
+                            <option><?php echo $roman?></option>
+                        <?php } ?>
+                    </select>
                     <input class="span1" type="text" placeholder="Div" name="div">
 
                    <!-- <label>Last Eaxame Total Mark</label>

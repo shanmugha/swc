@@ -103,7 +103,11 @@ if (empty($_SESSION['user'])) {
                 <li><a class="sub-list <?php if($url == 'others.php'){echo 'current';}?>" href="others.php">Others</a></li>
             </ul>
         </li>
-        <li><a href="#">Examination</a></li>
+        <li><a class="active-tab" href="#" data-toggle="tab">Examination</a>
+            <ul class="sub-nav" <?php if(in_array($url, array('calculatemark.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url == 'calculatemark.php'){echo 'current';}?>" href="calculatemark.php">Calculate Mark</a></li>
+            </ul>
+        </li>
         <li>
             <a class="active-tab" href="#" data-toggle="tab">Events</a>
             <ul class="sub-nav" <?php if(in_array($url, array('events.php'))){?> style="display: block" <?php }?>>
