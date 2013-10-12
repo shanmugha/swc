@@ -3,6 +3,16 @@
 include("admin-layouts/admin-header.php");
 ?>
 
+<?php
+    if (!empty($_POST['searchText'])) {
+
+        $searchText = $_POST['searchText'];
+        $sql_select_form_students = "SELECT * FROM student where admissionNo = '$searchText'";
+        $result = mysql_query($sql_select_form_students) or die ('Error reading Db: ' . mysql_error());
+
+    }
+?>
+
 <div class="tab-content">
 
     <div class="tabbable">
@@ -18,9 +28,9 @@ include("admin-layouts/admin-header.php");
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
-                        <form class="form-search pull-right">
+                        <form class="form-search pull-right" method="post" name="sfs">
                             <div class="input-append">
-                                <input type="text" class="span4 search-query">
+                                <input type="text" class="span4 search-query" name="searchText">
                                 <button type="submit" class="btn search-query-btn">Search</button>
                             </div>
                         </form>
@@ -28,49 +38,132 @@ include("admin-layouts/admin-header.php");
                             <h3 class="clearfix">
                                 <span class="fl">Searched Information</span>
                             </h3>
-                            <form class="form-horizontal">
+                            <?php if(!empty($result)):
+                                $getResult = mysql_fetch_array($result);
+                                ?>
+                            <form class="form-horizontal" method="post">
                             <article class="box-profile clearfix">
+                                <div class="control-group">
+                                    <label for="inputEmail" class="control-label">Admission No:</label>
+                                    <div class="controls">
+                                        <div class="frm-line"><?php echo $getResult['admissionNo'];?></div>
+                                    </div>
+                                </div>
                                 <div class="form-left fl">
                                     <div class="control-group">
                                         <label for="inputEmail" class="control-label">First Name*</label>
                                         <div class="controls">
-                                            <div class="frm-line">Reshman</div>
+                                            <div class="frm-line"><?php echo $getResult['first_name'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="inputEmail" class="control-label">Last Name</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['last_name'];?></div>
                                         </div>
                                     </div>
                                     <div class="control-group ">
-                                        <label for="inputEmail" class="control-label">Surname *</label>
+                                        <label for="inputEmail" class="control-label">Gender</label>
                                         <div class="controls">
-                                            <input type="text" value="Admin" name="surname">                                                                            </div>
+                                            <div class="frm-line"><?php echo $getResult['gender'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Date Of Birth</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['dob'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">blood group</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['bloodgroup'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Guardian/Parent Name</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['guardianFname'].' '.$getResult['guardianLname'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Occupation</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['occupation']?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Guardian/Parent Name</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['guardianFname'].' '.$getResult['guardianLname'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Permanent Address</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['permanent_address']?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Current Address</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['pcurrent_address'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Contact Number</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['telephone'];?></div>
+                                            <div class="frm-line"><?php echo $getResult['mobile'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Year Of Joining</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['year_of_join'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Standard & Division</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['standard'].' '.$getResult['division'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Mark FA1*</label>
+                                        <div class="controls">
+                                            <input type="email" value="<?php echo $getResult['fa1'];?>" name="fa1">
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Mark FA2*</label>
+                                        <div class="controls">
+                                            <input type="email" value="<?php echo $getResult['fa2'];?>" name="fa2">
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Mark FA3*</label>
+                                        <div class="controls">
+                                            <input type="email" value="<?php echo $getResult['fa3'];?>" name="fa3">
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Grand Total</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['grandTotal'];?></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group ">
+                                        <label for="inputEmail" class="control-label">Grade</label>
+                                        <div class="controls">
+                                            <div class="frm-line"><?php echo $getResult['grade'];?></div>
+                                        </div>
                                     </div>
                                     <div class="control-group">
-                                        <label for="inputEmail" class="control-label">Nickname </label>
                                         <div class="controls">
-                                            <input type="text" value="" name="nickname">                                                                            </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="inputEmail" class="control-label">Job Title</label>
-                                        <div class="controls">
-                                            <input type="text" value="SuperAdmin" name="jobtitle">                                                                            </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="inputEmail" class="control-label">Department *</label>
-                                        <div class="controls">
-                                            <input type="text" value="Admin" name="department">                                                                            </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="inputEmail" class="control-label">Office Location</label>
-                                        <div class="controls">
-                                            <input type="text" value="" name="officelocation">                                                                            </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="inputEmail" class="control-label">Workphone *</label>
-                                        <div class="controls">
-                                            <input type="text" value="" name="workphone">                                                                            </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="inputEmail" class="control-label">Work Email</label>
-                                        <div class="controls">
-                                            <input type="email" value="superadmin@villagehive.com" name="workemail">                                                                            </div>
+                                            <button type="submit" class="btn btn-success"> <i class="icon-align-justify"> </i> Calculate</button>
+                                            <a class="btn" href="/admin/infrastructure.php" type="button"><i class="icon-print"> </i>  Marksheet</a>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -79,6 +172,7 @@ include("admin-layouts/admin-header.php");
                                 </div>
                             </article>
                             </form>
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>
@@ -92,7 +186,7 @@ include("admin-layouts/admin-header.php");
 <script>
     $(function(){
         $('.search-query-btn').on('click', function(){
-            alert('df');
+            //$('.form-search').submit();
         })
     });
 </script>
