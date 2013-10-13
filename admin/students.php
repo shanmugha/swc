@@ -52,6 +52,11 @@ if (!empty($_POST)) {
 ?>
 
 <script>
+    $(document).ready(function()
+        {
+            $("#myTable").tablesorter();
+        }
+    );
     $(function(){
         $('.edit').on('click', function(){
 
@@ -103,7 +108,7 @@ if (!empty($_POST)) {
             <div class="content-box-content">
                 <div class="notification attention png_bg">
                 </div>
-                <table class="table table-striped">
+                <table id="myTable" class=" table table-bordered tablesorter">
                     <thead>
                     <tr>
                         <th><input class="check-all" type="checkbox"/></th>
@@ -113,6 +118,10 @@ if (!empty($_POST)) {
                         <th>Gander</th>
                         <th>Blood Group</th>
                         <th>Date of Birth</th>
+                        <th>Guardian Name</th>
+                        <th>Occupation</th>
+                        <th>Telephone</th>
+                        <th>Mobile</th>
                         <th>Class</th>
                         <th>Division</th>
                         <th>Year of Join</th>
@@ -124,33 +133,6 @@ if (!empty($_POST)) {
                         <th> Edit / Delete</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <td colspan="6">
-                            <div class="bulk-actions align-left">
-                                <select class="no-mrg" name="dropdown">
-                                    <option value="option1">Choose an action...</option>
-                                    <option value="option2">Edit</option>
-                                    <option value="option3">Delete</option>
-                                </select>
-                                <a href="#" class="btn btn-info">Apply to selected</a>
-                            </div>
-
-                            <div class="pagination">
-                                <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">Next</a></li>
-                                </ul>
-                            </div>
-                            <div class="clear"></div>
-                        </td>
-                    </tr>
-                    </tfoot>
 
                     <tbody>
                     <?php
@@ -168,6 +150,10 @@ if (!empty($_POST)) {
                         <td><?php echo $row['gender'];?></td>
                         <td><?php echo $row['bloodgroup'];?></td>
                         <td><?php echo $row['dob'];?></td>
+                        <td><?php echo $row['guardianFname'].' '.$row['guardianLname'];?></td>
+                        <td><?php echo $row['occupation'];?></td>
+                        <td><?php echo $row['telephone'];?></td>
+                        <td><?php echo $row['mobile'];?></td>
                         <td><?php echo $row['standard'];?></td>
                         <td><?php echo $row['division'];?></td>
                         <td><?php echo $row['year_of_join'];?></td>
@@ -186,6 +172,31 @@ if (!empty($_POST)) {
                     <?php endwhile;} ?>
                     </tbody>
                 </table>
+
+
+                    <div class="bulk-actions align-left">
+                        <select class="no-mrg" name="dropdown">
+                            <option value="option1">Choose an action...</option>
+                            <option value="option2">Edit</option>
+                            <option value="option3">Delete</option>
+                        </select>
+                        <a href="#" class="btn btn-info">Apply to selected</a>
+                    </div>
+
+
+
+                <div class="pagination">
+                    <ul>
+                        <li><a href="#">Prev</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
             </div>
         </div>
     </div>
