@@ -5,7 +5,7 @@ include("admin-layouts/admin-header.php");
 
 <?php
     $result = null;
-    if (!empty($_POST['btn-Search']) && !empty($_POST['searchText'])) {
+    if ($_POST['btn-Search']=='search' && !empty($_POST['searchText'])) {
         $searchText = $_POST['searchText'];
         $sql_select_form_students = "SELECT * FROM student where admissionNo = '$searchText'";
         $result = mysql_query($sql_select_form_students) or die ('Error reading Db: ' . mysql_error());
@@ -31,7 +31,7 @@ include("admin-layouts/admin-header.php");
                         <form class="form-search pull-right" method="post" >
                             <div class="input-append">
                                 <input type="text" class="span4 search-query" name="searchText">
-                                <input type="submit" class="btn search-query-btn" name="btn-Search">Search</input>
+                                <button type="submit" class="btn search-query-btn" name="btn-Search" value="search">Search</button>
                             </div>
                         </form>
                         <div class="article-content pgBox">
