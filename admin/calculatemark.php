@@ -35,12 +35,13 @@ include("admin-layouts/admin-header.php");
                             </div>
                         </form>
                         <div class="article-content pgBox">
-                            <h3 class="clearfix">
-                                <span class="fl">Searched Information</span>
-                            </h3>
+                            
                             <?php if(!empty($result)):
                                 $getResult = mysql_fetch_array($result);
+																
                                 ?>
+								
+							<h3 class="clearfix"><span class="fl">Searched Information</span></h3>
                             <form class="form-horizontal frmMarkSheet" method="post" target="_blank" action="marksheetPdf.php" >
                             <article class="box-profile clearfix">
                                 <div class="control-group">
