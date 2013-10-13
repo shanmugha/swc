@@ -2,7 +2,7 @@
 /* CSS Document */
 
 *{padding:0; margin:0;}
-body{ font-size:14px; font-family:Verdana, Arial, Helvetica, sans-serif;}
+body{ font-size:14px; font-family:Verdana, Arial, Helvetica, sans-serif;background-color: #E1E1E1}
 img{border:none;}
 a{text-decoration:none; }
 a:hover{text-decoration:none;}
@@ -77,7 +77,7 @@ a:hover{text-decoration:none;}
 }
 .news-box{
 	max-height:400px;
-	border:1px solid #5E071B;
+	/*border:1px solid #5E071B;*/
 	border-radius:4px;
 	-wekit-border-radius:4px;
 	margin:10px auto;
@@ -299,7 +299,6 @@ a:hover{text-decoration:none;}
 }
 
 .content-box-content {
-    border-top: 1px solid #CCCCCC;
     font-size: 13px;
     padding: 20px;
 	max-width:1000px;
@@ -710,3 +709,15 @@ img {border: 0;}
         position:relative;
         top:1px;
     }
+
+    .box-profile{background: #f5f5f5; border-top: 5px solid #fdc40d; margin-bottom: 20px;}
+.pgBox {
+    width: 100%;
+    float: left;
+}
+
+/*calculate mark -- reshman */
+.form-horizontal .box-profile .form-left .controls{max-width: 235px;}
+.box-profile .control-label{text-align: left; color: #8a8986; font-family: Arial, Helvetica, sans-serif; width: 180px; font-size: 12px; padding: 0;}
+.article-content .box-profile{padding: 15px; font-family: Arial, Helvetica, sans-serif;}
+.frm-line{font-size: 15px;font-weight: bold}

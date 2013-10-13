@@ -5,6 +5,7 @@ include("admin-layouts/admin-header.php");
 
 
 <?php
+$romans = array('I','II','III','IV','V','VI','VII','VIII','XI','X');
 if (!empty($_POST)) {
     $firstName     = $_POST['firstname'];
     $lastName      = $_POST['lastname'];
@@ -22,34 +23,23 @@ if (!empty($_POST)) {
     $yearOfJoining     = $_POST['yearofJoin'];
     $standard          = $_POST['std'];
     $division          = $_POST['div'];
-    $maths             = $_POST['maths'];
-    $english           = $_POST['english'];
-    $socialScience     = $_POST['ss'];
-    $science           = $_POST['science'];
-    $prevSchool        = $_POST['prevSchool'];
-    $anyDisability     = $_POST['anyDisability'];
-    $anyReservation    = $_POST['anyReservation'];
-    $achivements       = $_POST['achivements'];
 
     $createOrEdit = $_POST['create-edit'];
 
 //print_r($_POST);die;
     if (!empty($firstName)):
         if($createOrEdit == 0){
-            $sql = "insert into student values ('','$firstName','$lastname','$gender','$dob','$bloodGrp',
+            $sql = "insert into student values ('','$admissionNumber','$firstName','$lastname','$gender','$dob','$bloodGrp',
                     '$guardianFname','$guardianLname','$occupation','$permanentAddress','$currentAddress',
-                    '$telNumber','$mobNumber','$admissionNumber','$yearOfJoining','$standard','$division',
-                    '$maths','$english','$socialScience','$science','$prevSchool','$anyDisability','$anyReservation',
-                    '$achivements')";
+                    '$telNumber','$mobNumber','$yearOfJoining','$standard','$division', null,null,null,null,null
+                    )";
         } else {
 
-            $sql = "UPDATE student SET  first_name = '$firstName',last_name = '$lastName',gender = '$gender',
+            $sql = "UPDATE student SET admissionNo = '$admissionNumber', first_name = '$firstName',last_name = '$lastName',gender = '$gender',
                         dob = '$dob',bloodgroup = '$bloodGrp',guardianFname = '$guardianFname',guardianLname = '$guardianLname',
                         occupation = '$occupation',permanent_address =  '$permanentAddress',current_address = '$currentAddress',
-                        telephone = '$telNumber', mobile = '$mobNumber',admissionNo = '$admissionNumber',year_of_join = '$yearOfJoining',
-                        standard = '$standard',division = '$division',maths = '$maths',english = '$english',socialscience = '$socialScience',
-                        science = '$science',prev_school = '$prevSchool',disability = '$anyDisability',reservation = '$anyReservation',
-                        achivements = '$achivements'
+                        telephone = '$telNumber', mobile = '$mobNumber',year_of_join = '$yearOfJoining',
+                        standard = '$standard',division = '$division'
                         where id='$createOrEdit'";
         }
 
@@ -126,7 +116,6 @@ if (!empty($_POST)) {
                         <th>Class</th>
                         <th>Division</th>
                         <th>Year of Join</th>
-                        <th>Class Teacher</th>
                         <th>Mark FA1</th>
                         <th>Mark FA2</th>
                         <th>Mark FA3</th>
@@ -170,27 +159,27 @@ if (!empty($_POST)) {
                     ?>
                     <?php
                     if($result) {
-                    while ($row = mysql_fetch_row($result)):?>
+                    while ($row = mysql_fetch_array($result)):?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $row[0];?></td>
-                        <td>353</td>
-                        <td><a title="title" href="#"><?php echo $row[1].' '.$row[2];?></a></td>
-                        <td>Male</td>
-                        <td>B+</td>
-                        <td>03/02/1998</td>
-                        <td>6</td>
-                        <td>D</td>
-                        <td>2004</td>
-                        <td><a title="title" href="#">Mrs.Geetha</a></td>
-                        <td>122</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>200</td>
-                        <td>200</td>
+                        <td><?php echo $row['id'];?></td>
+                        <td><?php echo $row['admissionNo'];?></td>
+                        <td><a title="title" href="#"><?php echo $row['first_name'].' '.$row['last_name'];?></a></td>
+                        <td><?php echo $row['gender'];?></td>
+                        <td><?php echo $row['bloodgroup'];?></td>
+                        <td><?php echo $row['dob'];?></td>
+                        <td><?php echo $row['standard'];?></td>
+                        <td><?php echo $row['division'];?></td>
+                        <td><?php echo $row['year_of_join'];?></td>
+                        <td><?php echo $row['fa1'];?></td>
+                        <td><?php echo $row['fa2'];?></td>
+                        <td><?php echo $row['fa3'];?></td>
+                        <td><?php echo $row['grandTotal'];?></td>
+                        <td><?php echo $row['grade'];?></td>
+
                         <td>
-                            <a title="Edit" href="#" class="edit" rowId="<?php echo $row[0];?>"><i class="icon-edit"></i></a>
-                            <a title="Delete" href="#" class="delBtn" rowId="<?php echo $row[0];?>"><i class="icon-trash"></i></a>
+                            <a title="Edit" href="#" class="edit" rowId="<?php echo $row['id'];?>"><i class="icon-edit"></i></a>
+                            <a title="Delete" href="#" class="delBtn" rowId="<?php echo $row['id'];?>"><i class="icon-trash"></i></a>
 
                         </td>
                     </tr>
@@ -209,6 +198,8 @@ if (!empty($_POST)) {
             </div>
             <div class="content-box-content">
                 <form class="form-fill" method="post">
+                    <label>Admission No</label>
+                    <input class="span1" type="text" name="adNo">
                     <label>Name of the Student</label>
                     <input type="text" placeholder="First Name" name="firstname">
                     <input type="text" placeholder="Last Name" name="lastname">
@@ -241,14 +232,19 @@ if (!empty($_POST)) {
                     <label>Contact Number</label>
                     <input type="text" placeholder="Telephone Number" name="telNumber">
                     <input type="text" placeholder="Mobile Number" name="mobNumber">
-                    <label>Admission No</label>
-                    <input class="span1" type="text" name="adNo">
+
                     <label>Year of joining</label>
                     <input type="text" placeholder="DD/MM/YYY" name="yearofJoin">
                     <label>Class</label>
-                    <input class="span1" type="text" placeholder="Std" name="std">
+                    <!--<input class="span1" type="text" placeholder="Std" name="std">-->
+                    <select class="span2" name="std">
+                        <?php foreach($romans as $roman) {?>
+                            <option><?php echo $roman?></option>
+                        <?php } ?>
+                    </select>
                     <input class="span1" type="text" placeholder="Div" name="div">
-                    <label>Last Eaxame Total Mark</label>
+
+                   <!-- <label>Last Eaxame Total Mark</label>
                     <label>Subjects Studied upto</label>
                     <input class="span2" type="text" placeholder="Maths" name="maths">
                     <input class="span2" type="text" placeholder="English / Languge" name="english">
@@ -264,11 +260,11 @@ if (!empty($_POST)) {
                         <option>No</option>
                     </select>
                     <label>Sports/Arts achievements</label>
-                    <textarea name="achivements"></textarea>
+                    <textarea name="achivements"></textarea>-->
                     <input type="hidden" name="create-edit" value="0"/>
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Save changes</button>
-                        <a class="btn" href="/students.php" type="button">Cancel</a>
+                        <a class="btn" href="/admin/students.php" type="button">Cancel</a>
                     </div>
                 </form>
             </div>
