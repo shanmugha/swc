@@ -1,87 +1,113 @@
-/*
-SQLyog Community v10.51 
-MySQL - 5.5.28-0ubuntu0.12.04.3 : Database - school
-*********************************************************************
-*/
+-- phpMyAdmin SQL Dump
+-- version 3.1.3.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Oct 11, 2013 at 04:35 PM
+-- Server version: 5.1.33
+-- PHP Version: 5.2.9
 
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-/*!40101 SET SQL_MODE=''*/;
+--
+-- Database: `school`
+--
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`school` /*!40100 DEFAULT CHARACTER SET latin1 */;
+-- --------------------------------------------------------
 
-USE `school`;
+--
+-- Table structure for table `album`
+--
 
-/*Table structure for table `album` */
-
-DROP TABLE IF EXISTS `album`;
-
-CREATE TABLE `album` (
+CREATE TABLE IF NOT EXISTS `album` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_name` varchar(50) NOT NULL,
   `description` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
-/*Data for the table `album` */
+--
+-- Dumping data for table `album`
+--
 
-insert  into `album`(`id`,`album_name`,`description`) values (1,'College Function','saajith'),(2,'Sujith','Iam not Shaji but Sanjith...');
+INSERT INTO `album` (`id`, `album_name`, `description`) VALUES
+(1, 'College Function', 'saajith'),
+(2, 'Sujith', 'Iam not Shaji but Sanjith...');
 
-/*Table structure for table `contact` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `contact`;
+--
+-- Table structure for table `contact`
+--
 
-CREATE TABLE `contact` (
+CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL,
   `phone` decimal(10,0) NOT NULL,
   `fax` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
-/*Data for the table `contact` */
+--
+-- Dumping data for table `contact`
+--
 
-insert  into `contact`(`id`,`email`,`phone`,`fax`) values (1,'s.reshman@gmail.com',12345,1234);
+INSERT INTO `contact` (`id`, `email`, `phone`, `fax`) VALUES
+(1, 's.reshman@gmail.com', 12345, 1234);
 
-/*Table structure for table `events` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `events`;
+--
+-- Table structure for table `events`
+--
 
-CREATE TABLE `events` (
+CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `events` text NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-/*Data for the table `events` */
+--
+-- Dumping data for table `events`
+--
 
-/*Table structure for table `infrastructure` */
 
-DROP TABLE IF EXISTS `infrastructure`;
+-- --------------------------------------------------------
 
-CREATE TABLE `infrastructure` (
+--
+-- Table structure for table `infrastructure`
+--
+
+CREATE TABLE IF NOT EXISTS `infrastructure` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `area_acres` varchar(50) DEFAULT NULL,
   `area_sq_mtrs` varchar(50) DEFAULT NULL,
   `area_build_up` varchar(50) DEFAULT NULL,
   `area_playground` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
-/*Data for the table `infrastructure` */
+--
+-- Dumping data for table `infrastructure`
+--
 
-insert  into `infrastructure`(`id`,`area_acres`,`area_sq_mtrs`,`area_build_up`,`area_playground`) values (1,'2323232323','2452345','245','52525');
+INSERT INTO `infrastructure` (`id`, `area_acres`, `area_sq_mtrs`, `area_build_up`, `area_playground`) VALUES
+(1, '2323232323', '2452345', '245', '52525');
 
-/*Table structure for table `management` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `management`;
+--
+-- Table structure for table `management`
+--
 
-CREATE TABLE `management` (
+CREATE TABLE IF NOT EXISTS `management` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `member_name` varchar(50) DEFAULT NULL,
   `dob` varchar(20) DEFAULT NULL,
@@ -93,40 +119,59 @@ CREATE TABLE `management` (
   `category` int(10) DEFAULT NULL,
   `year_of_join` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-/*Data for the table `management` */
+--
+-- Dumping data for table `management`
+--
 
-/*Table structure for table `news` */
 
-DROP TABLE IF EXISTS `news`;
+-- --------------------------------------------------------
 
-CREATE TABLE `news` (
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE IF NOT EXISTS `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `news` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
-/*Data for the table `news` */
+--
+-- Dumping data for table `news`
+--
 
-/*Table structure for table `notification` */
+INSERT INTO `news` (`id`, `news`) VALUES
+(1, 'Of course, there is no receipt for any of this. It''s just cash under the table....'),
+(2, 'For working parents in town, the rising number of super-smart adolescents''...'),
+(4, 'Kannur district collector Rathan Kelkar declared holiday for all the ......');
 
-DROP TABLE IF EXISTS `notification`;
+-- --------------------------------------------------------
 
-CREATE TABLE `notification` (
+--
+-- Table structure for table `notification`
+--
+
+CREATE TABLE IF NOT EXISTS `notification` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `notifications` tinytext,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-/*Data for the table `notification` */
+--
+-- Dumping data for table `notification`
+--
 
-/*Table structure for table `others` */
 
-DROP TABLE IF EXISTS `others`;
+-- --------------------------------------------------------
 
-CREATE TABLE `others` (
+--
+-- Table structure for table `others`
+--
+
+CREATE TABLE IF NOT EXISTS `others` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `president_name` varchar(50) NOT NULL,
   `address` text,
@@ -134,17 +179,22 @@ CREATE TABLE `others` (
   `phno` decimal(12,0) DEFAULT NULL,
   `fax` decimal(12,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
-/*Data for the table `others` */
+--
+-- Dumping data for table `others`
+--
 
-insert  into `others`(`id`,`president_name`,`address`,`email`,`phno`,`fax`) values (2,'Reset','Thank\r\n\r\n\r\n\r\nYou!','s.reshman@gmail.com',123456,12345744);
+INSERT INTO `others` (`id`, `president_name`, `address`, `email`, `phno`, `fax`) VALUES
+(2, 'Reset', 'Thank\r\n\r\n\r\n\r\nYou!', 's.reshman@gmail.com', 123456, 12345744);
 
-/*Table structure for table `student` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `student`;
+--
+-- Table structure for table `student`
+--
 
-CREATE TABLE `student` (
+CREATE TABLE IF NOT EXISTS `student` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
@@ -171,15 +221,20 @@ CREATE TABLE `student` (
   `reservation` varchar(6) DEFAULT NULL,
   `achivements` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-/*Data for the table `student` */
+--
+-- Dumping data for table `student`
+--
 
-/*Table structure for table `teacher` */
 
-DROP TABLE IF EXISTS `teacher`;
+-- --------------------------------------------------------
 
-CREATE TABLE `teacher` (
+--
+-- Table structure for table `teacher`
+--
+
+CREATE TABLE IF NOT EXISTS `teacher` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `teacher_code` int(12) NOT NULL,
   `firstname` varchar(50) DEFAULT NULL,
@@ -193,34 +248,46 @@ CREATE TABLE `teacher` (
   `subject_taught` varchar(30) DEFAULT NULL,
   `salary` decimal(30,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-/*Data for the table `teacher` */
+--
+-- Dumping data for table `teacher`
+--
 
-/*Table structure for table `uploads` */
 
-DROP TABLE IF EXISTS `uploads`;
+-- --------------------------------------------------------
 
-CREATE TABLE `uploads` (
+--
+-- Table structure for table `uploads`
+--
+
+CREATE TABLE IF NOT EXISTS `uploads` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `path` varchar(70) DEFAULT NULL,
   `category` varchar(30) DEFAULT NULL,
   `album` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `album` (`album`),
-  CONSTRAINT `uploads_ibfk_1` FOREIGN KEY (`album`) REFERENCES `album` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  KEY `album` (`album`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
-/*Data for the table `uploads` */
+--
+-- Dumping data for table `uploads`
+--
 
-insert  into `uploads`(`id`,`name`,`path`,`category`,`album`) values (1,'Screenshot from 2013-08-17 21:43:44.png','/uploads/Screenshot from 2013-08-17 21:43:44.png','gallery',1),(2,'IMG_0463-1.jpg','/uploads/IMG_0463-1.jpg','gallery',1),(3,'Screenshot from 2013-08-11 00:43:48.png','/uploads/Screenshot from 2013-08-11 00:43:48.png','gallery',2),(4,'20130315_195254.jpg','/uploads/20130315_195254.jpg','gallery',2);
+INSERT INTO `uploads` (`id`, `name`, `path`, `category`, `album`) VALUES
+(1, 'Screenshot from 2013-08-17 21:43:44.png', '/uploads/Screenshot from 2013-08-17 21:43:44.png', 'gallery', 1),
+(2, 'IMG_0463-1.jpg', '/uploads/IMG_0463-1.jpg', 'gallery', 1),
+(3, 'Screenshot from 2013-08-11 00:43:48.png', '/uploads/Screenshot from 2013-08-11 00:43:48.png', 'gallery', 2),
+(4, '20130315_195254.jpg', '/uploads/20130315_195254.jpg', 'gallery', 2);
 
-/*Table structure for table `user` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `user`;
+--
+-- Table structure for table `user`
+--
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) DEFAULT NULL,
   `firstname` varchar(50) DEFAULT NULL,
@@ -228,13 +295,21 @@ CREATE TABLE `user` (
   `password` varchar(100) NOT NULL,
   `token` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
-/*Data for the table `user` */
+--
+-- Dumping data for table `user`
+--
 
-insert  into `user`(`id`,`email`,`firstname`,`lastname`,`password`,`token`) values (1,'admin','admin','admin','21232f297a57a5a743894a0e4a801fc3',NULL);
+INSERT INTO `user` (`id`, `email`, `firstname`, `lastname`, `password`, `token`) VALUES
+(1, 'admin', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', NULL);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `uploads`
+--
+ALTER TABLE `uploads`
+  ADD CONSTRAINT `uploads_ibfk_1` FOREIGN KEY (`album`) REFERENCES `album` (`id`);
