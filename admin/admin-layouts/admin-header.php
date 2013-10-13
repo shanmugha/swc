@@ -91,7 +91,7 @@ if (empty($_SESSION['user'])) {
             <ul class="sub-nav" <?php if(in_array($url, array('news.php'))){?> style="display: block" <?php }?>>
                 <li>
                     <a class="sub-list <?php if($url == 'news.php'){echo 'current';}?>" href="news.php">Latest News</a>
-                    <a class="sub-list <?php if($url == 'flashnews.php'){echo 'current';}?>" href="flashnews.php">Flash News</a>
+                   <?php /*?> <a class="sub-list <?php if($url == 'flashnews.php'){echo 'current';}?>" href="flashnews.php">Flash News</a><?php */?>
                 </li>
             </ul>
         </li>
@@ -105,7 +105,7 @@ if (empty($_SESSION['user'])) {
         </li>
         <li><a class="active-tab" href="#" data-toggle="tab">Examination</a>
             <ul class="sub-nav" <?php if(in_array($url, array('calculatemark.php'))){?> style="display: block" <?php }?>>
-                <li><a class="sub-list <?php if($url == 'calculatemark.php'){echo 'current';}?>" href="calculatemark.php">Calculate Mark</a></li>
+                <li><a class="sub-list <?php if($url == 'calculatemark.php'){echo 'current';}?>" href="calculatemark.php">Grade Calculation</a></li>
             </ul>
         </li>
         <li>

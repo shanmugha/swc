@@ -110,7 +110,7 @@ if (!empty($_POST)) {
                         <th>Sl No</th>
                         <th>Role No</th>
                         <th>Name of the Student</th>
-                        <th>Gander</th>
+                        <th>Gender</th>
                         <th>Blood Group</th>
                         <th>Date of Birth</th>
                         <th>Class</th>
