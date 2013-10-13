@@ -25,11 +25,11 @@ CREATE TABLE `album` (
   `album_name` varchar(50) NOT NULL,
   `description` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `album` */
 
-insert  into `album`(`id`,`album_name`,`description`) values (1,'College Function','saajith'),(2,'Sujith','Iam not Shaji but Sanjith...');
+insert  into `album`(`id`,`album_name`,`description`) values (1,'College Function','saajithZK SJV'),(2,'Sujith','Iam not Shaji but Sanjith...'),(3,'Great 3','Desc4'),(4,'My name','Rohan');
 
 /*Table structure for table `contact` */
 
@@ -56,9 +56,11 @@ CREATE TABLE `events` (
   `events` text NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `events` */
+
+insert  into `events`(`id`,`events`,`date`) values (1,'Adds','2013-10-11');
 
 /*Table structure for table `infrastructure` */
 
@@ -105,9 +107,11 @@ CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `news` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `news` */
+
+insert  into `news`(`id`,`news`) values (1,'My Latest Newsss\r\nsdfgs\r\n'),(2,'This is a Test news'),(3,'Exam has been Started ');
 
 /*Table structure for table `notification` */
 
@@ -134,11 +138,9 @@ CREATE TABLE `others` (
   `phno` decimal(12,0) DEFAULT NULL,
   `fax` decimal(12,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `others` */
-
-insert  into `others`(`id`,`president_name`,`address`,`email`,`phno`,`fax`) values (2,'Reset','Thank\r\n\r\n\r\n\r\nYou!','s.reshman@gmail.com',123456,12345744);
 
 /*Table structure for table `student` */
 
@@ -146,6 +148,7 @@ DROP TABLE IF EXISTS `student`;
 
 CREATE TABLE `student` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admissionNo` int(20) NOT NULL,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `gender` varchar(12) DEFAULT NULL,
@@ -158,22 +161,20 @@ CREATE TABLE `student` (
   `current_address` text,
   `telephone` varchar(20) DEFAULT NULL,
   `mobile` varchar(20) DEFAULT NULL,
-  `admissionNo` int(20) NOT NULL,
   `year_of_join` varchar(30) DEFAULT NULL,
   `standard` varchar(11) DEFAULT NULL,
   `division` varchar(10) DEFAULT NULL,
-  `maths` float DEFAULT NULL,
-  `english` float DEFAULT NULL,
-  `socialscience` float DEFAULT NULL,
-  `science` float DEFAULT NULL,
-  `prev_school` varchar(50) DEFAULT NULL,
-  `disability` text,
-  `reservation` varchar(6) DEFAULT NULL,
-  `achivements` text,
+  `fa1` float DEFAULT NULL,
+  `fa2` float DEFAULT NULL,
+  `fa3` float DEFAULT NULL,
+  `grandTotal` float DEFAULT NULL,
+  `grade` char(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `student` */
+
+insert  into `student`(`id`,`admissionNo`,`first_name`,`last_name`,`gender`,`dob`,`bloodgroup`,`guardianFname`,`guardianLname`,`occupation`,`permanent_address`,`current_address`,`telephone`,`mobile`,`year_of_join`,`standard`,`division`,`fa1`,`fa2`,`fa3`,`grandTotal`,`grade`) values (1,0,'ad','','Male','','B+','','','','','','','','','','',NULL,NULL,NULL,NULL,NULL),(2,123,'sdfg','','Male','','B+','ad','sdfgv','sdg','','','','','','','',NULL,NULL,NULL,NULL,NULL),(3,123,'sdfg','','Male','','B+','','','','','','','','','','',NULL,NULL,NULL,NULL,NULL),(4,23,'dghdfghfghfghfghfghfghfg','etyrtyrtutu','Male','21/05/1987','B+','suresh','Bbu','bussiness','greenland','pappala','1233','4534','21/0/2010','5','e',NULL,NULL,NULL,NULL,NULL),(5,1213,'wilson','gomas','Male','','B+','e','e','s','sd','e','232414','35435','21/10/2010','XI','D',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `teacher` */
 
@@ -210,11 +211,11 @@ CREATE TABLE `uploads` (
   PRIMARY KEY (`id`),
   KEY `album` (`album`),
   CONSTRAINT `uploads_ibfk_1` FOREIGN KEY (`album`) REFERENCES `album` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `uploads` */
 
-insert  into `uploads`(`id`,`name`,`path`,`category`,`album`) values (1,'Screenshot from 2013-08-17 21:43:44.png','/uploads/Screenshot from 2013-08-17 21:43:44.png','gallery',1),(2,'IMG_0463-1.jpg','/uploads/IMG_0463-1.jpg','gallery',1),(3,'Screenshot from 2013-08-11 00:43:48.png','/uploads/Screenshot from 2013-08-11 00:43:48.png','gallery',2),(4,'20130315_195254.jpg','/uploads/20130315_195254.jpg','gallery',2);
+insert  into `uploads`(`id`,`name`,`path`,`category`,`album`) values (1,'Screenshot from 2013-07-19 00:21:55.png','/uploads/Screenshot from 2013-07-19 00:21:55.png','gallery',1),(2,'Screenshot from 2013-08-17 21:43:44.png','/uploads/Screenshot from 2013-08-17 21:43:44.png','gallery',1),(3,'Screenshot from 2013-08-17 21:43:44.png','/uploads/Screenshot from 2013-08-17 21:43:44.png','gallery',2),(4,'Screenshot from 2013-08-17 22:49:07.png','/uploads/Screenshot from 2013-08-17 22:49:07.png','gallery',2),(5,'Screenshot from 2013-09-11 08:59:06.png','/uploads/Screenshot from 2013-09-11 08:59:06.png','gallery',1);
 
 /*Table structure for table `user` */
 
