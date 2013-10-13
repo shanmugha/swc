@@ -4,8 +4,8 @@ include("admin-layouts/admin-header.php");
 ?>
 
 <?php
-    if (!empty($_POST['searchText'])) {
-
+    $result = null;
+    if (!empty($_POST['btn-Search']) && !empty($_POST['searchText'])) {
         $searchText = $_POST['searchText'];
         $sql_select_form_students = "SELECT * FROM student where admissionNo = '$searchText'";
         $result = mysql_query($sql_select_form_students) or die ('Error reading Db: ' . mysql_error());
@@ -28,10 +28,10 @@ include("admin-layouts/admin-header.php");
                         <div class="clear"></div>
                     </div>
                     <div class="content-box-content">
-                        <form class="form-search pull-right" method="post" name="sfs">
+                        <form class="form-search pull-right" method="post" >
                             <div class="input-append">
                                 <input type="text" class="span4 search-query" name="searchText">
-                                <button type="submit" class="btn search-query-btn">Search</button>
+                                <input type="submit" class="btn search-query-btn" name="btn-Search">Search</input>
                             </div>
                         </form>
                         <div class="article-content pgBox">
@@ -41,12 +41,13 @@ include("admin-layouts/admin-header.php");
                             <?php if(!empty($result)):
                                 $getResult = mysql_fetch_array($result);
                                 ?>
-                            <form class="form-horizontal" method="post">
+                            <form class="form-horizontal frmMarkSheet" method="post" target="_blank" action="marksheetPdf.php" >
                             <article class="box-profile clearfix">
                                 <div class="control-group">
                                     <label for="inputEmail" class="control-label">Admission No:</label>
                                     <div class="controls">
                                         <div class="frm-line"><?php echo $getResult['admissionNo'];?></div>
+                                        <input type="hidden" name="admNo" value="<?php echo $getResult['admissionNo'];?>"/>
                                     </div>
                                 </div>
                                 <div class="form-left fl">
@@ -54,6 +55,7 @@ include("admin-layouts/admin-header.php");
                                         <label for="inputEmail" class="control-label">First Name*</label>
                                         <div class="controls">
                                             <div class="frm-line"><?php echo $getResult['first_name'];?></div>
+                                            <input type="hidden" name="studName" value="<?php echo $getResult['first_name'].' '.$getResult['last_name'];?>"/>
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -72,6 +74,7 @@ include("admin-layouts/admin-header.php");
                                         <label for="inputEmail" class="control-label">Date Of Birth</label>
                                         <div class="controls">
                                             <div class="frm-line"><?php echo $getResult['dob'];?></div>
+                                            <input type="hidden" name="dob" value="<?php echo $getResult['dob'];?>"/>
                                         </div>
                                     </div>
                                     <div class="control-group ">
@@ -84,18 +87,14 @@ include("admin-layouts/admin-header.php");
                                         <label for="inputEmail" class="control-label">Guardian/Parent Name</label>
                                         <div class="controls">
                                             <div class="frm-line"><?php echo $getResult['guardianFname'].' '.$getResult['guardianLname'];?></div>
+                                            <input type="hidden" name="guardianName" value="<?php echo $getResult['guardianFname'].' '.$getResult['guardianLname'];?>"/>
+
                                         </div>
                                     </div>
                                     <div class="control-group ">
                                         <label for="inputEmail" class="control-label">Occupation</label>
                                         <div class="controls">
                                             <div class="frm-line"><?php echo $getResult['occupation']?></div>
-                                        </div>
-                                    </div>
-                                    <div class="control-group ">
-                                        <label for="inputEmail" class="control-label">Guardian/Parent Name</label>
-                                        <div class="controls">
-                                            <div class="frm-line"><?php echo $getResult['guardianFname'].' '.$getResult['guardianLname'];?></div>
                                         </div>
                                     </div>
                                     <div class="control-group ">
@@ -132,7 +131,7 @@ include("admin-layouts/admin-header.php");
                                     <div class="control-group ">
                                         <label for="inputEmail" class="control-label">Mark FA1*</label>
                                         <div class="controls">
-                                            <input type="email" value="<?php echo $getResult['fa1'];?>" name="fa1">
+                                            <input type="text" value="<?php echo $getResult['fa1'];?>" name="fa1">
                                         </div>
                                     </div>
                                     <div class="control-group ">
@@ -162,7 +161,7 @@ include("admin-layouts/admin-header.php");
                                     <div class="control-group">
                                         <div class="controls">
                                             <button type="submit" class="btn btn-success"> <i class="icon-align-justify"> </i> Calculate</button>
-                                            <a class="btn" href="/admin/infrastructure.php" type="button"><i class="icon-print"> </i>  Marksheet</a>
+                                            <a class="btn marksheet" type="button"><i class="icon-print"> </i>  Marksheet</a>
                                         </div>
                                     </div>
                                 </div>
@@ -185,8 +184,13 @@ include("admin-layouts/admin-header.php");
 
 <script>
     $(function(){
-        $('.search-query-btn').on('click', function(){
-            //$('.form-search').submit();
+        $('.marksheet').on('click', function(){
+             //target="_blank"
+           // $('.frmMarkSheet').attr('action','marksheetPdf.php')
+            $('.frmMarkSheet').submit(/*function(){
+                *//*$(this).attr('action', '/marksheetPdf.php');
+                $(this).attr('target', '_blank');*//*
+            }*/);
         })
     });
 </script>
