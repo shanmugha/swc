@@ -1,5 +1,5 @@
 <div class="hm-content">
-	<h3>Students</h3>
+	<h3>Students Details</h3>
 	<table class="table table-hover">
         <thead>
 		
@@ -38,3 +38,4 @@
 			
    </tbody>
    </table>
+</div>

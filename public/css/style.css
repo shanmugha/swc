@@ -454,10 +454,10 @@ div.desc
 	margin:0;
 }
 .people {
-    border: 1px solid #CCCCCC;
+    border-top: 2px dotted #CCCCCC;
     margin: 5px;
     padding: 10px;
-    width: 210px;
+	width:620px;
 	float:left;
 	cursor:pointer;
 	transition:box-shadow 0.4s;
@@ -765,3 +765,10 @@ table.tablesorter thead tr .headerSortDown {
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
     background-color: #8dbdd8;
 }
+.detail-box{
+	color: #3F86B6;
+}
+.people .table th, .people .table td{
+	border:none;
+}
+.mdm{width:300px;}
