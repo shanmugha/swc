@@ -4,7 +4,7 @@
 include("admin-layouts/admin-header.php");
 
 ?>
-
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
 <?php
 $romans = array('I','II','III','IV','V','VI','VII','VIII','XI','X');
@@ -56,24 +56,47 @@ if (!empty($_POST)) {
 <script>
     $(document).ready(function()
         {
-            $('.error').hide();
+            $('#mobNumber, #telNumber, #adNo').on('keypress', function(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                return !(charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57));
+            });
 
-            function ValidateDate(dtValue)
-            {
-                var dtRegex = new RegExp(/\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/);
-                return dtRegex.test(dtValue);
-            }
+            $.validator.addMethod(
+                "indianDate",
+                function(value, element) {
+                    // put your own logic here, this is just a (crappy) example
+                    return value.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
+                },
+                "Please enter a date in the format dd/mm/yyyy."
+            );
 
-            $('.btn-primary').click(function(event){
-                var dtVal=$('#dob').val();
-                if(ValidateDate(dtVal))
-                {
-                    $('.error').hide();
-                }
-                else
-                {
-                    $('.error').show();
-                    event.preventDefault();
+            $(".form-fill").validate({
+
+                // Specify the validation rules
+                rules: {
+                    adNo:{
+                        required:true,
+                        digits: true
+                    },
+                    firstname:"required",
+                    dob: {
+                        required: true,
+                        indianDate: true
+                    },
+                    yearofJoin:{
+                        required: true,
+                        indianDate: true
+                    }
+
+                },
+
+                // Specify the validation error messages
+                messages: {
+
+                },
+
+                submitHandler: function(form) {
+                    form.submit();
                 }
             });
         });
@@ -234,7 +257,7 @@ if (!empty($_POST)) {
             <div class="content-box-content">
                 <form class="form-fill" method="post">
                     <label>Admission No</label>
-                    <input class="span1" type="text" name="adNo">
+                    <input class="span1" type="text" name="adNo" id="adNo">
                     <label>Name of the Student</label>
                     <input type="text" placeholder="First Name" name="firstname">
                     <input type="text" placeholder="Last Name" name="lastname">
@@ -245,7 +268,6 @@ if (!empty($_POST)) {
                     </select>
                     <label>Date Of Birth</label>
                     <input type="text" placeholder="DD/MM/YYY" name="dob" id="dob">
-                    <span class="error"> Invalid Date.(mm/dd/yyyy or mm-dd-yyyy) </span>
                     <label>Blood Group</label>
                     <select class="span2" name="bloodGrp">
                         <option>B+</option>
@@ -266,8 +288,8 @@ if (!empty($_POST)) {
                     <textarea rows="3" placeholder="Permanent Address" name="pAdress"></textarea>
                     <textarea rows="3" placeholder="Current Address" name="cAddress"></textarea>
                     <label>Contact Number</label>
-                    <input type="text" placeholder="Telephone Number" name="telNumber">
-                    <input type="text" placeholder="Mobile Number" name="mobNumber">
+                    <input type="text" placeholder="Telephone Number" name="telNumber" id="telNumber">
+                    <input type="text" placeholder="Mobile Number" name="mobNumber" id="mobNumber">
 
                     <label>Year of joining</label>
                     <input type="text" placeholder="DD/MM/YYY" name="yearofJoin">
