@@ -4,7 +4,6 @@
 include("admin-layouts/admin-header.php");
 
 ?>
-<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
 <?php
 $romans = array('I','II','III','IV','V','VI','VII','VIII','XI','X');

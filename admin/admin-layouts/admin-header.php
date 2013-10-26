@@ -38,7 +38,7 @@ if (empty($_SESSION['user'])) {
     <script src="<?php echo $resourcePath;?>js/jqbootstrapvalidation.js"></script>
     <script type="text/javascript" src="<?php echo $resourcePath;?>js/modernizr.custom.86080.js"></script>
     <script src="<?php echo $resourcePath;?>js/bootstrap.min.js"></script>
-    <!--<script type="text/javascript" src="<?php /*echo $resourcePath;*/?>js/jquery.tablesorter.js"></script>-->
+    <script type="text/javascript" src="<?php echo $resourcePath;?>js/jquery.validate.js"></script>
     <!--<script type="text/javascript" src="https://rnhckrdotcom.googlecode.com/svn/bloggerwidget/rnhckr-tripleflap.js"></script>
    --> <script type="text/javascript">
         $(document).ready(function() {

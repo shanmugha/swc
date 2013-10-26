@@ -1,8 +1,8 @@
 <?php 
 //require_once('admin-layouts/admin-header.php'); 
 include("admin-layouts/admin-header.php");
+$url = $connect->baseurl.'/admin/teachers.php';
 ?>
-
 
 <?php
 
@@ -40,7 +40,7 @@ if (!empty($_POST)) {
 }
 
 ?>
-<script>
+<script type="text/javascript">
     $(function(){
         $('.edit').on('click', function(){
 
@@ -92,7 +92,7 @@ if (!empty($_POST)) {
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th><input class="check-all" type="checkbox" /></th>
+
                         <th>Teachers Code</th>
                         <th>Name of the Teacher</th>
                         <th>Gander</th>
@@ -107,44 +107,40 @@ if (!empty($_POST)) {
 
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <td colspan="6">
-                            <div class="bulk-actions align-left">
-                                <select class="no-mrg" name="dropdown">
-                                    <option value="option1">Choose an action...</option>
-                                    <option value="option2">Edit</option>
-                                    <option class="sub-navtion" value="option3">Delete</option>
-                                </select>
-                                <a href="#" class="btn btn-info">Apply to selected</a>
-                            </div>
 
-                            <div class="pagination">
-                                <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">Next</a></li>
-                                </ul>
-                            </div>
-                            <div class="clear"></div>
-                        </td>
-                    </tr>
-                    </tfoot>
 
                     <tbody>
                     <?php
-                    $sql_select_form_school = "SELECT * FROM teacher";
+                    $adjacents = 3;
+                    $query = "SELECT COUNT(*) FROM teacher";
+                    $total_items = mysql_fetch_array(mysql_query($query));
+
+                    /* Setup vars for query. */
+                    $targetpage = "";
+                    $limit = 2; //how many items to show per page
+                    if(isset($_GET['page'])) {
+                        $page = $_GET['page'];
+                        $start = ($page - 1) * $limit; //first item to display on this page
+                    } else {
+                        $page = 0;
+                        $start = 0; //if no page var is given, set start to 0
+                    }
+
+                    if ($page == 0) $page = 1; //if no page var is given, default to 1.
+                    $prev = $page - 1; //previous page is page - 1
+                    $next = $page + 1; //next page is page + 1
+                    $lastpage = ceil($total_items[0]/$limit); //lastpage is = total pages / items per page, rounded up.
+                    $lpm1 = $lastpage - 1; //last page minus 1
+                    ?>
+
+                    <?php
+                    $sql_select_form_school = "SELECT * FROM teacher LIMIT $start, $limit";
                     $result = mysql_query($sql_select_form_school) or die ('Error updating database: ' . mysql_error());
                     ?>
                     <?php
                     if($result) {
                         while ($row = mysql_fetch_row($result)):?>
                             <tr>
-                                <td><input type="checkbox" /></td>
                                 <td><?php echo $row[1];?></td>
                                 <td><a title="title" href="#"><?php echo $row[2].' '.$row[3];?></a></td>
                                 <td><?php echo $row[4];?></td>
@@ -164,6 +160,8 @@ if (!empty($_POST)) {
                         <?php endwhile;} ?>
                     </tbody>
                 </table>
+                <?php include('pagination.php')?>
+                <div class="clear"></div>
             </div>
         </div>
     </div>
@@ -177,9 +175,9 @@ if (!empty($_POST)) {
             <div class="content-box-content">
                 <form class="form-fill" method="post">
                     <label>Teacher's Code</label>
-                    <input type="number" min="0" data-validation-number-message="must be a number" placeholder="Teachers Code" name="teachercode" required>
+                    <input type="number" min="0" data-validation-number-message="must be a number" placeholder="Teachers Code" id="teachercode" name="teachercode">
                     <label>Name of the teacher</label>
-                    <input type="text" placeholder="First Name" name="firstname" required>
+                    <input type="text" placeholder="First Name" name="firstname">
                     <input type="text" placeholder="Last Name" name="lastname">
                     <label>Gender</label>
                     <select class="span2" name="gender">
@@ -209,12 +207,12 @@ if (!empty($_POST)) {
                     <input class="span3" type="text" placeholder="Subject taught" name="subjectTaught">
 
                     <label>Salary</label>
-                    <input class="span2" type="text" placeholder="Salary" name="salary">
+                    <input class="span2" type="text" placeholder="Salary" name="salary" id="salary">
 
                     <input type="hidden" name="create-edit" value="0"/>
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Save changes</button>
-                        <button class="btn" type="button">Cancel</button>
+                        <a class="btn" href="<?php echo $url;?>" type="button">Cancel</a>
                     </div>
                 </form>
             </div>
@@ -227,3 +225,50 @@ if (!empty($_POST)) {
 </div>
 
 <?php require_once('admin-layouts/admin-footers.php'); ?>
+
+<script>
+    $(document).ready(function(){
+        $.validator.addMethod(
+            "indianDate",
+            function(value, element) {
+                // put your own logic here, this is just a (crappy) example
+                return value.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
+            },
+            "Please enter a date in the format dd/mm/yyyy."
+        );
+
+        $('#teachercode, #salary').on('keypress', function(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            return !(charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57));
+        });
+
+
+        $(".form-fill").validate({
+
+            // Specify the validation rules
+            rules: {
+                teachercode:"required",
+                firstname:"required",
+                dob: {
+                    required: true,
+                    indianDate: true
+                },
+                yearOfJoining: {
+                    required: true,
+                    indianDate: true
+                }
+
+            },
+
+            // Specify the validation error messages
+            messages: {
+
+            },
+
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+
+    })
+</script>
