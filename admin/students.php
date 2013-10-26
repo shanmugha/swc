@@ -1,6 +1,8 @@
-<?php 
-//require_once('admin-layouts/admin-header.php'); 
+
+<?php
+//require_once('admin-layouts/admin-header.php');
 include("admin-layouts/admin-header.php");
+
 ?>
 
 
@@ -54,9 +56,28 @@ if (!empty($_POST)) {
 <script>
     $(document).ready(function()
         {
-            $("#myTable").tablesorter();
-        }
-    );
+            $('.error').hide();
+
+            function ValidateDate(dtValue)
+            {
+                var dtRegex = new RegExp(/\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/);
+                return dtRegex.test(dtValue);
+            }
+
+            $('.btn-primary').click(function(event){
+                var dtVal=$('#dob').val();
+                if(ValidateDate(dtVal))
+                {
+                    $('.error').hide();
+                }
+                else
+                {
+                    $('.error').show();
+                    event.preventDefault();
+                }
+            });
+        });
+
     $(function(){
         $('.edit').on('click', function(){
 
@@ -108,13 +129,13 @@ if (!empty($_POST)) {
             <div class="content-box-content">
                 <div class="notification attention png_bg">
                 </div>
-                <table id="myTable" class=" table table-bordered tablesorter">
+                <table id="myTable" class="table table-hover">
                     <thead>
                     <tr>
-                        <th><input class="check-all" type="checkbox"/></th>
+                        <!--<th><input class="check-all" type="checkbox"/></th>-->
                         <th>Sl No</th>
                         <th>Role No</th>
-                        <th>Name of the Student</th>
+                        <th>Student Name</th>
                         <th>Gender</th>
                         <th>Blood Group</th>
                         <th>Date of Birth</th>
@@ -136,15 +157,39 @@ if (!empty($_POST)) {
 
                     <tbody>
                     <?php
-                    $sql_select_form_school = "SELECT * FROM student";
-                    $result = mysql_query($sql_select_form_school) or die ('Error updating database: ' . mysql_error());
+                    $adjacents = 3;
+                    $query = "SELECT COUNT(*) FROM student";
+                    $total_items = mysql_fetch_array(mysql_query($query));
+
+                    /* Setup vars for query. */
+                    $targetpage = "";
+                    $limit = 2; //how many items to show per page
+                    if(isset($_GET['page'])) {
+                        $page = $_GET['page'];
+                        $start = ($page - 1) * $limit; //first item to display on this page
+                    } else {
+                        $page = 0;
+                        $start = 0; //if no page var is given, set start to 0
+                    }
+
+                    if ($page == 0) $page = 1; //if no page var is given, default to 1.
+                    $prev = $page - 1; //previous page is page - 1
+                    $next = $page + 1; //next page is page + 1
+                    $lastpage = ceil($total_items[0]/$limit); //lastpage is = total pages / items per page, rounded up.
+                    $lpm1 = $lastpage - 1; //last page minus 1
+
+
+                    $sql_select_form_school = "SELECT * FROM student limit $start, $limit";
+                    $result = mysql_query($sql_select_form_school) or die ('Error fetching  database: ' . mysql_error());
                     ?>
                     <?php
                     if($result) {
-                    while ($row = mysql_fetch_array($result)):?>
+                        $i = 0;
+                    while ($row = mysql_fetch_array($result)):
+                    ?>
                     <tr>
-                        <td><input type="checkbox"/></td>
-                        <td><?php echo $row['id'];?></td>
+                        <!--<td><input type="checkbox"/></td>-->
+                        <td><?php echo ++$i; ?></td>
                         <td><?php echo $row['admissionNo'];?></td>
                         <td><a title="title" href="#"><?php echo $row['first_name'].' '.$row['last_name'];?></a></td>
                         <td><?php echo $row['gender'];?></td>
@@ -173,29 +218,8 @@ if (!empty($_POST)) {
                     </tbody>
                 </table>
 
+                <?php include('pagination.php')?>
 
-                    <div class="bulk-actions align-left">
-                        <select class="no-mrg" name="dropdown">
-                            <option value="option1">Choose an action...</option>
-                            <option value="option2">Edit</option>
-                            <option value="option3">Delete</option>
-                        </select>
-                        <a href="#" class="btn btn-info">Apply to selected</a>
-                    </div>
-
-
-
-                <div class="pagination">
-                    <ul>
-                        <li><a href="#">Prev</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">Next</a></li>
-                    </ul>
-                </div>
                 <div class="clear"></div>
             </div>
         </div>
@@ -220,7 +244,8 @@ if (!empty($_POST)) {
                         <option>Female</option>
                     </select>
                     <label>Date Of Birth</label>
-                    <input type="text" placeholder="DD/MM/YYY" name="dob">
+                    <input type="text" placeholder="DD/MM/YYY" name="dob" id="dob">
+                    <span class="error"> Invalid Date.(mm/dd/yyyy or mm-dd-yyyy) </span>
                     <label>Blood Group</label>
                     <select class="span2" name="bloodGrp">
                         <option>B+</option>
@@ -255,23 +280,6 @@ if (!empty($_POST)) {
                     </select>
                     <input class="span1" type="text" placeholder="Div" name="div">
 
-                   <!-- <label>Last Eaxame Total Mark</label>
-                    <label>Subjects Studied upto</label>
-                    <input class="span2" type="text" placeholder="Maths" name="maths">
-                    <input class="span2" type="text" placeholder="English / Languge" name="english">
-                    <input class="span2" type="text" placeholder="Social Studies" name="ss">
-                    <input class="span2" type="text" placeholder="Science" name="science">
-                    <label>Previous school</label>
-                    <input type="text" name="prevSchool">
-                    <label>Type of Disability, if any</label>
-                    <textarea rows="3" name="anyDisability"></textarea>
-                    <label>Any Reservation</label>
-                    <select class="span1" name="anyReservation">
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                    <label>Sports/Arts achievements</label>
-                    <textarea name="achivements"></textarea>-->
                     <input type="hidden" name="create-edit" value="0"/>
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Save changes</button>

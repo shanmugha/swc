@@ -9,7 +9,8 @@ session_start(); // include in the first line
 
 include(dirname(__FILE__) . "/../../config/connection.php");
 $connect   = new Connection();
-$actualUrl = explode('/', $_SERVER["REQUEST_URI"]);
+$urlParsed = parse_url($_SERVER["REQUEST_URI"]);
+$actualUrl = explode('/', $urlParsed['path']);
 $cnt       = count($actualUrl) - 1;
 $url       = $actualUrl[$cnt];
 $_SESSION['flash_messages'];
@@ -37,7 +38,7 @@ if (empty($_SESSION['user'])) {
     <script src="<?php echo $resourcePath;?>js/jqbootstrapvalidation.js"></script>
     <script type="text/javascript" src="<?php echo $resourcePath;?>js/modernizr.custom.86080.js"></script>
     <script src="<?php echo $resourcePath;?>js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo $resourcePath;?>js/jquery.tablesorter.js"></script>
+    <!--<script type="text/javascript" src="<?php /*echo $resourcePath;*/?>js/jquery.tablesorter.js"></script>-->
     <!--<script type="text/javascript" src="https://rnhckrdotcom.googlecode.com/svn/bloggerwidget/rnhckr-tripleflap.js"></script>
    --> <script type="text/javascript">
         $(document).ready(function() {
