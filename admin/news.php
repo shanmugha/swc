@@ -49,29 +49,33 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
                                 <th>News</th>
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr>
-                                <td colspan="6">
-                                    <div class="pagination">
-                                        <ul>
-                                            <li><a href="#">Prev</a></li>
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li><a href="#">Next</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="clear"></div>
-                                </td>
-                            </tr>
-                            </tfoot>
 
                             <tbody>
                             <?php
-                            $sql_news = "SELECT * FROM news";
-                            $result = mysql_query($sql_news) or die ('Error updating database: ' . mysql_error());
+                            $adjacents = 3;
+                            $query = "SELECT COUNT(*) FROM news";
+                            $total_items = mysql_fetch_array(mysql_query($query));
+
+                            /* Setup vars for query. */
+                            $targetpage = "";
+                            $limit = 2; //how many items to show per page
+                            if(isset($_GET['page'])) {
+                                $page = $_GET['page'];
+                                $start = ($page - 1) * $limit; //first item to display on this page
+                            } else {
+                                $page = 0;
+                                $start = 0; //if no page var is given, set start to 0
+                            }
+
+                            if ($page == 0) $page = 1; //if no page var is given, default to 1.
+                            $prev = $page - 1; //previous page is page - 1
+                            $next = $page + 1; //next page is page + 1
+                            $lastpage = ceil($total_items[0]/$limit); //lastpage is = total pages / items per page, rounded up.
+                            $lpm1 = $lastpage - 1; //last page minus 1
+                            ?>
+                            <?php
+                            $sql_news = "SELECT * FROM news  LIMIT $start, $limit ";
+                            $result = mysql_query($sql_news) or die ('Error news table: ' . mysql_error());
                             ?>
                             <?php
                             if($result) {
@@ -89,6 +93,8 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
                                 <?php endwhile;} ?>
                             </tbody>
                         </table>
+                        <?php include('pagination.php')?>
+                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
