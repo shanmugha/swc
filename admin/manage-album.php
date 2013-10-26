@@ -2,7 +2,6 @@
 
 //require_once('admin-layouts/admin-header.php');
 include("admin-layouts/admin-header.php");
- 
 ?>
 
 <?php
@@ -100,29 +99,33 @@ if (!empty($_POST['albumname'])) {
                                 <th>Description</th>
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr>
-                                <td colspan="6">
-                                    <div class="pagination">
-                                        <ul>
-                                            <li><a href="#">Prev</a></li>
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li><a href="#">Next</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="clear"></div>
-                                </td>
-                            </tr>
-                            </tfoot>
 
                             <tbody>
                             <?php
-                            $sql_album = "SELECT * FROM album";
-                            $result = mysql_query($sql_album) or die ('Error updating database: ' . mysql_error());
+                            $adjacents = 3;
+                            $query = "SELECT COUNT(*) FROM album";
+                            $total_items = mysql_fetch_array(mysql_query($query));
+
+                            /* Setup vars for query. */
+                            $targetpage = "";
+                            $limit = 2; //how many items to show per page
+                            if (isset($_GET['page'])) {
+                                $page = $_GET['page'];
+                                $start = ($page - 1) * $limit; //first item to display on this page
+                            } else {
+                                $page = 0;
+                                $start = 0; //if no page var is given, set start to 0
+                            }
+
+                            if ($page == 0) $page = 1; //if no page var is given, default to 1.
+                            $prev = $page - 1; //previous page is page - 1
+                            $next = $page + 1; //next page is page + 1
+                            $lastpage = ceil($total_items[0] / $limit); //lastpage is = total pages / items per page, rounded up.
+                            $lpm1 = $lastpage - 1; //last page minus 1
+                            ?>
+                            <?php
+                            $sql_album = "SELECT * FROM album LIMIT $start, $limit";
+                            $result = mysql_query($sql_album) or die ('Error in album table: ' . mysql_error());
                             ?>
                             <?php
                             if($result) {
@@ -141,6 +144,10 @@ if (!empty($_POST['albumname'])) {
                                 <?php endwhile;} ?>
                             </tbody>
                         </table>
+
+                        <?php include('pagination.php')?>
+
+                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
@@ -168,7 +175,7 @@ if (!empty($_POST['albumname'])) {
                                 <div class="controls">
                                     <input type="hidden" name="create-edit" value="0"/>
                                     <button type="submit" class="btn btn-success">Save</button>
-                                    <a class="btn" href="<?php echo $_SERVER['PHP_SELF']?>" type="button">Clear</a>
+                                    <a class="btn" href="<?php echo $_SERVER['PHP_SELF']?>" type="button">Close</a>
                                 </div>
                             </div>
                         </form>

@@ -32,7 +32,7 @@ $getResult = mysql_fetch_array($result);
             <div class="controls">
                 <input type="hidden" name="create-edit" value="<?php echo $getResult['id'];?>"/>
                 <button type="submit" class="btn btn-success">Update</button>
-                <a class="btn" href="/admin/manage-album-edit.php" type="button">Clear</a>
+                <a class="btn" href="<?php echo $_SERVER['PHP_SELF']?>" type="button">Close</a>
             </div>
         </div>
     </form>
