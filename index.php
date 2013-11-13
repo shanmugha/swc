@@ -142,7 +142,7 @@
             <div class="tab-content">
 
                 <div class="tab-pane active" id="hometab">
-                    <?php include_once('about.php'); ?>
+                    <?php include_once('home.php'); ?>
                 </div>
             </div>
         </section>

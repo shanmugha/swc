@@ -101,7 +101,7 @@ include("admin-layouts/admin-header.php");
                             $lpm1 = $lastpage - 1; //last page minus 1
                             ?>
                             <?php
-                            $sql_album_upload = "SELECT a.album_name,u.path,u.album,u.name,u.id  FROM album a JOIN uploads u on a.id = u.album  LIMIT $start, $limit";
+                            $sql_album_upload = "SELECT a.album_name,u.path,u.album,u.name,u.id  FROM album a JOIN uploads u on a.id = u.album order By id DESC  LIMIT $start, $limit";
                             $result = mysql_query($sql_album_upload) or die ('Error updating database: ' . mysql_error());
                             ?>
                             <?php

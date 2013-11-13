@@ -16,13 +16,13 @@ $url       = $actualUrl[$cnt];
     <div id='cssmenu'>
         <ul>
             <li class='<?php if($url == ''){echo 'active';}else{echo '';}?>'><a href='<?php echo $baseUrl;?>'><span>Home</span></a></li>
-            <li class=''><a href='#'><span>About</span></a></li>
+            <li class='<?php if($url == 'about.php'){echo 'active';}else{echo '';}?>'><a href='about.php'><span>About</span></a></li>
             <li class='<?php if($url == 'gallery.php'){echo 'active';}else{echo '';}?>'><a href='gallery.php'><span>Gallery</span></a></li>
             <li class='has-sub'><a href='#'><span>People</span></a>
-                <ul>
-                    <li><a href='#'><span>Students</span></a></li>
-                    <li><a href='#'><span>Teachers</span></a></li>
-                    <li class='last'><a href='#'><span>Management</span></a></li>
+                <ul style="<?php if(in_array($url, array('students.php', 'teachers.php', 'management.php'))){echo "display:block";}else{echo "display:none";}?>">
+                    <li class="<?php if($url == 'students.php'){echo 'active';}else{echo '';}?>"><a href='students.php'><span>Students</span></a></li>
+                    <li class="<?php if($url == 'teachers.php'){echo 'active';}else{echo '';}?>"><a href='teachers.php'><span>Teachers</span></a></li>
+                    <li class='<?php if($url == 'management.php'){echo 'active';}else{echo '';}?>'><a href='management.php'><span>Management</span></a></li>
                 </ul>
             </li>
             <!--<li class='has-sub'><a href='#'><span>Company</span></a>
@@ -70,7 +70,7 @@ $url       = $actualUrl[$cnt];
     ?>
 
     <div class="news-box">
-        <h4>Lalest News</h4>
+        <h4>Latest News</h4>
         <article class="news-body">
             <div class="ticker">
                 <ul id="ticker">
