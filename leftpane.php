@@ -11,6 +11,13 @@ $cnt       = count($actualUrl) - 1;
 $url       = $actualUrl[$cnt];
 ?>
 
+<!-- Core CSS File. The CSS code needed to make eventCalendar works -->
+<link rel="stylesheet" href="public/css/eventCalendar.css">
+
+<!-- Theme CSS file: it makes eventCalendar nicer -->
+<link rel="stylesheet" href="public/css/eventCalendar_theme_responsive.css">
+<script src="public/js/jquery.eventCalendar.js" type="text/javascript"></script>
+
 <aside class="left-box">
     <div class="news-box">
     <div id='cssmenu'>
@@ -85,6 +92,15 @@ $url       = $actualUrl[$cnt];
     </div>
     <div class="news-box">
         <h4>Events</h4>
-        <article class="news-body"> <a href="#"> <img src="public/img/layout/calendar.png" /> </a> </article>
+        <div id="eventCalendarDefault"></div>
     </div>
 </aside>
+<script>
+    $(document).ready(function() {
+        $("#eventCalendarDefault").eventCalendar({
+            eventsjson: 'events.json.php',
+            startWeekOnMonday: false,
+            eventsScrollable: true
+        });
+    });
+</script>
