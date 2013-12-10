@@ -9,11 +9,8 @@
 
 <!-- bottom css for image gallery -->
 <link rel="stylesheet" href="public/library/pickachoose/bottom.css"/>
-<!--<link rel="stylesheet" href="public/css/colorbox.css" />-->
 <link rel="stylesheet" href="public/css/jcap.css"/>
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-<!--<script src="public/js/jquery.colorbox.js"></script>-->
 <script src="public/js/jquery.capSlide.js"></script>
 <style>
     .demo{
@@ -214,10 +211,9 @@
                                 <div class="overlay" style="display:none;"></div>
                                 <div class="ic_caption">
                                     <p class="ic_category">Category</p>
-                                    <h3>Amazing Image Title</h3>
+                                    <h3><?php echo $albumUploadDetail['album_name'];?></h3>
                                     <p class="ic_text">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        <?php echo $albumUploadDetail['description'];?>
                                     </p>
                                 </div>
                             </div>
@@ -227,10 +223,7 @@
 
                     $uploads = mysql_query($sql_uploads) or die ('Error updating database: ' . mysql_error());
                     while ($uploadRow = mysql_fetch_object($uploads)):
-
                     ?>
-
-
                         <?php
                         $albumIdImgs[$albumUploadDetail['albumId']][] = array('albumPath' => $uploadRow->path);
                         endwhile;
@@ -239,11 +232,7 @@
                     <?php
                          }
                          endif;
-
                     ?>
-
-
-
                 </div>
             </div>
         </section>
@@ -294,17 +283,6 @@ foreach($albumIdImgs as $album){
             $(modal).on('hidden', function () {
                window.location.reload();
             })
-        });
-
-
-
-
-        $("#capslide_img_cont").capslide({
-            caption_color	: 'white',
-            caption_bgcolor	: 'black',
-            overlay_bgcolor : 'black',
-            border			: '',
-            showcaption	    : false
         });
 
         $(".count9").capslide({
