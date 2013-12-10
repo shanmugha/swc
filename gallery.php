@@ -3,10 +3,26 @@
 <script type="text/javascript" src="public/js/jquery_slider.js"></script>
 <script type="text/javascript" src="public/js/jquery-1.9.1.js"></script>
 
-<link rel="stylesheet" href="public/css/colorbox.css" />
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-<script src="public/js/jquery.colorbox.js"></script>
+<script type="text/javascript" src="public/js/jquery.pikachoose.js"></script>
+<script type="text/javascript" src="public/js/jquery.touchwipe.min.js"></script>
+<script type="text/javascript" src="public/js/jquery.jcarousel.min.js"></script>
 
+<!-- bottom css for image gallery -->
+<link rel="stylesheet" href="public/library/pickachoose/bottom.css"/>
+<!--<link rel="stylesheet" href="public/css/colorbox.css" />-->
+<link rel="stylesheet" href="public/css/jcap.css"/>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+<!--<script src="public/js/jquery.colorbox.js"></script>-->
+<script src="public/js/jquery.capSlide.js"></script>
+<style>
+    .demo{
+        float:left;
+    }
+    .demo:hover{cursor: pointer}
+
+
+</style>
 <script type="text/javascript">
 
 
@@ -187,40 +203,46 @@
                     }
 
                     ?>
-
                     <?php
                     if (!empty($albumUploadDetails)):
-                        foreach ($albumUploadDetails as $albumUploadDetail) {
-                            ?>
-
-                            <div class="folder">
-                                <?php
-                                $sql_uploads = "select path from uploads where category='gallery' AND album='$albumUploadDetail[albumId]'";
-                                $uploads = mysql_query($sql_uploads) or die ('Error updating database: ' . mysql_error());
-                                while ($uploadRow = mysql_fetch_object($uploads)):
-                                ?>
-                                    <a class="group<?php echo $albumUploadDetail['albumId']; ?>" href="<?php echo $uploadRow->path; ?>" >
-
-                                <?php
-                                    $jscriptImgs[] = array('albumId' => $albumUploadDetail['albumId']);
-                                    endwhile;
-
-                                ?>
-                                <div class="folder-mp"></div>
-                                <a class="folder-link">
-
-                                    <div class="thump">
-                                        <img src="<?php echo $albumUploadDetail['path']; ?>"/>
-                                    </div>
-                                    <h3><?php echo $albumUploadDetail['album_name']; ?></h3>
-
-                                    <p><?php echo $albumUploadDetail['description']; ?></p>
-                                </a>
-
+                    foreach ($albumUploadDetails as $albumUploadDetail) {
+                    ?>
+                        <div class="demo">
+                          <input type="hidden" class="albumId" value="<?php echo $albumUploadDetail['albumId'];?>">
+                            <div id="capslide_img_cont" class="ic_container count9">
+                                <img src="public/img/example2.jpg" width="180" height="240" alt=""/>
+                                <div class="overlay" style="display:none;"></div>
+                                <div class="ic_caption">
+                                    <p class="ic_category">Category</p>
+                                    <h3>Amazing Image Title</h3>
+                                    <p class="ic_text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                </div>
                             </div>
-                        <?php 
-						
-						} endif; ?>
+                        </div>
+                    <?php
+                    $sql_uploads = "select path from uploads where category='gallery' AND album='$albumUploadDetail[albumId]'";
+
+                    $uploads = mysql_query($sql_uploads) or die ('Error updating database: ' . mysql_error());
+                    while ($uploadRow = mysql_fetch_object($uploads)):
+
+                    ?>
+
+
+                        <?php
+                        $albumIdImgs[$albumUploadDetail['albumId']][] = array('albumPath' => $uploadRow->path);
+                        endwhile;
+                        ?>
+
+                    <?php
+                         }
+                         endif;
+
+                    ?>
+
+
 
                 </div>
             </div>
@@ -230,12 +252,69 @@
     <?php include_once('footer.php'); ?>
 </div>
 
-<script>
-    $(document).ready(function(){
-        <?php foreach($jscriptImgs as $img):?>
-        $(".group<?php echo $img['albumId']; ?>").colorbox({rel:'group<?php echo $img['albumId']; ?>',
-            width:"80%", height:"80%"
+<?php
+$i = 0;
+foreach($albumIdImgs as $album){
+    $albumId  = array_keys($albumIdImgs);
+?>
+<div id="myModal<?php echo $albumId[$i]?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Gallery</h3>
+    </div>
+    <div class="modal-body">
+        <div class="pikachoose">
+            <ul id="pikame<?php echo $albumId[$i];?>" class="jcarousel-skin-pika">
+                <?php
+                    foreach($album as $albumPath){
+                   ?>
+                <li><a href="#"><img src="<?php echo $albumPath['albumPath'];?>"/></a><span></span></li>
+                <?php
+                    }
+                ?>
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+<?php
+    $i++;
+    }
+?>
+
+<script type="text/javascript">
+    $(function() {
+        $('.demo').on('click', function(){
+            var albumId = $(this).find('.albumId').val();
+            var modal = '#myModal'+albumId;
+            $(modal).modal('show');
+            $("#pikame"+albumId).PikaChoose({carousel:true});
+            $(modal).on('hidden', function () {
+               window.location.reload();
+            })
         });
-        <?php endforeach; ?>
-    })
+
+
+
+
+        $("#capslide_img_cont").capslide({
+            caption_color	: 'white',
+            caption_bgcolor	: 'black',
+            overlay_bgcolor : 'black',
+            border			: '',
+            showcaption	    : false
+        });
+
+        $(".count9").capslide({
+            caption_color	: '#660e3a',
+            caption_bgcolor	: '#3fa6d1',
+            overlay_bgcolor : '#3fa6d1',
+            border			: '10px solid #3fa6d1',
+            showcaption	    : true
+        });
+
+
+    });
 </script>
