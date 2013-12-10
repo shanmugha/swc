@@ -207,7 +207,7 @@
                         <div class="demo">
                           <input type="hidden" class="albumId" value="<?php echo $albumUploadDetail['albumId'];?>">
                             <div id="capslide_img_cont" class="ic_container count9">
-                                <img src="public/img/example2.jpg" width="180" height="240" alt=""/>
+                                <img src="<?php echo $albumUploadDetail['path'];?>" width="180" height="240" alt=""/>
                                 <div class="overlay" style="display:none;"></div>
                                 <div class="ic_caption">
                                     <p class="ic_category">Category</p>
