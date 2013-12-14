@@ -85,38 +85,31 @@
     <!--END OF IMAGE SLIDER JSCODE -->
 
 </script>
-
-
-
 <script type="text/javascript" src="<?php echo $resourcePath ?>/js/bootstrap.min.js"></script>
 <div class="container">
-    <header class="header"><a class="logo-head" href="#"> <img src="<?php echo $resourcePath ?>/img/layout/logo.png"
+  <header class="header"><a class="logo-head" href="#"> <img src="<?php echo $resourcePath ?>/img/layout/logo.png"
                                                                class="logo"/>
-
-            <h2 class="fl">ST.ANN'S SCHOOL</h2> <br/>
-
-        </a>
-
-
-
-        <div class="content-login">
-            <p style="float:right;"><a href="#sign-up" data-toggle="modal" role="button" class="myButton"><img
+    <h2 class="fl">ST.ANN'S SCHOOL</h2>
+    <br/>
+    </a>
+    <div class="content-login">
+      <p style="float:right;"><a href="#sign-up" data-toggle="modal" role="button" class="myButton"><img
                         src="<?php echo $resourcePath ?>/img/layout/login.png" width="15" height="15" /> Admin Login</a></p>
-        </div>
-        <div class="clear"></div>
-    </header>
-    <div class="flash-news">
-        <!-- <marquee behavior="scroll" direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
+    </div>
+    <div class="clear"></div>
+  </header>
+  <div class="flash-news">
+    <!-- <marquee behavior="scroll" direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
              10th STD EXAMINATION RESULT WILL BE PUBLISH ON 1-DEC-2013
          </marquee>-->
-    </div>
-    <!-- DIV FOR IMAGE SLIDER  -->
-    <div align="center">
-        <div class="container_slider">
-            <div class="folio_block">
-                <div class="main_view">
-                    <div class="window">
-                        <div class="image_reel"><a href="#"><img
+  </div>
+  <!-- DIV FOR IMAGE SLIDER  -->
+  <div align="center">
+    <div class="container_slider">
+      <div class="folio_block">
+        <div class="main_view">
+          <div class="window">
+            <div class="image_reel"><a href="#"><img
                                     src="public/img/layout/image1.jpg"
                                     alt=""/></a> <a href="#"><img
                                     src="public/img/layout/image2.jpg"
@@ -125,73 +118,62 @@
                                     alt=""/></a> <a href="#"><img
                                     src="public/img/layout/image4.jpg"
                                     alt=""/></a></div>
-                    </div>
-                    <div style="display: block;" class="paging"><a class="" href="#" rel="1">1</a> <a class="" href="#"
+          </div>
+          <div style="display: block;" class="paging"><a class="" href="#" rel="1">1</a> <a class="" href="#"
                                                                                                       rel="2">2</a> <a
                             class="" href="#"
                             rel="3">3</a> <a class="" href="#" rel="4">4</a></div>
-                </div>
-            </div>
         </div>
-        <!-- <img src="img/layout/t3slider.jpg" alt="" width="940" height="380" /> -->
+      </div>
     </div>
-    <!-- END OF DIV FOR IMAGE SLIDER  -->
-    <div class="wrapper">
-        <?php include_once('leftpane.php'); ?>
-        <section class="content-pg clearfix">
-            <div class="tab-content">
-
-                <div class="tab-pane active" id="hometab">
-                    <div class="hm-content">
-                        <h4>Infrastructure</h4>
-                        <img src="<?php echo $resourcePath; ?>img/layout/school.jpg"  class="pcr-lrg"/>
-
-                        <p align="justify"> The three schools, two junior and one senior,
-                            Foundation in Worcester make up one of the leading academic institutions in the West Midlands and offer an outstanding educational experience.
-                            The Foundation was inspected at the end of 2011 and you can download here a copy of the official report from ISI.
-                            The senior school has one of the finest settings of any city school in the country.
-                            It borders the River Severn in the heart of Worcester and looks across to the Malvern Hills.
-                            It is adjacent to the Cathedral in an oasis of calm, and yet two minutes'
-                            walk from the pedestrianised city centre and within easy walking distance of train and bus stations.
-                            One of the junior schools, King's St Alban's, shares this tranquillity by being next to the senior site;
-                            the other, King's Hawford, is in a more rural setting just north of the city.
-                            The three schools, two junior and one senior,
-                        </p>
-
-                        <div class="clear"></div>
-                    </div>
-                    <div class="hm-content">
-                        <h4>Library</h4>
-                        <img src="<?php echo $resourcePath; ?>img/layout/1.jpg"   class="pcr mdm"  />
-                        <p align="justify"> The three schools, two junior and one senior,
-                            Foundation in Worcester make up one of the leading academic institutions in the West Midlands and offer an outstanding educational experience.
-                            The Foundation was inspected at the end of 2011 and you can download here a copy of the official report from ISI.
-                            The senior school has one of the finest settings of any city school in the country.
-                            It borders the River Severn in the heart of Worcester and looks across to the Malvern Hills.
-                            It is adjacent to the Cathedral in an oasis of calm, and yet two minutes'
-                            walk from the pedestrianised city centre and within easy walking distance of train and bus stations.
-                            One of the junior schools, King's St Alban's, shares this tranquillity by being next to the senior site;
-                            the other, King's Hawford, is in a more rural setting just north of the city.
-                            The three schools, two junior and one senior,
-                            Foundation in Worcester make up one of the leading academic institutions in the West Midlands and offer an outstanding educational experience.
-                            The Foundation was inspected at the end of 2011 and you can download here a copy of the official report from ISI.
-                            The senior school has one of the finest settings of any city school in the country.
-                            It borders the River Severn in the heart of Worcester and looks across to the Malvern Hills.
-                            It is adjacent to the Cathedral in an oasis of calm, and yet two minutes'
-                            walk from the pedestrianised city centre and within easy walking distance of train and bus stations.
-                            One of the junior schools, King's St Alban's, shares this tranquillity by being next to the senior site;
-                            the other, King's Hawford, is in a more rural setting just north of the city.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="clear"></div>
-    </div>
-    <?php include_once('footer.php'); ?>
+    <!-- <img src="img/layout/t3slider.jpg" alt="" width="940" height="380" /> -->
+  </div>
+  <!-- END OF DIV FOR IMAGE SLIDER  -->
+  <div class="wrapper">
+    <?php include_once('leftpane.php'); ?>
+    <section class="content-pg clearfix">
+      <div class="tab-content">
+        <div class="tab-pane active" id="hometab">
+          <div class="hm-content">
+            <h3>Infrastructure</h3>
+            <img src="<?php echo $resourcePath; ?>img/layout/school.jpg"  class="pcr-lrg"/>
+            <p align="justify"> The three schools, two junior and one senior,
+              Foundation in Worcester make up one of the leading academic institutions in the West Midlands and offer an outstanding educational experience.
+              The Foundation was inspected at the end of 2011 and you can download here a copy of the official report from ISI.
+              The senior school has one of the finest settings of any city school in the country.
+              It borders the River Severn in the heart of Worcester and looks across to the Malvern Hills.
+              It is adjacent to the Cathedral in an oasis of calm, and yet two minutes'
+              walk from the pedestrianised city centre and within easy walking distance of train and bus stations.
+              One of the junior schools, King's St Alban's, shares this tranquillity by being next to the senior site;
+              the other, King's Hawford, is in a more rural setting just north of the city.
+              The three schools, two junior and one senior, </p>
+            <div class="clear"></div>
+          </div>
+          <div class="hm-content">
+            <h3>Library</h3>
+            <img src="<?php echo $resourcePath; ?>img/layout/1.jpg"   class="pcr mdm"  />
+            <p align="justify"> The three schools, two junior and one senior,
+              Foundation in Worcester make up one of the leading academic institutions in the West Midlands and offer an outstanding educational experience.
+              The Foundation was inspected at the end of 2011 and you can download here a copy of the official report from ISI.
+              The senior school has one of the finest settings of any city school in the country.
+              It borders the River Severn in the heart of Worcester and looks across to the Malvern Hills.
+              It is adjacent to the Cathedral in an oasis of calm, and yet two minutes'
+              walk from the pedestrianised city centre and within easy walking distance of train and bus stations.
+              One of the junior schools, King's St Alban's, shares this tranquillity by being next to the senior site;
+              the other, King's Hawford, is in a more rural setting just north of the city.
+              The three schools, two junior and one senior,
+              Foundation in Worcester make up one of the leading academic institutions in the West Midlands and offer an outstanding educational experience.
+              The Foundation was inspected at the end of 2011 and you can download here a copy of the official report from ISI.
+              The senior school has one of the finest settings of any city school in the country.
+              It borders the River Severn in the heart of Worcester and looks across to the Malvern Hills.
+              It is adjacent to the Cathedral in an oasis of calm, and yet two minutes'
+              walk from the pedestrianised city centre and within easy walking distance of train and bus stations.
+              One of the junior schools, King's St Alban's, shares this tranquillity by being next to the senior site; the other, King's Hawford, is in a more rural setting just north of the city. </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="clear"></div>
+  </div>
+  <?php include_once('footer.php'); ?>
 </div>
-
-
-
-
-       

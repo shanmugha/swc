@@ -2,11 +2,9 @@
 <body id="page">
 <script type="text/javascript" src="public/js/jquery_slider.js"></script>
 <script type="text/javascript" src="public/js/jquery-1.9.1.js"></script>
-
 <link rel="stylesheet" href="public/css/colorbox.css" />
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
 <script src="public/js/jquery.colorbox.js"></script>
-
 <script type="text/javascript">
 
 
@@ -104,37 +102,32 @@
     <!--END OF IMAGE SLIDER JSCODE -->
 
 </script>
-
-
 <script type="text/javascript" src="<?php echo $resourcePath ?>/js/bootstrap.min.js"></script>
 <div class="container">
-    <header class="header"><a class="logo-head" href="#"> <img src="<?php echo $resourcePath ?>/img/layout/logo.png"
+  <header class="header"><a class="logo-head" href="#"> <img src="<?php echo $resourcePath ?>/img/layout/logo.png"
                                                                class="logo"/>
-
-            <h2 class="fl">ST.ANN'S SCHOOL</h2> <br/>
-
-        </a>
-
-
-        <div class="content-login">
-             <p style="float:right;"><a href="#sign-up" data-toggle="modal" role="button" class="myButton"><img
+    <h2 class="fl">ST.ANN'S SCHOOL</h2>
+    <br/>
+    </a>
+    <div class="content-login">
+      <p style="float:right;"><a href="#sign-up" data-toggle="modal" role="button" class="myButton"><img
                         src="<?php echo $resourcePath ?>/img/layout/login.png" width="15" height="15" /> Admin Login</a></p>
-            </p>
-        </div>
-        <div class="clear"></div>
-    </header>
-    <div class="flash-news">
-        <!-- <marquee behavior="scroll" direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
+      </p>
+    </div>
+    <div class="clear"></div>
+  </header>
+  <div class="flash-news">
+    <!-- <marquee behavior="scroll" direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
              10th STD EXAMINATION RESULT WILL BE PUBLISH ON 1-DEC-2013
          </marquee>-->
-    </div>
-    <!-- DIV FOR IMAGE SLIDER  -->
-    <div align="center">
-        <div class="container_slider">
-            <div class="folio_block">
-                <div class="main_view">
-                    <div class="window">
-                        <div class="image_reel"><a href="#"><img
+  </div>
+  <!-- DIV FOR IMAGE SLIDER  -->
+  <div align="center">
+    <div class="container_slider">
+      <div class="folio_block">
+        <div class="main_view">
+          <div class="window">
+            <div class="image_reel"><a href="#"><img
                                     src="public/img/layout/image1.jpg"
                                     alt=""/></a> <a href="#"><img
                                     src="public/img/layout/image2.jpg"
@@ -143,28 +136,26 @@
                                     alt=""/></a> <a href="#"><img
                                     src="public/img/layout/image4.jpg"
                                     alt=""/></a></div>
-                    </div>
-                    <div style="display: block;" class="paging"><a class="" href="#" rel="1">1</a> <a class="" href="#"
+          </div>
+          <div style="display: block;" class="paging"><a class="" href="#" rel="1">1</a> <a class="" href="#"
                                                                                                       rel="2">2</a> <a
                             class="" href="#"
                             rel="3">3</a> <a class="" href="#" rel="4">4</a></div>
-                </div>
-            </div>
         </div>
-        <!-- <img src="img/layout/t3slider.jpg" alt="" width="940" height="380" /> -->
+      </div>
     </div>
-    <!-- END OF DIV FOR IMAGE SLIDER  -->
-    <div class="wrapper">
-        <?php include_once('leftpane.php'); ?>
-        <section class="content-pg clearfix">
-            <div class="tab-content">
-
-                <div class="tab-pane active" id="hometab">
-                    <div class="hm-content">
-                        <h4>Gallery</h4>
-                    </div>
-
-                    <?php
+    <!-- <img src="img/layout/t3slider.jpg" alt="" width="940" height="380" /> -->
+  </div>
+  <!-- END OF DIV FOR IMAGE SLIDER  -->
+  <div class="wrapper">
+    <?php include_once('leftpane.php'); ?>
+    <section class="content-pg clearfix">
+      <div class="tab-content">
+        <div class="tab-pane active" id="hometab">
+          <div class="hm-content">
+            <h3>Gallery</h3>
+          </div>
+          <?php
                     try {
                         $sql_album = "select * from album";
                         $album = mysql_query($sql_album) or die ('Error updating database: ' . mysql_error());
@@ -187,49 +178,38 @@
                     }
 
                     ?>
-
-                    <?php
+          <?php
                     if (!empty($albumUploadDetails)):
                         foreach ($albumUploadDetails as $albumUploadDetail) {
                             ?>
-
-                            <div class="folder">
-                                <?php
+          <div class="folder">
+            <?php
                                 $sql_uploads = "select path from uploads where category='gallery' AND album='$albumUploadDetail[albumId]'";
                                 $uploads = mysql_query($sql_uploads) or die ('Error updating database: ' . mysql_error());
                                 while ($uploadRow = mysql_fetch_object($uploads)):
                                 ?>
-                                    <a class="group<?php echo $albumUploadDetail['albumId']; ?>" href="<?php echo $uploadRow->path; ?>" >
-
-                                <?php
+            <a class="group<?php echo $albumUploadDetail['albumId']; ?>" href="<?php echo $uploadRow->path; ?>" >
+            <?php
                                     $jscriptImgs[] = array('albumId' => $albumUploadDetail['albumId']);
                                     endwhile;
 
                                 ?>
-                                <div class="folder-mp"></div>
-                                <a class="folder-link">
-
-                                    <div class="thump">
-                                        <img src="<?php echo $albumUploadDetail['path']; ?>"/>
-                                    </div>
-                                    <h3><?php echo $albumUploadDetail['album_name']; ?></h3>
-
-                                    <p><?php echo $albumUploadDetail['description']; ?></p>
-                                </a>
-
-                            </div>
-                        <?php 
+            <div class="folder-mp"></div>
+            <a class="folder-link">
+            <div class="thump"> <img src="<?php echo $albumUploadDetail['path']; ?>"/> </div>
+            <h3><?php echo $albumUploadDetail['album_name']; ?></h3>
+            <p><?php echo $albumUploadDetail['description']; ?></p>
+            </a> </div>
+          <?php 
 						
 						} endif; ?>
-
-                </div>
-            </div>
-        </section>
-        <div class="clear"></div>
-    </div>
-    <?php include_once('footer.php'); ?>
+        </div>
+      </div>
+    </section>
+    <div class="clear"></div>
+  </div>
+  <?php include_once('footer.php'); ?>
 </div>
-
 <script>
     $(document).ready(function(){
         <?php foreach($jscriptImgs as $img):?>
