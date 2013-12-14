@@ -167,7 +167,7 @@ include("admin-layouts/admin-header.php");
                                 <div class="controls">
                                     <input type="hidden" name="create-edit" value="0"/>
                                     <button type="button" class="btn btn-success" id="save">Save</button>
-                                    <a class="btn" href="<?php echo $_SERVER['PHP_SELF'];?>" type="button">Clear</a>
+                                    <a class="btn" href="<?php echo $_SERVER['PHP_SELF'];?>" type="button">Close</a>
                                 </div>
                             </div>
                         </form>
@@ -184,6 +184,7 @@ include("admin-layouts/admin-header.php");
 <script type="text/javascript">
     <?php $timestamp = time();?>
     $(function() {
+        var queueCnt = 0;
         $('input[type=file]').each(function (){
             upload();
         });
@@ -211,13 +212,23 @@ include("admin-layouts/admin-header.php");
                 },
                 onUploadSuccess: function (e, data, status) {
                     $("#save").attr("disabled", "disabled");
-                    location.reload();
+                    //location.reload();
                 },
-                'onSelect' : function(file) {
+                'onSelect' : function(queue) {
+                    queueCnt++;
                     $('#save').removeAttr("disabled");
                 },
                 'onCancel' : function(file) {
-                    $("#save").attr("disabled", "disabled");
+                    queueCnt--;
+                    if(queueCnt == 0){
+                        $("#save").attr("disabled", "disabled");
+                    }
+                },
+                'onUploadComplete' : function(file) {
+                    queueCnt--;
+                    if(queueCnt == 0) {
+                        location.reload();
+                    }
                 }
 
             });

@@ -86,7 +86,6 @@
 
         </script>
 <script type="text/javascript" src="<?php echo $resourcePath ?>/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo $resourcePath ?>/js/bootstrap.min.js"></script>
 <div class="container">
   <header class="header"><a class="logo-head" href="#"> <img src="<?php echo $resourcePath ?>/img/layout/logo.png"
                                                                class="logo"/>
