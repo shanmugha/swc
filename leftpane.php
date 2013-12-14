@@ -99,6 +99,7 @@ $url       = $actualUrl[$cnt];
     $(document).ready(function() {
         $("#eventCalendarDefault").eventCalendar({
             eventsjson: 'events.json.php',
+            jsonDateFormat: 'human',
             startWeekOnMonday: false,
             eventsScrollable: true
         });
