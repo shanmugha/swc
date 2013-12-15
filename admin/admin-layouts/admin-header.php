@@ -102,7 +102,7 @@ if (empty($_SESSION['user'])) {
                 <li><a class="sub-list <?php if($url == 'infrastructure.php'){echo 'current';}?>" href="infrastructure.php">Infrastructure</a></li>
                 <li><a class="sub-list <?php if($url == 'contact.php'){echo 'current';}?>" href="contact.php">Contact us</a></li>
 				<li><a class="sub-list" href="#">Fee Structure</a></li>
-                <li><a class="sub-list <?php if($url == 'others.php'){echo 'current';}?>" href="others.php">Others</a></li>
+                <li><a class="sub-list <?php if($url == 'others.php'){echo 'current';}?>" href="others.php">School Management</a></li>
             </ul>
         </li>
         <li><a class="active-tab" href="#" data-toggle="tab">Examination</a>
