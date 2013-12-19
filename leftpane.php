@@ -84,8 +84,9 @@ $url       = $actualUrl[$cnt];
                     <?php
                         if($result) {
                         while ($row = mysql_fetch_array($result)):
+                            //print_r($row);
                     ?>
-                            <li><?php echo $row['news'];?>  <a href="#">Read more..</a></li>
+                            <li><?php echo substr(strip_tags($row['news']),0,15);?>  <a href="<?php echo 'latest-news.php?nid='.$row['id'];?>">Read more..</a></li>
                     <?php endwhile;} ?>
                 </ul>
             </div>

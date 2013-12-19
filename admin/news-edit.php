@@ -1,4 +1,4 @@
-
+<script type="text/javascript" src="/../public/library/tinymce/js/tinymce/tinymce.min.js"></script>
 <div class="content-box-header">
     <h3 class="c-head">Edit News</h3>
 
@@ -21,7 +21,7 @@ $result = mysql_query($sql_select_news) or die ('Error updating database: ' . my
         <div class="control-group">
             <label class="control-label" for="inputEmail">News</label>
             <div class="controls">
-                <textarea rows="8" name="news" class="span8" required="required"><?php echo $getResult[1];?></textarea>
+                <textarea rows="12" name="news" class="span8"><?php echo $getResult[1];?></textarea>
             </div>
         </div>
         <div class="control-group">
@@ -37,6 +37,7 @@ $result = mysql_query($sql_select_news) or die ('Error updating database: ' . my
 
 <script>
     $(function(){
+        tinymce.init({selector:'textarea'});
         $('.delBtn').on('click', function(){
             if (confirm("Are you sure you want to delete this row?")) {
                 $.ajax(

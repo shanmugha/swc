@@ -1,4 +1,5 @@
-<?php 
+<script type="text/javascript" src="/../public/library/tinymce/js/tinymce/tinymce.min.js"></script>
+<?php
 //require_once('admin-layouts/admin-header.php');
 ob_start();
 include("admin-layouts/admin-header.php");
@@ -101,6 +102,7 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
 
 
 
+
             <div class="tab-pane" id="tab2">
                 <div class="content-box formcontent">
                     <div class="content-box-header">
@@ -112,7 +114,7 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">News</label>
                                 <div class="controls">
-                                    <textarea rows="8" name="news" class="span8" required="required"></textarea>
+                                    <textarea rows="12" name="news" class="span8"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -136,6 +138,8 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
 
 <script>
     $(function(){
+        tinymce.init({selector:'textarea'});
+
         $('.edit').on('click', function(){
 
             $.ajax({

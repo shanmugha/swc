@@ -218,13 +218,13 @@
                             </div>
                         </div>
                     <?php
-                    $sql_uploads = "select path from uploads where category='gallery' AND album='$albumUploadDetail[albumId]'";
+                    $sql_uploads = "select path,album_name from uploads u left join album a on u.album = a.id   where u.category='gallery' AND u.album='$albumUploadDetail[albumId]'";
 
                     $uploads = mysql_query($sql_uploads) or die ('Error updating database: ' . mysql_error());
                     while ($uploadRow = mysql_fetch_object($uploads)):
                     ?>
                         <?php
-                        $albumIdImgs[$albumUploadDetail['albumId']][] = array('albumPath' => $uploadRow->path);
+                        $albumIdImgs[$albumUploadDetail['albumId']][] = array('albumPath' => $uploadRow->path, 'albumname' => $uploadRow->album_name);
                         endwhile;
                         ?>
 
@@ -248,7 +248,7 @@ foreach($albumIdImgs as $album){
 <div id="myModal<?php echo $albumId[$i]?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Gallery</h3>
+        <h3 id="myModalLabel"><?php echo $album[0]['albumname']; ?></h3>
     </div>
     <div class="modal-body">
         <div class="pikachoose">
@@ -263,9 +263,9 @@ foreach($albumIdImgs as $album){
             </ul>
         </div>
     </div>
-    <div class="modal-footer">
+    <!--<div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    </div>
+    </div>-->
 </div>
 <?php
     $i++;
