@@ -1,4 +1,4 @@
-
+<script type="text/javascript" src="/../public/library/tinymce/js/tinymce/tinymce.min.js"></script>
 <div class="content-box-header">
     <h3 class="c-head">Edit Events</h3>
 
@@ -17,6 +17,12 @@ $result = mysql_query($sql_select_news) or die ('Error updating database: ' . my
     <div class="content-box-content">
         <a  href="#" class="btn btn-danger delBtn" rowId="<?php echo $getResult['id'];?>">Delete</a>
         <form class="form-horizontal" method="post">
+            <div class="control-group">
+                <label class="control-label" for="inputEmail">Event Title</label>
+                <div class="controls">
+                    <input type="text" name="title" required="true" class="span8" value="<?php echo $getResult['title'];?>" placeholder="Title for display">
+                </div>
+            </div>
             <div class="control-group">
                 <label class="control-label" for="inputEmail">Add Events</label>
                 <div class="controls">
@@ -48,6 +54,17 @@ $result = mysql_query($sql_select_news) or die ('Error updating database: ' . my
         date.setDate(date.getDate() - 1);
         $('.datepicker').datepicker({startDate: date}).on('changeDate', function(ev){
             $('#dpd1').datepicker('hide');
+        });
+
+        tinymce.init({selector:'textarea',height : 300,
+            plugins: [
+                "advlist autolink autosave link  lists charmap print preview hr anchor pagebreak spellchecker",
+                "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime  nonbreaking",
+                "table contextmenu directionality emoticons template textcolor paste fullpage textcolor"
+            ],
+            toolbar1: "undo redo | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | searchreplace | bullist numlist | outdent indent blockquote | inserttime preview | forecolor backcolor",
+            toolbar2: "",
+            toolbar3: "",
         });
 
         $('.delBtn').on('click', function(){

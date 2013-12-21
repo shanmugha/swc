@@ -1,18 +1,19 @@
 <?php require_once('admin-layouts/admin-header.php'); ?>
 <link href="<?php echo $resourcePath;?>library/datepicker/css/datepicker.css" media="screen" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<?php echo $resourcePath;?>library/datepicker/js/bootstrap-datepicker.js"></script>
-
+<script type="text/javascript" src="/../public/library/tinymce/js/tinymce/tinymce.min.js"></script>
 <?php
 
-if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
+if ((!empty($_POST['events'])) && (!empty($_POST['title'])) && (!empty($_POST['dpd1']))) {
+    $title        = $_POST['title'];
     $events       = $_POST['events'];
     $createOrEdit = $_POST['create-edit'];
     $date         = date('Y-m-d', strtotime($_POST['dpd1']));
     if($createOrEdit == 0) {
-        $sql = "INSERT INTO events VALUES ('','$events','$date')";
+        $sql = "INSERT INTO events VALUES ('', '$title', '$events', '$date')";
         Flash::add('Success', 'Event Created.');
     } else {
-        $sql = "update  events set events = '$events', date = '$date' where id = '$createOrEdit'";
+        $sql = "update  events set title = '$title', events = '$events', date = '$date' where id = '$createOrEdit'";
         Flash::add('Success', 'Event Updated.');
     }
 
@@ -56,7 +57,7 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
                             <thead>
                             <tr>
                                 <th>Sl No</th>
-                                <th>Events</th>
+                                <th>Event Title</th>
                                 <th>Date</th>
                             </tr>
                             </thead>
@@ -93,7 +94,7 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
                                 while ($row = mysql_fetch_array($result)):?>
                                     <tr>
                                         <td><?php echo $iterator++;?></td>
-                                        <td class="span6"><?php echo $row['events'];?></td>
+                                        <td class="span6"><?php echo $row['title'];?></td>
                                         <td class="span4"><?php echo date("d-m-Y", strtotime($row['date']));?></td>
                                         <td>
                                             <a title="Edit" href="#" class="edit" rowId="<?php echo $row['id'];?>"><i class="icon-edit"></i></a>
@@ -121,9 +122,15 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
                     <div class="content-box-content">
                         <form class="form-horizontal" method="post">
                             <div class="control-group">
-                                <label class="control-label" for="inputEmail">Add Events</label>
+                                <label class="control-label" for="inputEmail">Event Title</label>
                                 <div class="controls">
-                                    <textarea rows="8" name="events" class="span8" required="required"></textarea>
+                                    <input type="text" name="title" required="true" class="span8" placeholder="Title for display">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Add Event</label>
+                                <div class="controls">
+                                    <textarea rows="8" name="events" class="span8"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -159,6 +166,17 @@ if ((!empty($_POST['events'])) && (!empty($_POST['dpd1']))) {
         date.setDate(date.getDate() - 1);
         $('.datepicker').datepicker({startDate: date}).on('changeDate', function(ev){
             $('#dpd1').datepicker('hide');
+        });
+
+        tinymce.init({selector:'textarea',height : 300,
+            plugins: [
+                "advlist autolink autosave link  lists charmap print preview hr anchor pagebreak spellchecker",
+                "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime  nonbreaking",
+                "table contextmenu directionality emoticons template textcolor paste fullpage textcolor"
+            ],
+            toolbar1: "undo redo | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | searchreplace | bullist numlist | outdent indent blockquote | inserttime preview | forecolor backcolor",
+            toolbar2: "",
+            toolbar3: "",
         });
 
         $('.edit').on('click', function(){

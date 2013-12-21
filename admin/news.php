@@ -1,21 +1,22 @@
-<script type="text/javascript" src="/../public/library/tinymce/js/tinymce/tinymce.min.js"></script>
+
 <?php
 //require_once('admin-layouts/admin-header.php');
 ob_start();
 include("admin-layouts/admin-header.php");
  ?>
-
+<script type="text/javascript" src="/../public/library/tinymce/js/tinymce/tinymce.min.js"></script>
 <?php
 
 
 
-if ((!empty($_POST['news'])) && (!empty($_POST))) {
-    $news = $_POST['news'];
+if ((!empty($_POST['news'])) && (!empty($_POST['title'])) && (!empty($_POST))) {
+    $news  = $_POST['news'];
+    $title = trim($_POST['title']);
     $createOrEdit = $_POST['create-edit'];
     if($createOrEdit == 0) {
-        $sql = "INSERT INTO news VALUES ('','$news')";
+        $sql = "INSERT INTO news VALUES ('', '$title', '$news')";
     } else {
-        $sql = "update  news set news = '$news' where id = '$createOrEdit'";
+        $sql = "update  news set news = '$news', title = '$title' where id = '$createOrEdit'";
     }
 
     $result = mysql_query($sql) or die ('Error updating database: ' . mysql_error());
@@ -112,6 +113,12 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
                     <div class="content-box-content">
                         <form class="form-horizontal" method="post">
                             <div class="control-group">
+                                <label class="control-label" for="inputEmail">Title</label>
+                                <div class="controls">
+                                    <input type="text" name="title" required="true" class="span8" placeholder="Title for display">
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <label class="control-label" for="inputEmail">News</label>
                                 <div class="controls">
                                     <textarea rows="12" name="news" class="span8"></textarea>
@@ -138,7 +145,18 @@ if ((!empty($_POST['news'])) && (!empty($_POST))) {
 
 <script>
     $(function(){
-        tinymce.init({selector:'textarea'});
+        tinymce.init({selector:'textarea',height : 300,
+            plugins: [
+                "advlist autolink autosave link  lists charmap print preview hr anchor pagebreak spellchecker",
+                "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime  nonbreaking",
+                "table contextmenu directionality emoticons template textcolor paste fullpage textcolor"
+            ],
+            toolbar1: "undo redo | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | searchreplace | bullist numlist | outdent indent blockquote | inserttime preview | forecolor backcolor",
+            toolbar2: "",
+            toolbar3: "",
+
+
+        });
 
         $('.edit').on('click', function(){
 
