@@ -1,11 +1,14 @@
-<?php 
+<?php
 
 //require_once('admin-layouts/admin-header.php'); 
 include("admin-layouts/admin-header.php");
 
 ?>
-<script src="<?php echo $resourcePath;?>js/jquery.uploadify.min.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo $resourcePath;?>css/uploadify.css">
+<script src="../public/js/simpleAjaxUploader.js"></script>
+<script src="../public/js/jquery.blockUI.js"></script>
+<!--<script src="<?php /*echo $resourcePath;*/?>js/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="<?php /*echo $resourcePath;*/?>css/uploadify.css">-->
+
 
 <script>
     $(function(){
@@ -112,7 +115,7 @@ include("admin-layouts/admin-header.php");
                                         <td><?php echo $iterator++;?></td>
                                         <td class="span4"><?php echo $row['album_name'];?></td>
                                         <td class="span4"><?php echo $row['name'];?></td>
-                                        <td class="span2"><img src="<?php echo $row['path'];?>" style="height: 100px;width: 100px;"></td>
+                                        <td class="span2"><img src="<?php echo '/uploads/100_'.$row['name'];?>" style=""></td>
                                         <td>
                                             <a title="Upload" href="#" class="upload-ico" rowId="<?php echo $row['id'];?>"><i class="icon-upload"></i></a>
                                             <a title="Delete" href="javascript:void(0) " fileName="<?php echo $row['name'];?>" class="delBtn" rowId="<?php echo $row['id'];?>"><i class="icon-trash"></i></a>
@@ -140,6 +143,9 @@ include("admin-layouts/admin-header.php");
                             $result = mysql_query($sql_album) or die ('Error updating database: ' . mysql_error());
                             if($result) {
                         ?>
+                                <!--<div class="progres" id="progres"  style="width: 700px">
+
+                                </div>-->
                         <form class="form-horizontal" method="post">
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Select Album</label>
@@ -157,8 +163,9 @@ include("admin-layouts/admin-header.php");
                             <div class="control-group">
                                 <label for="inputEmail" class="control-label">Upload Images</label>
                                 <div class="controls">
-                                    <input id="file_upload" name="file_upload" type="file" multiple="true">
+                                    <!--<input id="file_upload" name="file_upload" type="file" multiple="true">-->
                                     <!--<input type="text" placeholder="Album Name" name="albumName" id="albumName">-->
+                                    <input type="button" id="upload-btn" class="btn btn-primary btn-large clearfix" value="Choose file"> <span> jpg, jpeg, png, gif MaxSize (5 MB)</span>
                                 </div>
                                 <input type="hidden" value="0" id='hfGallery'/>
                             </div>
@@ -166,8 +173,8 @@ include("admin-layouts/admin-header.php");
                             <div class="control-group">
                                 <div class="controls">
                                     <input type="hidden" name="create-edit" value="0"/>
-                                    <button type="button" class="btn btn-success" id="save">Save</button>
-                                    <a class="btn" href="<?php echo $_SERVER['PHP_SELF'];?>" type="button">Close</a>
+                                    <button type="button" class="btn btn-success" id="save">Upload</button>
+                                    <a class="btn" href="<?php /*echo $_SERVER['PHP_SELF'];*/?>" type="button">Close</a>
                                 </div>
                             </div>
                         </form>
@@ -182,7 +189,62 @@ include("admin-layouts/admin-header.php");
 <?php require_once('admin-layouts/admin-footers.php'); ?>
 
 <script type="text/javascript">
-    <?php $timestamp = time();?>
+
+
+    $(function () {
+        album = $('#albumId').val();
+
+        //$('#dTable').dataTable();
+
+
+        var btn = document.getElementById('upload-btn');
+        var uploader = new ss.SimpleUpload({
+            button: btn, // HTML element used as upload button
+            url: '/admin/upload1.php', // URL of server-side upload handler
+            name: 'files', // Parameter name of the uploaded file
+            responseType: 'json',
+            data: {album:album},
+            allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+            multiple: true,
+
+
+            onSubmit: function(filename, extension) {
+                blockUi();
+            },
+            onComplete:   function(filename, response) {
+                blockUiComplete();
+                location.reload();
+
+            }
+        });
+
+        $('#albumId').on('change', function(){
+            album = $(this).val();
+            uploader.setData({album:album});
+
+        });
+    });
+
+    function blockUi() {
+        $.blockUI({ css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        } });
+    }
+
+    function blockUiComplete() {
+        setTimeout($.unblockUI, 0);
+    }
+
+</script>
+
+<!--<script type="text/javascript">
+    <?php /*$timestamp = time();*/?>
     $(function() {
         var queueCnt = 0;
         $('input[type=file]').each(function (){
@@ -193,8 +255,8 @@ include("admin-layouts/admin-header.php");
             $("#save").attr("disabled", "disabled");
             $('#file_upload').uploadify({
                 'formData'      : {
-                    'timestamp' : '<?php echo $timestamp;?>',
-                    'token'     : '<?php echo md5('unique_salt' . $timestamp);?>',
+                    'timestamp' : '<?php /*echo $timestamp;*/?>',
+                    'token'     : '<?php /*echo md5('unique_salt' . $timestamp);*/?>',
                     'category'  :  'gallery'
                 },
                 auto       : false,
@@ -244,3 +306,4 @@ include("admin-layouts/admin-header.php");
 
     });
 </script>
+-->

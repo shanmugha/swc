@@ -33,12 +33,14 @@ if (empty($_SESSION['user'])) {
     <title>admin</title>
     <link rel="stylesheet" href="<?php echo $resourcePath;?>css/bootstrap.css" />
     <link rel="stylesheet" href="<?php echo $resourcePath;?>css/style.css" />
+    <link rel="stylesheet" href="<?php echo $resourcePath;?>css/jgrowl.min.css" />
     <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script>-->
     <script src="<?php echo $resourcePath;?>js/jquery.min.js"></script>
     <script src="<?php echo $resourcePath;?>js/jqbootstrapvalidation.js"></script>
     <script type="text/javascript" src="<?php echo $resourcePath;?>js/modernizr.custom.86080.js"></script>
     <script src="<?php echo $resourcePath;?>js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo $resourcePath;?>js/jquery.validate.js"></script>
+    <script type="text/javascript" src="<?php echo $resourcePath;?>js/jgrowl.min.js"></script>
     <!--<script type="text/javascript" src="https://rnhckrdotcom.googlecode.com/svn/bloggerwidget/rnhckr-tripleflap.js"></script>
    --> <script type="text/javascript">
         $(document).ready(function() {
