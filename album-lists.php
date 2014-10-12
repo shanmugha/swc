@@ -3,21 +3,12 @@
 <script type="text/javascript" src="public/js/jquery_slider.js"></script>
 <script type="text/javascript" src="public/js/jquery-1.9.1.js"></script>
 
-<link rel="stylesheet" href="public/css/colorbox.css" />
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-<script src="public/js/jquery.colorbox.js"></script>
-
-<script type="text/javascript" src="public/js/jquery.pikachoose.js"></script>
-<script type="text/javascript" src="public/js/jquery.touchwipe.min.js"></script>
-<script type="text/javascript" src="public/js/jquery.jcarousel.min.js"></script>
-
-
-<!-- bottom css for image gallery -->
-<link rel="stylesheet" href="public/library/pickachoose/bottom.css"/>
 <link rel="stylesheet" href="public/css/jcap.css"/>
 
 <script src="public/js/jquery.capSlide.js"></script>
 
+<script src="/public/library/lightbox/js/lightbox.min.js"></script>
+<link href="public/library/lightbox/css/lightbox.css" rel="stylesheet" />
 
 
 <!--<script src="/public/library/lightbox/js/lightbox.min.js"></script>
@@ -144,30 +135,30 @@
 </script>
 <script type="text/javascript" src="<?php echo $resourcePath ?>/js/bootstrap.min.js"></script>
 <div class="container">
-  <header class="header"><a class="logo-head" href="#"> <img src="<?php echo $resourcePath ?>/img/layout/logo.png"
+    <header class="header"><a class="logo-head" href="#"> <img src="<?php echo $resourcePath ?>/img/layout/logo.png"
                                                                class="logo"/>
-    <h2 class="fl">ST.ANN'S SCHOOL</h2>
-    <br/>
-    </a>
-    <div class="content-login">
-      <p style="float:right;"><a href="#sign-up" data-toggle="modal" role="button" class="myButton"><img
+            <h2 class="fl">ST.ANN'S SCHOOL</h2>
+            <br/>
+        </a>
+        <div class="content-login">
+            <p style="float:right;"><a href="#sign-up" data-toggle="modal" role="button" class="myButton"><img
                         src="<?php echo $resourcePath ?>/img/layout/login.png" width="15" height="15" /> Admin Login</a></p>
-      </p>
+            </p>
+        </div>
+        <div class="clear"></div>
+    </header>
+    <div class="flash-news">
+        <!-- <marquee behavior="scroll" direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
+                 10th STD EXAMINATION RESULT WILL BE PUBLISH ON 1-DEC-2013
+             </marquee>-->
     </div>
-    <div class="clear"></div>
-  </header>
-  <div class="flash-news">
-    <!-- <marquee behavior="scroll" direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
-             10th STD EXAMINATION RESULT WILL BE PUBLISH ON 1-DEC-2013
-         </marquee>-->
-  </div>
-  <!-- DIV FOR IMAGE SLIDER  -->
-  <div align="center">
-    <div class="container_slider">
-      <div class="folio_block">
-        <div class="main_view">
-          <div class="window">
-            <div class="image_reel"><a href="#"><img
+    <!-- DIV FOR IMAGE SLIDER  -->
+    <div align="center">
+        <div class="container_slider">
+            <div class="folio_block">
+                <div class="main_view">
+                    <div class="window">
+                        <div class="image_reel"><a href="#"><img
                                     src="public/img/layout/image1.jpg"
                                     alt=""/></a> <a href="#"><img
                                     src="public/img/layout/image2.jpg"
@@ -176,47 +167,46 @@
                                     alt=""/></a> <a href="#"><img
                                     src="public/img/layout/image4.jpg"
                                     alt=""/></a></div>
-          </div>
-          <div style="display: block;" class="paging"><a class="" href="#" rel="1">1</a> <a class="" href="#"
+                    </div>
+                    <div style="display: block;" class="paging"><a class="" href="#" rel="1">1</a> <a class="" href="#"
                                                                                                       rel="2">2</a> <a
                             class="" href="#"
                             rel="3">3</a> <a class="" href="#" rel="4">4</a></div>
+                </div>
+            </div>
         </div>
-      </div>
+        <!-- <img src="img/layout/t3slider.jpg" alt="" width="940" height="380" /> -->
     </div>
-    <!-- <img src="img/layout/t3slider.jpg" alt="" width="940" height="380" /> -->
-  </div>
-  <!-- END OF DIV FOR IMAGE SLIDER  -->
-  <div class="wrapper">
-    <?php include_once('leftpane.php'); ?>
-    <section class="content-pg clearfix">
-      <div class="tab-content">
-        <div class="tab-pane active" id="hometab">
-          <div class="hm-content">
-            <h3>Gallery</h3>
-          </div>
+    <!-- END OF DIV FOR IMAGE SLIDER  -->
+    <div class="wrapper">
+        <?php include_once('leftpane.php'); ?>
+        <section class="content-pg clearfix">
+            <div class="tab-content">
+                <div class="tab-pane active" id="hometab">
+                    <div class="hm-content">
+                        <?php
+                        $sql_album = "select name from uploads where album = $_GET[id]";
+                        $tmp = mysql_query($sql_album) or die ('Error updating database: ' . mysql_error());
+                        ?>
+                        <h3>Gallery</h3>
+                    </div>
 
-            <?php
-                $sql_album = "select album_name, id from album";
-                $albums = mysql_query($sql_album) or die ('Error updating database: ' . mysql_error());
-                while ($album = mysql_fetch_assoc($albums)){
-                    //$albumGroup[] = $album['album_name'];
-                    $sql_album = "select name from uploads where album = $album[id] limit 1";
-                    $tmp = mysql_query($sql_album) or die ('Error updating database: ' . mysql_error());
-                    while ($upload = mysql_fetch_assoc($tmp)) { ?>
-                        <div class="thumbnail">
-                            <div style="margin: 2px;border-style: solid;border-width: 1px">
+                    <?php
+                        if(mysql_num_rows($tmp) >0):
+                            while ($upload = mysql_fetch_assoc($tmp)) { ?>
+                                <div class="thumbnail">
+                                    <div style="margin: 2px;border-style: solid;border-width: 1px">
 
-                                <a href="/album-lists.php?id=<?php echo $album['id']?>">
-                                    <img src="/uploads/200_<?php echo $upload['name'];?>" alt="" width="200" style="height: 180px !important;">
-                                </a>
+                                        <a href="/uploads/200_<?php echo $upload['name'];?>" data-lightbox="roadtrip">
+                                            <img alt="" src="/uploads/200_<?php echo $upload['name'];?>" class="example-image" style="width: 200px !important; height: 200px !important;">
+                                        </a>
 
-                            </div>
-                            <div style="text-align: center;"><?php echo $album['album_name']?></div>
-                        </div>
-                    <?php }
-                }
+                                    </div>
+                                </div>
+                            <?php }
+                        endif;
 ?>
+
 
                 </div>
             </div>
@@ -225,3 +215,5 @@
     </div>
     <?php include_once('footer.php'); ?>
 </div>
+
+
