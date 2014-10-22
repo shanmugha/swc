@@ -118,6 +118,12 @@ if (empty($_SESSION['user'])) {
                 <li><a class="sub-list <?php if($url == 'events.php'){echo 'current';}?>" href="events.php">Add Events</a></li>
             </ul>
         </li>
+        <li>
+            <a class="active-tab" href="#" data-toggle="tab">Document</a>
+            <ul class="sub-nav" <?php if(in_array($url, array('document.php'))){?> style="display: block" <?php }?>>
+                <li><a class="sub-list <?php if($url == 'document.php'){echo 'current';}?>" href="document.php">Document Upload</a></li>
+            </ul>
+        </li>
 
         <li>
             <a class="active-tab" href="#" data-toggle="tab">Settings</a>
