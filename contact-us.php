@@ -222,6 +222,15 @@
                     </section>
                 </div>
             </div>
+
+            <button type="button" class="btn btn-success"  id="viewDocs">
+                View Docs
+            </button>
+
+            <div  id="docstoggle" style="display: none;">
+                <iframe src="http://docs.google.com/viewer?url=http%3A%2F%2Fswkart.com%2Fimage%2FUntitled1.doc&embedded=true" width="700" height="780" style="border: none;"></iframe>
+            </div>
+
         </section>
         <div class="clear"></div>
     </div>
@@ -229,6 +238,12 @@
 </div>
 
 <script>
+    $(function(){
+       $('#viewDocs').on('click', function(){
+
+           $('#docstoggle').toggle();
+       })
+    });
 
     function initialize() {
         var myLatlng = new google.maps.LatLng(8.893488, 76.857044);
