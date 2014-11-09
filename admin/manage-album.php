@@ -52,9 +52,9 @@ if (!empty($_POST['albumname'])) {
                         url: "manage-album-delete.php",
                         data: {id:$(this).attr('rowId')},
                         cache: false,
-                        success: function()
+                        success: function(data)
                         {
-                            location.reload();
+                            window.location.replace("<?php echo $_SERVER['PHP_SELF']?>");
                         }
                     });
             }
